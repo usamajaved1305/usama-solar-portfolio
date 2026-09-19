@@ -1,11 +1,13 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
+import { highlights } from "@/lib/data";
 
 const ARC = "M 40 300 A 220 220 0 0 1 480 300";
 
-function Panel({ x, y, w, h, skew }: { x: number; y: number; w: number; h: number; skew: number }) {
-  const cols = 6;
+type PanelProps = { x: number; y: number; w: number; h: number; skew: number; cols?: number };
+
+function Panel({ x, y, w, h, skew, cols = 6 }: PanelProps) {
   const rows = 3;
   const pts = `${x},${y} ${x + w},${y} ${x + w + skew},${y + h} ${x + skew},${y + h}`;
   const lines = [];
@@ -29,6 +31,8 @@ function Panel({ x, y, w, h, skew }: { x: number; y: number; w: number; h: numbe
     </g>
   );
 }
+
+const CARD_POSITIONS = ["left-0 top-0", "right-0 top-0 text-right"];
 
 export function HeroArt() {
   return (
@@ -61,45 +65,30 @@ export function HeroArt() {
         <Panel x={236} y={318} w={150} h={58} skew={-10} />
         <Panel x={50} y={392} w={170} h={64} skew={-30} />
         <Panel x={236} y={392} w={170} h={64} skew={-12} />
-        <Panel x={402} y={318} w={96} h={58} skew={6} />
-        <Panel x={422} y={392} w={80} h={64} skew={8} />
+        <Panel x={402} y={318} w={96} h={58} skew={4} cols={3} />
+        <Panel x={422} y={392} w={80} h={64} skew={6} cols={3} />
       </svg>
 
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute left-0 top-0 rounded-2xl border px-4 py-3 shadow-xl"
-        style={{ background: "var(--nav-bg)", borderColor: "var(--line)", backdropFilter: "blur(10px)" }}
-      >
-        <div className="text-[11px] font-bold uppercase tracking-[0.12em]" style={{ color: "var(--text-faint)" }}>
-          Largest install
-        </div>
-        <div className="mt-1 font-extrabold text-[20px]" style={{ fontFamily: "var(--font-display)" }}>
-          150 kWp
-        </div>
-        <div className="text-[12.5px]" style={{ color: "var(--text-dim)" }}>
-          Factory rooftop
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute right-0 top-0 rounded-2xl border px-4 py-3 shadow-xl text-right"
-        style={{ background: "var(--nav-bg)", borderColor: "var(--line)", backdropFilter: "blur(10px)" }}
-      >
-        <div className="text-[11px] font-bold uppercase tracking-[0.12em]" style={{ color: "var(--text-faint)" }}>
-          Peak year
-        </div>
-        <div className="mt-1 font-extrabold text-[20px]" style={{ fontFamily: "var(--font-display)" }}>
-          790 kWp
-        </div>
-        <div className="text-[12.5px]" style={{ color: "var(--text-dim)" }}>
-          36 projects, 85% on time
-        </div>
-      </motion.div>
+      {highlights.map((h, i) => (
+        <motion.div
+          key={h.label}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 + i * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className={`absolute ${CARD_POSITIONS[i]} rounded-2xl border px-4 py-3 shadow-xl`}
+          style={{ background: "var(--nav-bg)", borderColor: "var(--line)", backdropFilter: "blur(10px)" }}
+        >
+          <div className="text-[11px] font-bold uppercase tracking-[0.12em]" style={{ color: "var(--text-faint)" }}>
+            {h.label}
+          </div>
+          <div className="mt-1 font-extrabold text-[18px]" style={{ fontFamily: "var(--font-display)" }}>
+            {h.value}
+          </div>
+          <div className="text-[12.5px]" style={{ color: "var(--text-dim)" }}>
+            {h.sub}
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight, Download } from "lucide-react";
 import { profile } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import { SunMark } from "./SunMark";
@@ -35,11 +35,11 @@ export function Contact() {
           >
             Get in touch
           </motion.span>
-          <motion.h2 variants={fadeUp} className="mt-3 font-extrabold" style={{ fontSize: "clamp(30px, 4.4vw, 48px)" }}>
+          <motion.h2 variants={fadeUp} className="mt-3 font-extrabold leading-[1.1]" style={{ fontSize: "clamp(30px, 4.4vw, 48px)" }}>
             Let&apos;s talk about your next site
           </motion.h2>
-          <motion.p variants={fadeUp} className="mt-4 text-[16px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
-            {profile.availability}. Based in {profile.location}.
+          <motion.p variants={fadeUp} className="mt-4 text-[16px] leading-relaxed text-balance" style={{ color: "var(--text-dim)" }}>
+            {profile.availability}. Based in {profile.city}.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center justify-center gap-3">
@@ -50,12 +50,12 @@ export function Contact() {
               <Mail size={16} aria-hidden="true" /> Email me
             </a>
             <a
-              href="/Usama-Javed-CV.docx"
+              href="/Usama-Javed-CV.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold border transition-colors"
               style={{ borderColor: "var(--line-strong)", color: "var(--text)" }}
             >
-              Download CV
+              <Download size={16} aria-hidden="true" /> Download CV
             </a>
             {profile.linkedin && (
               <a
@@ -72,19 +72,26 @@ export function Contact() {
 
           <motion.div
             variants={fadeUp}
-            className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[14.5px]"
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-8 text-[14.5px]"
             style={{ color: "var(--text-faint)" }}
           >
-            <a href={telHref} className="inline-flex items-center gap-2 hover:underline">
+            <a href={telHref} className="inline-flex items-center gap-2 min-h-11 hover:underline">
               <Phone size={15} aria-hidden="true" /> {profile.phone}
             </a>
-            <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 hover:underline">
+            <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 min-h-11 hover:underline">
               <Mail size={15} aria-hidden="true" /> {profile.email}
             </a>
-            <span className="inline-flex items-center gap-2">
+            <span className="inline-flex items-center gap-2 min-h-11">
               <MapPin size={15} aria-hidden="true" /> {profile.location}
             </span>
           </motion.div>
+
+          <motion.p variants={fadeUp} className="mt-4 text-[13.5px]" style={{ color: "var(--text-faint)" }}>
+            Need an editable copy?{" "}
+            <a href="/Usama-Javed-CV.docx" download className="underline underline-offset-4 hover:no-underline">
+              Download the Word version
+            </a>
+          </motion.p>
         </motion.div>
       </div>
     </section>
@@ -93,19 +100,18 @@ export function Contact() {
 
 export function SiteFooter() {
   return (
-    <footer
-      className="container-x pt-8 pb-10 border-t flex flex-wrap items-center justify-between gap-4"
-      style={{ borderColor: "var(--line)" }}
-    >
-      <a href="#top" className="flex items-center gap-2.5">
-        <SunMark size={26} />
-        <span className="text-[13.5px] font-semibold" style={{ color: "var(--text-dim)" }}>
-          {profile.name}
+    <footer className="border-t" style={{ borderColor: "var(--line)" }}>
+      <div className="container-x pt-8 pb-10 flex flex-wrap items-center justify-between gap-4">
+        <a href="#top" className="flex items-center gap-2.5">
+          <SunMark size={26} />
+          <span className="text-[13.5px] font-semibold" style={{ color: "var(--text-dim)" }}>
+            {profile.headline}, {profile.city}
+          </span>
+        </a>
+        <span className="text-[13px]" style={{ color: "var(--text-faint)" }}>
+          © {new Date().getFullYear()} {profile.name}
         </span>
-      </a>
-      <span className="text-[13px]" style={{ color: "var(--text-faint)" }}>
-        © {new Date().getFullYear()} {profile.name}
-      </span>
+      </div>
     </footer>
   );
 }

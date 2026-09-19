@@ -8,15 +8,16 @@ import { Providers } from "@/components/Providers";
 const manrope = Manrope({ variable: "--font-display", subsets: ["latin"], display: "swap" });
 const inter = Inter({ variable: "--font-body", subsets: ["latin"], display: "swap" });
 
+const TITLE = `${profile.name} | ${profile.headline}`;
 const DESCRIPTION =
-  "Usama Javed is a solar PV project engineer and planner based in Dublin, Ireland. Over 100 on-grid, hybrid and off-grid PV installations delivered from site survey to commissioning, including a 150 kWp factory rooftop and 790 kWp in a single year.";
+  "Usama Javed, solar PV engineer in Dublin, Ireland. Over 100 residential and commercial solar PV installations delivered, from 5 kWp domestic systems to a 150 kWp factory rooftop, and 790 kWp across 36 projects in a single year.";
 const SHORT_DESCRIPTION =
-  "Over 100 solar PV installations delivered from site survey to commissioning. Site supervision, project engineering and planning. Dublin, Ireland.";
+  "Over 100 residential and commercial solar PV installations delivered. Site supervision, project engineering and planning. Dublin, Ireland.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${profile.name} | Solar PV Project Engineer, Dublin`,
+    default: TITLE,
     template: `%s | ${profile.name}`,
   },
   description: DESCRIPTION,
@@ -28,13 +29,13 @@ export const metadata: Metadata = {
     type: "profile",
     url: "/",
     siteName: profile.name,
-    title: `${profile.name} | Solar PV Project Engineer`,
+    title: TITLE,
     description: SHORT_DESCRIPTION,
     locale: "en_IE",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} | Solar PV Project Engineer`,
+    title: TITLE,
     description: SHORT_DESCRIPTION,
   },
 };
@@ -57,7 +58,7 @@ const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
-  jobTitle: "Solar PV Project Engineer",
+  jobTitle: profile.headline,
   url: SITE_URL,
   email: `mailto:${profile.email}`,
   telephone: profile.phone.replace(/\s/g, ""),
@@ -77,10 +78,7 @@ const JSON_LD = {
     "Shading analysis",
     "Bill of materials",
   ],
-  alumniOf: [
-    { "@type": "CollegeOrUniversity", name: "Dublin Business School" },
-    { "@type": "CollegeOrUniversity", name: "Air University, Islamabad" },
-  ],
+  alumniOf: [{ "@type": "CollegeOrUniversity", name: "Air University, Islamabad" }],
   ...(profile.linkedin ? { sameAs: [profile.linkedin] } : {}),
 };
 

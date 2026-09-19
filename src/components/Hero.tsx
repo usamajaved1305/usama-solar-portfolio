@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, MapPin, Phone, Mail } from "lucide-react";
+import { ArrowRight, Download, MapPin, Phone, Mail } from "lucide-react";
 import { profile } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { HeroArt } from "./HeroArt";
@@ -21,14 +21,19 @@ export function Hero() {
 
           <motion.h1
             variants={fadeUp}
-            className="mt-6 font-extrabold leading-[1.04] tracking-tight"
-            style={{ fontSize: "clamp(40px, 5.2vw, 60px)" }}
+            className="mt-6 font-extrabold tracking-tight"
           >
-            {profile.name}
-            <br />
-            <span className="text-gradient">Solar PV Delivery</span>
-            <br />
-            &amp; Planning
+            <span className="block leading-[1.02]" style={{ fontSize: "clamp(44px, 6vw, 68px)" }}>
+              {profile.name}
+            </span>
+            <span
+              className="mt-3 block leading-[1.15] text-gradient"
+              style={{ fontSize: "clamp(24px, 2.7vw, 34px)" }}
+            >
+              Solar PV Delivery,
+              <br />
+              Site Supervision &amp; Planning
+            </span>
           </motion.h1>
 
           <motion.p
@@ -44,30 +49,33 @@ export function Hero() {
               href={`mailto:${profile.email}`}
               className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold transition-transform hover:-translate-y-0.5"
             >
-              Get in touch <ArrowUpRight size={16} aria-hidden="true" />
+              Get in touch <ArrowRight size={16} aria-hidden="true" />
             </a>
             <a
-              href="/Usama-Javed-CV.docx"
+              href="/Usama-Javed-CV.pdf"
               download
               className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold border transition-colors"
               style={{ borderColor: "var(--line-strong)", color: "var(--text)" }}
             >
-              Download CV
+              <Download size={16} aria-hidden="true" /> Download CV
             </a>
           </motion.div>
 
           <motion.div
             variants={fadeUp}
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14.5px]"
+            className="mt-8 flex flex-wrap items-center gap-x-6 text-[14.5px]"
             style={{ color: "var(--text-faint)" }}
           >
-            <span className="inline-flex items-center gap-2">
-              <MapPin size={15} aria-hidden="true" /> {profile.location}
+            <span className="inline-flex items-center gap-2 min-h-11">
+              <MapPin size={15} aria-hidden="true" /> {profile.city}
             </span>
-            <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 hover:underline">
+            <a
+              href={`tel:${profile.phone.replace(/\s/g, "")}`}
+              className="inline-flex items-center gap-2 min-h-11 hover:underline"
+            >
               <Phone size={15} aria-hidden="true" /> {profile.phone}
             </a>
-            <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 hover:underline">
+            <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 min-h-11 hover:underline">
               <Mail size={15} aria-hidden="true" /> {profile.email}
             </a>
           </motion.div>
@@ -85,12 +93,12 @@ function HeroGlow() {
   return (
     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div
-        className="absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full opacity-40 blur-[100px]"
-        style={{ background: "radial-gradient(circle, var(--amber) 0%, transparent 70%)" }}
+        className="absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full blur-[100px]"
+        style={{ background: "radial-gradient(circle, var(--glow-warm) 0%, transparent 70%)", opacity: "var(--glow-opacity)" }}
       />
       <div
-        className="absolute top-40 left-[-10%] h-[420px] w-[420px] rounded-full opacity-30 blur-[100px]"
-        style={{ background: "radial-gradient(circle, var(--emerald) 0%, transparent 70%)" }}
+        className="absolute top-40 left-[-10%] h-[420px] w-[420px] rounded-full blur-[100px]"
+        style={{ background: "radial-gradient(circle, var(--glow-cool) 0%, transparent 70%)", opacity: "var(--glow-opacity)" }}
       />
     </div>
   );

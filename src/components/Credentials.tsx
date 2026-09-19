@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Award, Languages } from "lucide-react";
+import { GraduationCap, Award, Languages, Users } from "lucide-react";
 import { education, certifications, languages, activities } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import { SectionHeading } from "./SectionHeading";
@@ -45,14 +45,19 @@ export function Credentials() {
             </div>
             <div className="flex flex-wrap gap-2.5">
               {languages.map((l) => (
-                <span key={l.name} className="chip">
-                  {l.name} <span style={{ color: "var(--text-faint)" }}>· {l.level}</span>
+                <span key={l.name} className="chip" style={{ gap: "6px" }}>
+                  <span>{l.name}</span>
+                  <span aria-hidden="true" style={{ color: "var(--text-faint)" }}>·</span>
+                  <span style={{ color: "var(--text-faint)" }}>{l.level}</span>
                 </span>
               ))}
             </div>
 
             <div className="mt-8">
-              <h3 className="font-bold text-[16.5px] mb-3">Activities</h3>
+              <div className="flex items-center gap-2.5 mb-5">
+                <Users size={18} style={{ color: "var(--amber)" }} aria-hidden="true" />
+                <h3 className="font-bold text-[16.5px]">Activities</h3>
+              </div>
               <ul className="space-y-2">
                 {activities.map((a) => (
                   <li key={a} className="text-[14px] leading-relaxed" style={{ color: "var(--text-dim)" }}>

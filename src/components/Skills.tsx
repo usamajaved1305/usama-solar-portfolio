@@ -29,7 +29,7 @@ export function Skills() {
       <div className="container-x">
         <SectionHeading
           kicker="Core Competencies"
-          title="What I actually do on a project"
+          title="What I do on a project"
           desc="Six areas that cover the job from crew allocation to cost control."
         />
 
@@ -63,7 +63,7 @@ export function Skills() {
           })}
         </motion.div>
 
-        <div className="mt-16 grid sm:grid-cols-2 gap-8">
+        <div className="mt-16 grid gap-8 lg:grid-cols-[3fr_2fr]">
           {toolCategories.map((cat) => (
             <div key={cat.title}>
               <h4 className="text-[13px] font-bold uppercase tracking-[0.1em]" style={{ color: "var(--text-faint)" }}>

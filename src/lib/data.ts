@@ -1,7 +1,8 @@
 export const profile = {
   name: "Usama Javed",
-  role: "Solar PV Project Delivery, Site Supervision & Project Planning",
+  headline: "Solar PV Delivery, Site Supervision & Planning",
   location: "Adamstown, Dublin, Ireland",
+  city: "Dublin, Ireland",
   phone: "+353 85 773 5337",
   email: "usamajaved1305@gmail.com",
   // Leave empty until the real profile URL is confirmed; the LinkedIn button only renders when set.
@@ -12,10 +13,15 @@ export const profile = {
 };
 
 export const stats = [
-  { value: 100, suffix: "+", label: "PV installations delivered", sub: "5 kWp domestic to 150 kWp factory rooftop" },
-  { value: 790, suffix: " kWp", label: "Delivered in a single year", sub: "36 projects, 85% on-time completion" },
-  { value: 40, suffix: "", label: "Crew members at peak", sub: "across up to 5 concurrent sites" },
-  { value: 3.5, suffix: " yrs", label: "Solar PV experience", sub: "site survey through commissioning" },
+  { value: "100+", label: "PV installations delivered", sub: "5 kWp domestic systems to a 150 kWp factory rooftop" },
+  { value: "790 kWp", label: "Delivered in a single year", sub: "36 projects at 85% on‑time completion" },
+  { value: "Up to 40", label: "Crew members supervised", sub: "across five concurrent sites" },
+  { value: "3.5 years", label: "Solar PV experience", sub: "from site survey through commissioning" },
+];
+
+export const highlights = [
+  { label: "Portfolio mix", value: "70% residential", sub: "30% commercial" },
+  { label: "System types", value: "On-grid, hybrid", sub: "and off-grid" },
 ];
 
 export const competencies = [
@@ -83,7 +89,7 @@ export const experience = [
     company: "Solar Neon Engineering Pvt Ltd",
     period: "May 2025 to Mar 2026",
     highlights: [
-      "Managed delivery of 36 residential and commercial solar PV projects totalling 790 kWp, covering site assessment, design validation, installation supervision, commissioning and client handover.",
+      "Managed delivery of 36 residential and commercial solar PV projects totalling 790 kWp, covering site assessment, design validation, installation supervision, commissioning and client handover.",
       "Led three technical engineers and installation crews totalling up to 40 people across five concurrent sites, allocating daily works and sequencing activities to hold projects to programme.",
       "Held 85% on-time completion, tracing slippage to material availability and labour shortages and re-sequencing works to contain the impact on downstream activities.",
       "Built and maintained project programmes and cost baselines, tracked actual progress against plan and reported status to senior management.",
@@ -92,9 +98,9 @@ export const experience = [
     ],
     metrics: [
       { label: "Projects", value: "36" },
-      { label: "Capacity", value: "790 kWp" },
+      { label: "Capacity", value: "790 kWp" },
       { label: "On-time", value: "85%" },
-      { label: "Peak crew", value: "40 across 5 sites" },
+      { label: "Crew, 5 sites", value: "Up to 40" },
     ],
   },
   {
@@ -102,7 +108,7 @@ export const experience = [
     company: "Islamabad Solar House Pvt Ltd",
     period: "Feb 2023 to Apr 2025",
     highlights: [
-      "Ran the full project lifecycle on 59 residential and commercial PV installations ranging from 5 kWp to 150 kWp: site assessment, system design, installation coordination, commissioning and aftercare.",
+      "Ran the full project lifecycle on 59 residential and commercial PV installations ranging from 5 kWp to 150 kWp: site assessment, system design, installation coordination, commissioning and aftercare.",
       "Delivered 85 to 95% of projects within the agreed programme while running two concurrent projects at a time.",
       "Managed a two month programme delay caused by an inverter supply shortage, re-planning installation dates and re-sequencing site works to limit knock-on effects for the client.",
       "Reviewed and approved installation drawings, single line diagrams and technical specifications for on-grid, hybrid and off-grid systems.",
@@ -111,7 +117,7 @@ export const experience = [
     ],
     metrics: [
       { label: "Installations", value: "59" },
-      { label: "System size", value: "5 to 150 kWp" },
+      { label: "System size", value: "5 to 150 kWp" },
       { label: "On-time", value: "85 to 95%" },
       { label: "Concurrent", value: "2 projects" },
     ],
@@ -144,8 +150,8 @@ export const experience = [
 
 export const projects = [
   {
-    title: "150 kWp Factory Rooftop",
-    tag: "Largest installation delivered",
+    title: "150 kWp Factory Rooftop",
+    tag: "Design under constraint",
     challenge:
       "The client restricted the usable roof area and the available footprint suffered significant shading, capping achievable yield.",
     action: "Reworked module placement and string layout to keep shaded modules off critical strings.",
@@ -153,21 +159,34 @@ export const projects = [
     stack: ["Shading analysis", "String layout", "Module placement"],
   },
   {
+    title: "Inverter Shortage Recovery",
+    tag: "Programme recovery",
+    challenge: "An inverter supply shortage caused a two-month delay to the installation programme.",
+    action: "Re-planned installation dates and re-sequenced site works around the late equipment.",
+    result: "Limited the knock-on effects for the client.",
+    stack: ["Re-planning", "Work sequencing", "Supplier delay"],
+  },
+  {
+    title: "Five Concurrent Sites",
+    tag: "Multi-site delivery",
+    challenge: "Material availability and labour shortages caused slippage while crews worked five sites at once.",
+    action:
+      "Allocated daily works across crews of up to 40 people, traced slippage to its causes and re-sequenced works to contain the impact on downstream activities.",
+    result: "Held 85% on-time completion across 36 projects in the year.",
+    stack: ["Crew allocation", "Slippage tracking", "Programme control"],
+  },
+];
+
+export const builds = [
+  {
     title: "Solar UPS System",
-    tag: "Backup power",
-    challenge: "Provide uninterrupted backup power for household electrical loads.",
-    action: "Combined a PV array, charge controller and 12V DC storage with inverter output.",
-    result: "Uninterrupted backup power for household electrical loads.",
-    stack: ["PV array", "Charge controller", "12V DC storage", "Inverter"],
+    detail:
+      "PV array, charge controller and 12V DC storage with inverter output, delivering uninterrupted backup power for household electrical loads.",
   },
   {
     title: "Single and Dual Axis Solar Trackers",
-    tag: "Automation",
-    challenge: "Keep panels aligned with the sun instead of relying on a fixed mount.",
-    action:
-      "Built Arduino, LDR and servo based alignment, plus a GPS and RTC variant that computes solar position mathematically.",
-    result: "Two approaches: light-seeking tracking with LDRs, and light independent tracking from calculated sun position.",
-    stack: ["Arduino", "LDR sensing", "Servo control", "GPS and RTC"],
+    detail:
+      "Arduino, LDR and servo-based alignment, plus a GPS and RTC variant computing solar position mathematically for light-independent operation.",
   },
 ];
 

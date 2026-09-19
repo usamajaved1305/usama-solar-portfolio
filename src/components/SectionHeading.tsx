@@ -18,12 +18,12 @@ export function SectionHeading({
       initial="hidden"
       whileInView="show"
       viewport={viewportOnce}
-      className="max-w-2xl mb-12"
+      className="max-w-3xl mb-12"
     >
       <span className="text-[12.5px] font-bold uppercase tracking-[0.14em]" style={{ color: "var(--amber)" }}>
         {kicker}
       </span>
-      <h2 className="mt-3 font-extrabold" style={{ fontSize: "clamp(28px, 3.6vw, 40px)" }}>
+      <h2 className="mt-3 font-extrabold leading-[1.1]" style={{ fontSize: "clamp(28px, 3.6vw, 40px)" }}>
         {title}
       </h2>
       {desc && (

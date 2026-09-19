@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { SunMark } from "./SunMark";
 import { ThemeToggle } from "./ThemeToggle";
 import { profile } from "@/lib/data";
@@ -35,7 +35,7 @@ export function Nav() {
   return (
     <>
       <div
-        className="fixed top-0 left-0 z-50 h-[2.5px]"
+        className="print-hidden fixed top-0 left-0 z-50 h-[2.5px]"
         style={{ width: `${progress}%`, background: "linear-gradient(90deg, var(--amber), var(--emerald))" }}
       />
       <header
@@ -50,12 +50,12 @@ export function Nav() {
         <nav className="container-x flex h-[68px] items-center justify-between">
           <a href="#top" className="flex items-center gap-2.5 shrink-0">
             <SunMark size={32} />
-            <span className="hidden sm:block leading-tight">
+            <span className="block leading-tight">
               <span className="block font-bold text-[15px]" style={{ color: "var(--text)", fontFamily: "var(--font-display)" }}>
                 {profile.name}
               </span>
-              <span className="block text-[11.5px]" style={{ color: "var(--text-faint)" }}>
-                Solar PV Project Engineer
+              <span className="hidden lg:block text-[11.5px]" style={{ color: "var(--text-faint)" }}>
+                {profile.headline}
               </span>
             </span>
           </a>
@@ -76,12 +76,12 @@ export function Nav() {
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
             <a
-              href="/Usama-Javed-CV.docx"
+              href="/Usama-Javed-CV.pdf"
               download
               className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] font-semibold transition-transform hover:-translate-y-0.5"
               style={{ background: "var(--text)", color: "var(--bg)" }}
             >
-              Download CV <ArrowUpRight size={15} />
+              <Download size={15} aria-hidden="true" /> Download CV
             </a>
           </div>
 
@@ -92,7 +92,7 @@ export function Nav() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               onClick={() => setOpen((v) => !v)}
-              className="grid h-10 w-10 place-items-center rounded-full border"
+              className="print-hidden grid h-10 w-10 place-items-center rounded-full border"
               style={{ borderColor: "var(--line)", color: "var(--text)" }}
             >
               {open ? <X size={18} /> : <Menu size={18} />}
@@ -115,12 +115,12 @@ export function Nav() {
                 </a>
               ))}
               <a
-                href="/Usama-Javed-CV.docx"
+                href="/Usama-Javed-CV.pdf"
                 download
                 className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-3 text-[14.5px] font-semibold"
                 style={{ background: "var(--text)", color: "var(--bg)" }}
               >
-                Download CV <ArrowUpRight size={15} />
+                <Download size={15} aria-hidden="true" /> Download CV
               </a>
             </div>
           </div>

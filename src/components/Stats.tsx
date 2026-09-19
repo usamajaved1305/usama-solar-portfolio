@@ -3,36 +3,35 @@
 import { motion } from "framer-motion";
 import { stats } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
-import { AnimatedNumber } from "./AnimatedNumber";
 
 export function Stats() {
   return (
-    <section className="border-t border-b" style={{ borderColor: "var(--line)" }}>
+    <section className="border-t border-b" style={{ borderColor: "var(--line)" }} aria-label="Key figures">
       <div className="container-x py-14">
-        <motion.div
+        <motion.dl
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
         >
           {stats.map((s) => (
-            <motion.div key={s.label} variants={fadeUp}>
-              <div
-                className="font-extrabold leading-none"
-                style={{ fontSize: "clamp(30px, 4vw, 42px)", fontFamily: "var(--font-display)" }}
-              >
-                <AnimatedNumber value={s.value} suffix={s.suffix} />
-              </div>
-              <div className="mt-3 text-[14.5px] font-semibold" style={{ color: "var(--text)" }}>
+            <motion.div key={s.label} variants={fadeUp} className="flex flex-col">
+              <dt className="order-2 mt-3 text-[14.5px] font-semibold text-balance" style={{ color: "var(--text)" }}>
                 {s.label}
-              </div>
-              <div className="mt-1 text-[13px]" style={{ color: "var(--text-faint)" }}>
+              </dt>
+              <dd
+                className="order-1 font-extrabold leading-none num"
+                style={{ fontSize: "clamp(28px, 3.6vw, 40px)", fontFamily: "var(--font-display)" }}
+              >
+                {s.value}
+              </dd>
+              <dd className="order-3 mt-1 text-[13px] text-pretty" style={{ color: "var(--text-faint)" }}>
                 {s.sub}
-              </div>
+              </dd>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.dl>
       </div>
     </section>
   );
