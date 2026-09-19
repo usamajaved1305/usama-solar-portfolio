@@ -36,8 +36,8 @@ const CARD_POSITIONS = ["left-0 top-0", "right-0 top-0 text-right"];
 
 export function HeroArt() {
   return (
-    <div className="relative w-full max-w-[540px] mx-auto pt-14" aria-hidden="true">
-      <svg viewBox="0 0 520 470" className="w-full h-auto block">
+    <div className="relative w-full max-w-[540px] mx-auto pt-14">
+      <svg viewBox="0 0 520 470" className="w-full h-auto block" aria-hidden="true">
         <defs>
           <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="var(--btn-bg)" stopOpacity="0.55" />

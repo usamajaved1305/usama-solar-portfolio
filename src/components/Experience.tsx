@@ -19,7 +19,7 @@ export function Experience() {
         <SectionHeading
           kicker="Experience"
           title="From site survey to client handover"
-          desc="Three and a half years across engineering, planning and site leadership, from small domestic systems to factory rooftops."
+          desc="Roughly 70% residential and 30% commercial work across on-grid, hybrid and off-grid systems, from small domestic systems to factory rooftops."
         />
 
         <div className="relative">
@@ -29,14 +29,13 @@ export function Experience() {
             aria-hidden="true"
           />
           <div className="flex flex-col gap-10">
-            {experience.map((job, i) => (
+            {experience.map((job) => (
               <motion.div
                 key={job.role + job.period}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="show"
                 viewport={viewportOnce}
-                custom={i}
                 className="relative sm:pl-10"
               >
                 <span

@@ -6,6 +6,9 @@ import { profile } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { HeroArt } from "./HeroArt";
 
+const [headlineFirst, ...headlineParts] = profile.headline.split(", ");
+const headlineRest = headlineParts.join(", ");
+
 export function Hero() {
   return (
     <section id="top" className="relative pt-[120px] pb-20 overflow-hidden">
@@ -19,30 +22,26 @@ export function Hero() {
             {profile.availability}
           </motion.div>
 
-          <motion.h1
-            variants={fadeUp}
-            className="mt-6 font-extrabold tracking-tight"
-          >
+          <h1 className="mt-6 font-extrabold tracking-tight">
             <span className="block leading-[1.02]" style={{ fontSize: "clamp(44px, 6vw, 68px)" }}>
               {profile.name}
-            </span>
+            </span>{" "}
             <span
               className="mt-3 block leading-[1.15] text-gradient"
               style={{ fontSize: "clamp(24px, 2.7vw, 34px)" }}
             >
-              Solar PV Delivery,
+              {headlineFirst},{" "}
               <br />
-              Site Supervision &amp; Planning
+              {headlineRest}
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeUp}
+          <p
             className="mt-6 max-w-[56ch] text-[17px] sm:text-[18.5px] leading-relaxed"
             style={{ color: "var(--text-dim)" }}
           >
             {profile.lede}
-          </motion.p>
+          </p>
 
           <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center gap-3">
             <a

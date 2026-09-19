@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowUpRight, Download } from "lucide-react";
 import { profile } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
-import { SunMark } from "./SunMark";
 
 function LinkedInGlyph({ size = 16 }: { size?: number }) {
   return (
@@ -95,23 +94,5 @@ export function Contact() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-export function SiteFooter() {
-  return (
-    <footer className="border-t" style={{ borderColor: "var(--line)" }}>
-      <div className="container-x pt-8 pb-10 flex flex-wrap items-center justify-between gap-4">
-        <a href="#top" className="flex items-center gap-2.5">
-          <SunMark size={26} />
-          <span className="text-[13.5px] font-semibold" style={{ color: "var(--text-dim)" }}>
-            {profile.headline}, {profile.city}
-          </span>
-        </a>
-        <span className="text-[13px]" style={{ color: "var(--text-faint)" }}>
-          © {new Date().getFullYear()} {profile.name}
-        </span>
-      </div>
-    </footer>
   );
 }

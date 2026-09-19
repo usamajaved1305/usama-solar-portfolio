@@ -1,4 +1,5 @@
-// Vercel exposes the real production domain at build time, so canonical/OG/sitemap URLs stay correct even if the preferred name is taken.
+// Vercel exposes the real production domain at build time. The fallback must match the project name in "Deploy Portfolio.cmd";
+// usamajaved.vercel.app belongs to a different person.
 export const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "https://usamajaved.vercel.app";
+  : "https://usamajaved-solar.vercel.app";

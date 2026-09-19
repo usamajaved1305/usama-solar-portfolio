@@ -3,17 +3,13 @@ import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
+import { DESCRIPTION, SHORT_DESCRIPTION, TITLE, openGraphBase } from "@/lib/seo";
 import { Providers } from "@/components/Providers";
 
 const manrope = Manrope({ variable: "--font-display", subsets: ["latin"], display: "swap" });
 const inter = Inter({ variable: "--font-body", subsets: ["latin"], display: "swap" });
 
-const TITLE = `${profile.name} | ${profile.headline}`;
-const DESCRIPTION =
-  "Usama Javed, solar PV engineer in Dublin, Ireland. Over 100 residential and commercial solar PV installations delivered, from 5 kWp domestic systems to a 150 kWp factory rooftop, and 790 kWp across 36 projects in a single year.";
-const SHORT_DESCRIPTION =
-  "Over 100 residential and commercial solar PV installations delivered. Site supervision, project engineering and planning. Dublin, Ireland.";
-
+// Canonical, og:url and the Person JSON-LD live on the home page only, so the 404 page doesn't claim to be the home page.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -23,16 +19,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   authors: [{ name: profile.name }],
   creator: profile.name,
-  robots: { index: true, follow: true },
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "profile",
-    url: "/",
-    siteName: profile.name,
-    title: TITLE,
-    description: SHORT_DESCRIPTION,
-    locale: "en_IE",
-  },
+  openGraph: openGraphBase,
   twitter: {
     card: "summary_large_image",
     title: TITLE,
@@ -49,38 +36,11 @@ export const viewport: Viewport = {
   ],
 };
 
-const THEME_INIT = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`;
+// Runs before first paint. Falls back to the OS preference when storage is blocked.
+const THEME_INIT = `(function(){var d=document.documentElement,m=function(){return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'};try{var t=localStorage.getItem('theme');d.setAttribute('data-theme',t==='light'||t==='dark'?t:m());}catch(e){d.setAttribute('data-theme',m());}})();`;
 
 // Framer Motion server-renders hidden elements with opacity:0; without JS they would never appear.
 const NOSCRIPT_REVEAL = `[style*="opacity:0"]{opacity:1!important;transform:none!important}`;
-
-const JSON_LD = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.name,
-  jobTitle: profile.headline,
-  url: SITE_URL,
-  email: `mailto:${profile.email}`,
-  telephone: profile.phone.replace(/\s/g, ""),
-  address: { "@type": "PostalAddress", addressLocality: "Dublin", addressCountry: "IE" },
-  knowsAbout: [
-    "Solar photovoltaic system design",
-    "Solar PV installation supervision",
-    "Project planning",
-    "Primavera P6",
-    "MS Project",
-    "Power BI",
-    "Commissioning",
-    "On-grid PV",
-    "Hybrid PV",
-    "Off-grid PV",
-    "Single line diagrams",
-    "Shading analysis",
-    "Bill of materials",
-  ],
-  alumniOf: [{ "@type": "CollegeOrUniversity", name: "Air University, Islamabad" }],
-  ...(profile.linkedin ? { sameAs: [profile.linkedin] } : {}),
-};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -90,7 +50,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript>
           <style dangerouslySetInnerHTML={{ __html: NOSCRIPT_REVEAL }} />
         </noscript>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       </head>
       <body className={`${manrope.variable} ${inter.variable}`}>
         <a href="#main" className="skip-link">

@@ -66,9 +66,9 @@ export function Skills() {
         <div className="mt-16 grid gap-8 lg:grid-cols-[3fr_2fr]">
           {toolCategories.map((cat) => (
             <div key={cat.title}>
-              <h4 className="text-[13px] font-bold uppercase tracking-[0.1em]" style={{ color: "var(--text-faint)" }}>
+              <h3 className="text-[13px] font-bold uppercase tracking-[0.1em]" style={{ color: "var(--text-faint)" }}>
                 {cat.title}
-              </h4>
+              </h3>
               <div className="mt-4 flex flex-wrap gap-2.5">
                 {cat.tools.map((t) => (
                   <span key={t} className="chip">

@@ -32,22 +32,34 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const solid = scrolled || open;
+
   return (
     <>
       <div
         className="print-hidden fixed top-0 left-0 z-50 h-[2.5px]"
         style={{ width: `${progress}%`, background: "linear-gradient(90deg, var(--amber), var(--emerald))" }}
+        aria-hidden="true"
       />
       <header
         className="fixed top-0 inset-x-0 z-40 transition-colors"
         style={{
-          background: scrolled || open ? "var(--nav-bg)" : "transparent",
-          backdropFilter: scrolled || open ? "blur(14px)" : "none",
-          WebkitBackdropFilter: scrolled || open ? "blur(14px)" : "none",
+          background: solid ? "var(--nav-bg)" : "transparent",
+          backdropFilter: solid ? "blur(14px)" : "none",
+          WebkitBackdropFilter: solid ? "blur(14px)" : "none",
           borderBottom: scrolled ? "1px solid var(--line)" : "1px solid transparent",
         }}
       >
-        <nav className="container-x flex h-[68px] items-center justify-between">
+        <nav aria-label="Main" className="container-x flex h-[68px] items-center justify-between">
           <a href="#top" className="flex items-center gap-2.5 shrink-0">
             <SunMark size={32} />
             <span className="block leading-tight">
@@ -65,8 +77,7 @@ export function Nav() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-[14.5px] font-medium transition-colors hover:opacity-100"
-                style={{ color: "var(--text-dim)" }}
+                className="text-[14.5px] font-medium text-[var(--text-dim)] transition-colors hover:text-[var(--text)]"
               >
                 {l.label}
               </a>
@@ -88,6 +99,7 @@ export function Nav() {
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
             <button
+              type="button"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -95,36 +107,41 @@ export function Nav() {
               className="print-hidden grid h-10 w-10 place-items-center rounded-full border"
               style={{ borderColor: "var(--line)", color: "var(--text)" }}
             >
-              {open ? <X size={18} /> : <Menu size={18} />}
+              {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
             </button>
           </div>
         </nav>
 
-        {open && (
-          <div id="mobile-menu" className="md:hidden border-t" style={{ borderColor: "var(--line)", background: "var(--bg)" }}>
-            <div className="container-x flex flex-col py-4 gap-1">
-              {LINKS.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="py-3 text-[15px] font-medium border-b"
-                  style={{ color: "var(--text)", borderColor: "var(--line)" }}
-                >
-                  {l.label}
-                </a>
-              ))}
+        <nav
+          id="mobile-menu"
+          aria-label="Mobile"
+          hidden={!open}
+          className="md:hidden border-t"
+          style={{ borderColor: "var(--line)", background: "var(--bg)" }}
+        >
+          <div className="container-x flex flex-col py-4 gap-1">
+            {LINKS.map((l) => (
               <a
-                href="/Usama-Javed-CV.pdf"
-                download
-                className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-3 text-[14.5px] font-semibold"
-                style={{ background: "var(--text)", color: "var(--bg)" }}
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="py-3 text-[15px] font-medium border-b"
+                style={{ color: "var(--text)", borderColor: "var(--line)" }}
               >
-                <Download size={15} aria-hidden="true" /> Download CV
+                {l.label}
               </a>
-            </div>
+            ))}
+            <a
+              href="/Usama-Javed-CV.pdf"
+              download
+              onClick={() => setOpen(false)}
+              className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-3 text-[14.5px] font-semibold"
+              style={{ background: "var(--text)", color: "var(--bg)" }}
+            >
+              <Download size={15} aria-hidden="true" /> Download CV
+            </a>
           </div>
-        )}
+        </nav>
       </header>
     </>
   );
