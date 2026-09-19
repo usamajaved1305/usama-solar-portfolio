@@ -11,8 +11,8 @@ function subscribe(onChange: () => void) {
   return () => observer.disconnect();
 }
 
-const getTheme = (): Theme => (document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark");
-const getServerTheme = (): Theme => "dark";
+const getTheme = (): Theme => (document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
+const getServerTheme = (): Theme => "light";
 
 export function ThemeToggle() {
   const theme = useSyncExternalStore(subscribe, getTheme, getServerTheme);

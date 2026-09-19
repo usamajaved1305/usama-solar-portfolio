@@ -1,15 +1,14 @@
 export const profile = {
   name: "Usama Javed",
   headline: "Solar PV Delivery, Site Supervision & Planning",
-  location: "Adamstown, Dublin, Ireland",
+  location: "Dublin, Ireland",
   city: "Dublin, Ireland",
   phone: "+353 85 773 5337",
   email: "usamajaved1305@gmail.com",
-  // Leave empty until the real profile URL is confirmed; the LinkedIn button only renders when set.
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/usama-javed-553b8624b",
   lede:
     "Mechatronics engineer with three and a half years delivering solar PV projects from site survey through installation, commissioning and client handover. Experienced leading installation crews on live sites, and equally strong on the planning side: programmes, bills of material, budgets and milestone tracking.",
-  availability: "Open to site supervision, project engineering and planning roles",
+  availability: "Open to project engineering, site supervision and planning roles",
 };
 
 export const stats = [
@@ -79,13 +78,13 @@ export const toolCategories = [
   },
   {
     title: "Design Software",
-    tools: ["Helioscope", "OpenSolar", "SolidWorks"],
+    tools: ["Helioscope", "OpenSolar", "SketchUp", "SolidWorks"],
   },
 ];
 
 export const experience = [
   {
-    role: "Project Manager, Solar PV",
+    role: "Project Manager",
     company: "Solar Neon Engineering Pvt Ltd",
     period: "May 2025 to Mar 2026",
     highlights: [
@@ -104,7 +103,7 @@ export const experience = [
     ],
   },
   {
-    role: "Senior Project Engineer, Solar PV",
+    role: "Senior Project Engineer",
     company: "Islamabad Solar House Pvt Ltd",
     period: "Feb 2023 to Apr 2025",
     highlights: [
@@ -123,7 +122,7 @@ export const experience = [
     ],
   },
   {
-    role: "Project Engineer, Solar PV",
+    role: "Project Engineer",
     company: "Safeway Renewable Energy Pvt Ltd",
     period: "Sep 2022 to Jan 2023",
     highlights: [
@@ -137,7 +136,7 @@ export const experience = [
     ],
   },
   {
-    role: "Mechatronics Engineer, Intern",
+    role: "Mechatronics Engineer Intern",
     company: "National Institute of Electronics",
     period: "Jul 2022 to Aug 2022",
     highlights: [
@@ -221,7 +220,7 @@ export const languages = [
 ];
 
 export const activities = [
-  "Member of ASME",
+  "Student member of ASME",
   "Competitor in inter-university robotics competitions",
   "Member of the Air University Cultural Society",
 ];

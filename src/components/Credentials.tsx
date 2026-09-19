@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Award, Languages, Users } from "lucide-react";
 import { education, certifications, languages, activities } from "@/lib/data";
+import type { MediaItem } from "@/lib/media";
+import { CertificateWall } from "./CertificateWall";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import { SectionHeading } from "./SectionHeading";
 
-export function Credentials() {
+export function Credentials({ certificates = [] }: { certificates?: MediaItem[] }) {
   return (
     <section id="credentials" className="section-pad" style={{ background: "var(--bg-elev)" }}>
       <div className="container-x">
@@ -88,6 +90,8 @@ export function Credentials() {
                 </motion.div>
               ))}
             </div>
+
+            <CertificateWall certificates={certificates} />
           </motion.div>
         </div>
       </div>

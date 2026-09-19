@@ -23,6 +23,12 @@
   --glow-warm: #f6b54a;
   --glow-cool: #5fd3a8;
   --glow-opacity: 0.22;
+  --sky-top: #bcddf4;
+  --sky-bottom: #eef6fb;
+  --dusk-top: #f4c288;
+  --dusk-bottom: #fbe7d2;
+  --ground: #e9ede9;
+  --panel-shadow: rgba(20, 45, 55, 0.22);
   --panel-top: #2a4a61;
   --panel-bottom: #16293a;
   --panel-line: rgba(200, 225, 240, 0.25);
@@ -54,6 +60,12 @@
     --glow-warm: #f2a93b;
     --glow-cool: #34d399;
     --glow-opacity: 0.38;
+    --sky-top: #0a1a27;
+    --sky-bottom: #14303f;
+    --dusk-top: #3d2415;
+    --dusk-bottom: #16222c;
+    --ground: #0c1317;
+    --panel-shadow: rgba(0, 0, 0, 0.55);
     --panel-top: #1c3242;
     --panel-bottom: #0f1c25;
     --panel-line: rgba(160, 200, 220, 0.18);
@@ -123,11 +135,33 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* One 30s day: sun, sky, glint and shadows share the timeline so they stay in step. */
   .sun-orbit {
-    offset-path: path("M 40 300 A 220 220 0 0 1 480 300");
+    offset-path: path("M 20 300 A 250 250 0 0 1 500 300");
     offset-rotate: 0deg;
-    offset-distance: 30%;
-    animation: sun-orbit 22s ease-in-out infinite alternate;
+    animation: sun-path 30s linear infinite;
+  }
+
+  .sun-glow {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: sun-haze 30s linear infinite;
+  }
+
+  .sky-dusk {
+    animation: dusk 30s linear infinite;
+  }
+
+  .panel-lit {
+    animation: panel-lit 30s linear infinite;
+  }
+
+  .ground-light {
+    animation: ground-light 30s linear infinite;
+  }
+
+  .panel-shadows {
+    animation: panel-shadows 30s linear infinite;
   }
 
   .bg-grid {
@@ -214,15 +248,52 @@
   }
 }
 
-@keyframes sun-orbit {
-  from { offset-distance: 22%; }
-  to { offset-distance: 78%; }
+@keyframes sun-path {
+  0%   { offset-distance: 0%;   opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
 }
 
+/* Low sun reads larger and hazier near the horizon. */
+@keyframes sun-haze {
+  0%, 100% { transform: scale(1.35); }
+  50%      { transform: scale(0.85); }
+}
+
+@keyframes dusk {
+  0%       { opacity: 1; }
+  22%, 78% { opacity: 0; }
+  100%     { opacity: 1; }
+}
+
+/* Modules catch the light as the sun climbs and go flat at dawn and dusk. */
+@keyframes panel-lit {
+  0%, 100% { opacity: 0.04; }
+  50%      { opacity: 1; }
+}
+
+@keyframes ground-light {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+
+/* Shadows fall away from the sun: long to the right at sunrise, short at noon, long to the left at sunset. */
+@keyframes panel-shadows {
+  0%   { transform: translateX(26px); opacity: 0.55; }
+  50%  { transform: translateX(0);    opacity: 0.22; }
+  100% { transform: translateX(-26px); opacity: 0.55; }
+}
+
+/* Reduced motion: hold the scene at midday instead of animating. */
 @media (prefers-reduced-motion: reduce) {
-  .sun-orbit {
+  .sun-orbit, .sun-glow, .sky-dusk, .panel-lit, .ground-light, .panel-shadows {
     animation: none;
   }
+  .sun-orbit { offset-distance: 50%; }
+  .sky-dusk { opacity: 0; }
+  .panel-lit, .ground-light { opacity: 1; }
+  .panel-shadows { opacity: 0.22; }
 }
 
 @media print {

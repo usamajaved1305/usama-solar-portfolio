@@ -14,7 +14,7 @@ const LINKS = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function Nav() {
+export function Nav({ hasPhotos = false }: { hasPhotos?: boolean }) {
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -41,6 +41,9 @@ export function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  const links = hasPhotos
+    ? [...LINKS.slice(0, 2), { href: "#site-photos", label: "Site photos" }, ...LINKS.slice(2)]
+    : LINKS;
   const solid = scrolled || open;
 
   return (
@@ -73,7 +76,7 @@ export function Nav() {
           </a>
 
           <div className="hidden md:flex items-center gap-8">
-            {LINKS.map((l) => (
+            {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -120,7 +123,7 @@ export function Nav() {
           style={{ borderColor: "var(--line)", background: "var(--bg)" }}
         >
           <div className="container-x flex flex-col py-4 gap-1">
-            {LINKS.map((l) => (
+            {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
