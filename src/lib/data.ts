@@ -209,14 +209,48 @@ export const education = [
 ];
 
 export const certifications = [
-  { name: "Foundations of Project Management", issuer: "Google", issued: "Sep 2025" },
-  { name: "Photovoltaic Systems", issuer: "DTU, Technical University of Denmark", issued: "Sep 2024", image: "photovoltaic-systems-dtu.jpg" },
-  { name: "Solar Energy and Electrical System Design", issuer: "University at Buffalo", issued: "Sep 2024", image: "solar-energy-and-electrical-system-design-university-at-buffalo.jpg" },
-  { name: "Solar Energy Basics", issuer: "The State University of New York", issued: "Sep 2024", image: "solar-energy-basics-suny.jpg" },
-  { name: "Introduction to Solar PV Design, Installation and Code", issuer: "HeatSpring, taught by Sean White, NABCEP CEU approved", issued: "Aug 2024" },
+  {
+    name: "Foundations of Project Management",
+    issuer: "Google, through Coursera",
+    issued: "Sep 2026",
+    image: "foundations-of-project-management-google.jpg",
+    verify: "https://coursera.org/verify/F6UCU42EFBAW",
+  },
+  {
+    name: "Photovoltaic Systems",
+    issuer: "DTU, Technical University of Denmark",
+    issued: "Sep 2024",
+    image: "photovoltaic-systems-dtu.jpg",
+    verify: "https://coursera.org/verify/LBS63M4AMRHV",
+  },
+  {
+    name: "Solar Energy and Electrical System Design",
+    issuer: "University at Buffalo",
+    issued: "Sep 2024",
+    image: "solar-energy-and-electrical-system-design-university-at-buffalo.jpg",
+    verify: "https://coursera.org/verify/MYX2THBS69EN",
+  },
+  {
+    name: "Solar Energy Basics",
+    issuer: "The State University of New York",
+    issued: "Sep 2024",
+    image: "solar-energy-basics-suny.jpg",
+    verify: "https://coursera.org/verify/7DBD2B9RHGV1",
+  },
+  {
+    name: "Introduction to Solar PV Design, Installation and Code",
+    issuer: "HeatSpring, taught by Sean White, approved for NABCEP hours",
+    issued: "Jul 2024",
+    image: "introduction-to-solar-pv-design-heatspring.png",
+  },
   { name: "Know Your Code, Solar Roof Mounting", issuer: "IronRidge", issued: "Mar 2024" },
   { name: "Solar 101, Residential Sales", issuer: "SolarEdge Technologies", issued: "Sep 2024" },
-  { name: "ASME Student Member", issuer: "American Society of Mechanical Engineers", issued: "Sep 2018", image: "asme-student-member.jpg" },
+  {
+    name: "ASME Student Member",
+    issuer: "American Society of Mechanical Engineers",
+    issued: "2018 to 2019",
+    image: "asme-student-member.jpg",
+  },
 ];
 
 export const languages = [

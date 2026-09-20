@@ -136,6 +136,7 @@ export function Credentials({ certificates = [] }: { certificates?: MediaItem[] 
                       <ImagePopover
                         src={`/certificates/${c.image}`}
                         title={`${c.name}, ${c.issuer}`}
+                        verify={c.verify}
                         className="card p-5 w-full text-left cursor-pointer block"
                       >
                         {body}

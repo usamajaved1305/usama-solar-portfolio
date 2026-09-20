@@ -8,9 +8,10 @@ type Props = {
   title: string;
   children: React.ReactNode;
   className?: string;
+  verify?: string;
 };
 
-export function ImagePopover({ src, title, children, className }: Props) {
+export function ImagePopover({ src, title, children, className, verify }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -26,15 +27,16 @@ export function ImagePopover({ src, title, children, className }: Props) {
           className="w-full h-auto max-h-[72vh] object-contain rounded-xl"
           style={{ background: "#ffffff" }}
         />
-        <a
-          href={src}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 inline-block text-[13.5px] underline underline-offset-4"
-          style={{ color: "var(--text-dim)" }}
-        >
-          Open full size
-        </a>
+        <div className="mt-3 flex flex-wrap gap-4 text-[13.5px]" style={{ color: "var(--text-dim)" }}>
+          <a href={src} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+            Open full size
+          </a>
+          {verify && (
+            <a href={verify} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+              Verify this certificate
+            </a>
+          )}
+        </div>
       </Popover>
     </>
   );
