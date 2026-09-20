@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowUpRight, Download } from "lucide-react";
+import { Mail, Phone, ArrowUpRight, Download } from "lucide-react";
+import { LocationLink } from "./LocationLink";
 import { profile } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 
@@ -12,8 +13,6 @@ function LinkedInGlyph({ size = 16 }: { size?: number }) {
     </svg>
   );
 }
-
-const telHref = `tel:${profile.phone.replace(/\s/g, "")}`;
 
 export function Contact() {
   return (
@@ -74,15 +73,19 @@ export function Contact() {
             className="mt-8 flex flex-wrap items-center justify-center gap-x-8 text-[14.5px]"
             style={{ color: "var(--text-faint)" }}
           >
-            <a href={telHref} className="inline-flex items-center gap-2 min-h-11 hover:underline">
+            <a
+              href={profile.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 min-h-11 hover:underline"
+              title="Message on WhatsApp"
+            >
               <Phone size={15} aria-hidden="true" /> {profile.phone}
             </a>
             <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 min-h-11 hover:underline">
               <Mail size={15} aria-hidden="true" /> {profile.email}
             </a>
-            <span className="inline-flex items-center gap-2 min-h-11">
-              <MapPin size={15} aria-hidden="true" /> {profile.location}
-            </span>
+            <LocationLink className="inline-flex items-center gap-2 min-h-11 hover:underline cursor-pointer" />
           </motion.div>
 
           <motion.p variants={fadeUp} className="mt-4 text-[13.5px]" style={{ color: "var(--text-faint)" }}>

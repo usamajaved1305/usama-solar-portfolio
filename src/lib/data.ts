@@ -4,6 +4,7 @@ export const profile = {
   location: "Dublin, Ireland",
   city: "Dublin, Ireland",
   phone: "+353 85 773 5337",
+  whatsapp: "https://wa.me/353857735337",
   email: "usamajaved1305@gmail.com",
   linkedin: "https://www.linkedin.com/in/usama-javed-553b8624b",
   lede:
@@ -193,6 +194,7 @@ export const education = [
   {
     degree: "MSc Business Analytics",
     school: "Dublin Business School, Ireland",
+    href: "https://www.dbs.ie/course/postgraduate/master-of-science-(msc)-in-business-analytics",
     period: "2026 to Present",
     detail:
       "Coursework: data modelling and visualisation in Power BI, SQL and Python analytics, forecasting, project and operations decision analysis.",
@@ -200,17 +202,21 @@ export const education = [
   {
     degree: "BE Mechatronics Engineering",
     school: "Air University, Islamabad",
+    href: "https://www.au.edu.pk/Pages/Faculties/Engineering/Departments/Mechatronics/dept_mts_eng_intro.aspx",
     period: "2018 to 2022",
     detail: "",
   },
 ];
 
 export const certifications = [
-  { name: "Google Project Management", issuer: "Google Career Certificate: scheduling, budgeting, risk and stakeholder management" },
-  { name: "Solar PV Design and Installation", issuer: "Sean White, NABCEP aligned curriculum" },
-  { name: "Photovoltaic Systems", issuer: "Technical University of Denmark (DTU)" },
-  { name: "Solar Energy Basics", issuer: "State University of New York (SUNY)" },
-  { name: "Solar Residential Sales", issuer: "SolarEdge Technologies" },
+  { name: "Foundations of Project Management", issuer: "Google", issued: "Sep 2025" },
+  { name: "Photovoltaic Systems", issuer: "DTU, Technical University of Denmark", issued: "Sep 2024", image: "photovoltaic-systems-dtu.jpg" },
+  { name: "Solar Energy and Electrical System Design", issuer: "University at Buffalo", issued: "Sep 2024", image: "solar-energy-and-electrical-system-design-university-at-buffalo.jpg" },
+  { name: "Solar Energy Basics", issuer: "The State University of New York", issued: "Sep 2024", image: "solar-energy-basics-suny.jpg" },
+  { name: "Introduction to Solar PV Design, Installation and Code", issuer: "HeatSpring, taught by Sean White, NABCEP CEU approved", issued: "Aug 2024" },
+  { name: "Know Your Code, Solar Roof Mounting", issuer: "IronRidge", issued: "Mar 2024" },
+  { name: "Solar 101, Residential Sales", issuer: "SolarEdge Technologies", issued: "Sep 2024" },
+  { name: "ASME Student Member", issuer: "American Society of Mechanical Engineers", issued: "Sep 2018", image: "asme-student-member.jpg" },
 ];
 
 export const languages = [
@@ -220,7 +226,10 @@ export const languages = [
 ];
 
 export const activities = [
-  "Student member of ASME",
-  "Competitor in inter-university robotics competitions",
-  "Member of the Air University Cultural Society",
+  { text: "Student member of ASME", image: "asme-student-member.jpg" },
+  { text: "Competitor in inter-university robotics competitions" },
+  {
+    text: "Member of the Air University Cultural Society",
+    href: "https://www.linkedin.com/company/air-university-cultural-and-arts-society/",
+  },
 ];

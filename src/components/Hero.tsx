@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, MapPin, Phone, Mail } from "lucide-react";
+import { ArrowRight, Download, Phone, Mail } from "lucide-react";
+import { LocationLink } from "./LocationLink";
 import { profile } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { HeroArt } from "./HeroArt";
@@ -65,12 +66,13 @@ export function Hero() {
             className="mt-8 flex flex-wrap items-center gap-x-6 text-[14.5px]"
             style={{ color: "var(--text-faint)" }}
           >
-            <span className="inline-flex items-center gap-2 min-h-11">
-              <MapPin size={15} aria-hidden="true" /> {profile.city}
-            </span>
+            <LocationLink className="inline-flex items-center gap-2 min-h-11 hover:underline cursor-pointer" />
             <a
-              href={`tel:${profile.phone.replace(/\s/g, "")}`}
+              href={profile.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 min-h-11 hover:underline"
+              title="Message on WhatsApp"
             >
               <Phone size={15} aria-hidden="true" /> {profile.phone}
             </a>
