@@ -14,7 +14,7 @@ export const profile = {
 
 export const stats = [
   { value: "100+", label: "PV installations delivered", sub: "5 kWp domestic systems to a 150 kWp factory rooftop" },
-  { value: "790 kWp", label: "Delivered in a single year", sub: "36 projects, 85% completed on time" },
+  { value: "790 kWp", label: "Capacity delivered", sub: "36 projects, 85% completed on time" },
   { value: "Up to 40", label: "Crew members supervised", sub: "across five concurrent sites" },
   { value: "3.5 years", label: "Solar PV experience", sub: "from site survey through commissioning" },
 ];
