@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   ShieldCheck,
   ChartGantt,
+  Sheet,
   type LucideIcon,
 } from "lucide-react";
 import { competencies, toolCategories } from "@/lib/data";
@@ -89,7 +90,11 @@ export function Skills({ toolShots = {} }: { toolShots?: Record<string, MediaIte
                       onClick={() => setOpenTool(t)}
                     >
                       {t}
-                      <ChartGantt size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
+                      {toolArtifacts[t].icon === "sheet" ? (
+                        <Sheet size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
+                      ) : (
+                        <ChartGantt size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
+                      )}
                     </button>
                   ) : (
                     <span key={t} className="chip">
