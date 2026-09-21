@@ -202,9 +202,10 @@ export const education = [
   {
     degree: "BE Mechatronics Engineering",
     school: "Air University, Islamabad",
-    href: "https://www.au.edu.pk/Pages/Faculties/Engineering/Departments/Mechatronics/dept_mts_eng_intro.aspx",
+    href: "https://www.au.edu.pk/",
     period: "2018 to 2022",
-    detail: "",
+    detail:
+      "Coursework: electric circuits analysis, electronic devices and circuits, control systems, instrumentation and measurement, manufacturing automation, engineering statics, mechanics of materials, fundamentals of thermal sciences, engineering drawing and solid modelling, modelling and simulation, engineering economics.",
   },
 ];
 
