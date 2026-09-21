@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   HardHat,
@@ -8,11 +9,14 @@ import {
   Wallet,
   CheckCircle2,
   ShieldCheck,
+  ChartGantt,
   type LucideIcon,
 } from "lucide-react";
 import { competencies, toolCategories } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
+import { Popover } from "./Popover";
 import { SectionHeading } from "./SectionHeading";
+import { toolArtifacts } from "./ToolArtifacts";
 
 const ICONS: Record<string, LucideIcon> = {
   "hard-hat": HardHat,
@@ -24,6 +28,8 @@ const ICONS: Record<string, LucideIcon> = {
 };
 
 export function Skills() {
+  const [openTool, setOpenTool] = useState<string | null>(null);
+
   return (
     <section id="skills" className="section-pad">
       <div className="container-x">
@@ -70,15 +76,39 @@ export function Skills() {
                 {cat.title}
               </h3>
               <div className="mt-4 flex flex-wrap gap-2.5">
-                {cat.tools.map((t) => (
-                  <span key={t} className="chip">
-                    {t}
-                  </span>
-                ))}
+                {cat.tools.map((t) =>
+                  toolArtifacts[t] ? (
+                    <button
+                      key={t}
+                      type="button"
+                      className="chip chip-action"
+                      aria-haspopup="dialog"
+                      title={`Open the ${t} project`}
+                      onClick={() => setOpenTool(t)}
+                    >
+                      {t}
+                      <ChartGantt size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
+                    </button>
+                  ) : (
+                    <span key={t} className="chip">
+                      {t}
+                    </span>
+                  )
+                )}
               </div>
             </div>
           ))}
         </div>
+
+        <p className="mt-6 text-[13px]" style={{ color: "var(--text-faint)" }}>
+          Highlighted tools open the project I built with them.
+        </p>
+
+        {Object.entries(toolArtifacts).map(([name, artifact]) => (
+          <Popover key={name} open={openTool === name} onClose={() => setOpenTool(null)} title={artifact.title} xwide>
+            {openTool === name && artifact.render()}
+          </Popover>
+        ))}
       </div>
     </section>
   );

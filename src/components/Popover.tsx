@@ -9,10 +9,12 @@ type PopoverProps = {
   title: string;
   children: React.ReactNode;
   wide?: boolean;
+  /** Wider still, for a programme drawing or a table. */
+  xwide?: boolean;
 };
 
 // Native <dialog>: Escape and the backdrop close it, and focus is trapped for keyboard users.
-export function Popover({ open, onClose, title, children, wide }: PopoverProps) {
+export function Popover({ open, onClose, title, children, wide, xwide }: PopoverProps) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -30,7 +32,10 @@ export function Popover({ open, onClose, title, children, wide }: PopoverProps) 
         if (e.target === ref.current) onClose();
       }}
       className="backdrop:bg-black/60 backdrop:backdrop-blur-sm bg-transparent p-0 m-auto max-h-[92vh]"
-      style={{ maxWidth: wide ? "min(980px, 94vw)" : "min(720px, 94vw)", width: "100%" }}
+      style={{
+        maxWidth: xwide ? "min(1160px, 96vw)" : wide ? "min(980px, 94vw)" : "min(720px, 94vw)",
+        width: "100%",
+      }}
       aria-label={title}
     >
       <div className="card p-4 sm:p-5" style={{ background: "var(--bg-card)" }}>

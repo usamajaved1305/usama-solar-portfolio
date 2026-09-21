@@ -34,6 +34,12 @@
   --panel-line: rgba(200, 225, 240, 0.25);
   --panel-edge: #1d3647;
   --grid-line: rgba(10, 20, 20, 0.05);
+  --crit: #d1362f;
+  --bar: #3b6fb6;
+  --bar-float: #7d9fcf;
+  --link: #6b7680;
+  --week-line: #b9c4c1;
+  --day-line: rgba(10, 20, 20, 0.06);
   color-scheme: light;
 }
 
@@ -71,6 +77,12 @@
     --panel-line: rgba(160, 200, 220, 0.18);
     --panel-edge: #2e4a5c;
     --grid-line: rgba(255, 255, 255, 0.045);
+    --crit: #ef6a62;
+    --bar: #5b93e0;
+    --bar-float: #4f74a8;
+    --link: #8a99a0;
+    --week-line: #3a4b52;
+    --day-line: rgba(255, 255, 255, 0.05);
     color-scheme: dark;
   }
 }
@@ -221,6 +233,20 @@ html.lenis body {
     border: 1px solid var(--line);
     background: var(--bg-elev);
     color: var(--text-dim);
+  }
+
+  /* A chip that opens the project behind that tool. */
+  .chip-action {
+    cursor: pointer;
+    color: var(--text);
+    border-color: var(--amber);
+    background: var(--amber-soft);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .chip-action:hover {
+    transform: translateY(-1px);
+    background: var(--bg-elev);
   }
 
   .chip-sm {
