@@ -4,12 +4,13 @@ import type { MediaItem } from "@/lib/media";
 import { ScheduleView } from "./ScheduleView";
 import { ScreenshotSet } from "./ScreenshotSet";
 
-export type ToolArtifact = { title: string; icon: "gantt" | "sheet"; render: () => ReactNode };
+export type ToolArtifact = { title: string; icon: "gantt" | "sheet" | "chart"; render: () => ReactNode };
 
 /** Screenshot folders under public/, one per tool. A tool only opens once its folder has images. */
 export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   "MS Project": "tools/ms-project",
   "Advanced Excel": "tools/advanced-excel",
+  "Power BI": "tools/power-bi",
 };
 
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
@@ -102,6 +103,42 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             "Cost control":
               "Mounting came in 6% over budget and AC cable 4% under, leaving the forecast PKR 39,180 (about 0.5%) over",
             "Pivot analysis": "Modules, and the inverter with its monitoring, make up 64% of the budget",
+          }}
+        />
+      ),
+    };
+  }
+
+  const pbi = shots["Power BI"] ?? [];
+  if (pbi.length > 0) {
+    artifacts["Power BI"] = {
+      title: "Power BI: cost and procurement report for a 100 kW commercial rooftop",
+      icon: "chart",
+      render: () => (
+        <ScreenshotSet
+          shots={pbi}
+          intro={
+            <>
+              <p>
+                An entry-level Power BI report built on the Excel tracker behind the Advanced Excel chip, so the two tools
+                tell one story: Excel holds the data, Power BI reports on it. Power Query loads three tables from the
+                workbook, the model links them on the BOM line number, and eight DAX measures drive the page.
+              </p>
+              <p>
+                The page shows budget, forecast, variance and the share already committed, budget against forecast by
+                category, lines by procurement status, a supplier slicer, and a table of the items that need action. The
+                figures match the Excel workbook exactly. It is a demonstration project with illustrative PKR rates, and
+                the screenshots are from Power BI Desktop itself.
+              </p>
+            </>
+          }
+          notes={{
+            "Report page":
+              "Cards, a clustered bar chart, a donut, a slicer and a table with a visual-level filter showing only red and amber lines",
+            "Data model":
+              "A small star: Items is the dimension, Cost and Procurement are facts, joined one-to-many on Line",
+            "DAX measure":
+              "Items needing action uses CALCULATE with an IN filter on Status. The formula bar shows the measure",
           }}
         />
       ),

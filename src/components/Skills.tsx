@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   ChartGantt,
   Sheet,
+  ChartColumn,
   type LucideIcon,
 } from "lucide-react";
 import { competencies, toolCategories } from "@/lib/data";
@@ -92,6 +93,8 @@ export function Skills({ toolShots = {} }: { toolShots?: Record<string, MediaIte
                       {t}
                       {toolArtifacts[t].icon === "sheet" ? (
                         <Sheet size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
+                      ) : toolArtifacts[t].icon === "chart" ? (
+                        <ChartColumn size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
                       ) : (
                         <ChartGantt size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
                       )}

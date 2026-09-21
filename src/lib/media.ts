@@ -30,6 +30,8 @@ const FIXES: Record<string, string> = {
   solidworks: "SolidWorks",
   helioscope: "Helioscope",
   opensolar: "OpenSolar",
+  dax: "DAX",
+  bom: "BOM",
 };
 
 function captionFromFilename(file: string) {
