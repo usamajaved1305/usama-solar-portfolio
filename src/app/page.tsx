@@ -11,6 +11,7 @@ import { Gallery } from "@/components/Gallery";
 import { SiteFooter } from "@/components/SiteFooter";
 import { openGraphBase, personJsonLd } from "@/lib/seo";
 import { readMedia } from "@/lib/media";
+import { TOOL_SHOT_FOLDERS } from "@/components/ToolArtifacts";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -20,6 +21,9 @@ export const metadata: Metadata = {
 export default function Home() {
   const photos = readMedia("photos");
   const certificates = readMedia("certificates");
+  const toolShots = Object.fromEntries(
+    Object.entries(TOOL_SHOT_FOLDERS).map(([tool, folder]) => [tool, readMedia(folder)])
+  );
 
   return (
     <>
@@ -31,7 +35,7 @@ export default function Home() {
         <Experience />
         <Projects />
         <Gallery photos={photos} />
-        <Skills />
+        <Skills toolShots={toolShots} />
         <Credentials certificates={certificates} />
         <Contact />
       </main>

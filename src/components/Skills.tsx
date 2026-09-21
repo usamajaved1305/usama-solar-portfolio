@@ -16,7 +16,8 @@ import { competencies, toolCategories } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import { Popover } from "./Popover";
 import { SectionHeading } from "./SectionHeading";
-import { toolArtifacts } from "./ToolArtifacts";
+import { buildToolArtifacts } from "./ToolArtifacts";
+import type { MediaItem } from "@/lib/media";
 
 const ICONS: Record<string, LucideIcon> = {
   "hard-hat": HardHat,
@@ -27,8 +28,9 @@ const ICONS: Record<string, LucideIcon> = {
   "shield-check": ShieldCheck,
 };
 
-export function Skills() {
+export function Skills({ toolShots = {} }: { toolShots?: Record<string, MediaItem[]> }) {
   const [openTool, setOpenTool] = useState<string | null>(null);
+  const toolArtifacts = buildToolArtifacts(toolShots);
 
   return (
     <section id="skills" className="section-pad">
