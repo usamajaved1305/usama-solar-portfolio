@@ -33,6 +33,7 @@ const FIXES: Record<string, string> = {
   dax: "DAX",
   query: "Query",
   bom: "BOM",
+  gantt: "Gantt",
 };
 
 function captionFromFilename(file: string) {

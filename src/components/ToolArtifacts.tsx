@@ -15,6 +15,7 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   Python: "tools/python",
 };
 
+const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
 const PY_NOTEBOOK = "/tools/python/115-kWp-rooftop-energy-yield.ipynb";
@@ -33,7 +34,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const msp = shots["MS Project"] ?? [];
   if (msp.length > 0) {
     artifacts["MS Project"] = {
-      title: "MS Project: baseline, status update and recovery for a 20 kW residential PV system",
+      title: "MS Project: installation programme for a 20 kW residential PV system",
       icon: "gantt",
       render: () => (
         <ScreenshotSet
@@ -41,20 +42,34 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                Screenshots from Microsoft Project of the same 20 kW on-grid residential programme as the Primavera P6
-                view: 25 tasks under 4 summary tasks, a Monday to Saturday calendar, and finish-to-start and
-                start-to-start links with lags.
+                The same 20 kW on-grid residential programme as the Primavera P6 view, built in Microsoft Project: 25
+                activities under 4 summary tasks, from the site survey to handover, on a Monday to Saturday calendar,
+                with finish-to-start links and two start-to-start links with lags. Project&apos;s own schedule matches
+                the P6 view exactly: handover on working day 25, with 13 critical tasks shown in red.
               </p>
               <p>
-                It shows the control side of planning. I saved a baseline, then ran a status update in which the
-                inverter supplier pushes delivery back 7 working days. The inverter had 5 days of float, so handover
-                slips 2 days. The recovery pulls the AC cable while the inverter is still on its way, terminates it
-                once the inverter is mounted, and adds a second electrician for the mounting. That brings handover back
-                to the baseline date. The delay and recovery are a practice scenario built for this portfolio, not a
-                record of a real job.
+                The baseline is saved, so the Tracking Gantt shows a grey baseline bar under every task and 0 days of
+                finish variance, and any slip entered from here on shows against it. The start date of Mon 5 Oct 2026
+                is an example, and the durations are my own planning estimates.
+              </p>
+              <p>
+                <a
+                  href={MSP_FILE}
+                  download
+                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  <Download size={14} aria-hidden="true" /> Download the project file (.mpp)
+                </a>
               </p>
             </>
           }
+          notes={{
+            "Gantt chart":
+              "Every task with its activity ID, duration and dates. The critical path is in red, the blue tasks have float, and the diamonds are milestones",
+            "Tracking Gantt with baseline":
+              "After the baseline is saved, a grey bar sits under each scheduled bar and every task shows 0 days of finish variance. Handover is baselined for Mon 2 Nov 2026",
+          }}
         />
       ),
     };
