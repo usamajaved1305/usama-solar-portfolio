@@ -31,6 +31,7 @@ const FIXES: Record<string, string> = {
   helioscope: "Helioscope",
   opensolar: "OpenSolar",
   dax: "DAX",
+  query: "Query",
   bom: "BOM",
 };
 

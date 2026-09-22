@@ -117,24 +117,24 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             <>
               <p>
                 An entry-level Power BI report built on the Excel tracker behind the Advanced Excel chip, so the two tools
-                tell one story: Excel holds the data, Power BI reports on it. Power Query loads three tables from the
-                workbook, the model links them on the BOM line number, and seven DAX measures drive the page.
+                tell one story: Excel holds the data, Power BI reports on it. Power Query loads two tables from the
+                workbook in three clicked steps (keep the columns needed, remove Excel&apos;s total row, set the data
+                types), and four DAX measures drive the page: Budget, Forecast, Variance and Lines.
               </p>
               <p>
-                The page shows budget, forecast, variance and the share already committed, budget against forecast by
-                category, lines by procurement status, a supplier slicer, and a table of the items that need action. The
-                figures match the Excel workbook exactly. It is a demonstration project with illustrative PKR rates, and
-                the screenshots are from Power BI Desktop itself.
+                The page shows budget, forecast and variance, budget against forecast by category, BOM lines by
+                procurement status, and a table of the items that need action. The figures match the Excel workbook
+                exactly. It is a demonstration project with illustrative PKR rates, and the screenshots are from Power BI
+                Desktop itself.
               </p>
             </>
           }
           notes={{
             "Report page":
-              "Cards, a clustered bar chart, a donut, a slicer and a table with a visual-level filter showing only red and amber lines",
-            "Data model":
-              "A small star: Items is the dimension, Cost and Procurement are facts, joined one-to-many on Line",
-            "DAX measure":
-              "Items needing action uses CALCULATE with an IN filter on Status. The formula bar shows the measure",
+              "Three cards, a clustered bar chart, a column chart, and a table with a visual-level filter showing only the 7 lines that need action",
+            "Power Query":
+              "The applied steps on the right: remove other columns, filter out Excel's total row, set the data types. All 19 BOM lines come through",
+            "DAX measure": "Variance = [Budget] - [Forecast], shown in the formula bar with the measure's description",
           }}
         />
       ),
