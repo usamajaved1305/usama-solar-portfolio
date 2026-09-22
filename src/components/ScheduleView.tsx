@@ -125,10 +125,10 @@ export function ScheduleView() {
   return (
     <div>
       <p className="text-[13.5px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
-        Installation programme for the {PROJECT.name} documented on my LinkedIn: Longi 550 W N-type modules and a
-        Growatt 20 kW inverter. Structured the way a Primavera P6 project is: WBS, activity IDs, relationships with
-        lags, a working calendar, critical path and total float. This is a demonstration programme built for this
-        portfolio, not a client deliverable.
+        Installation programme for the 20 kW on-grid residential system featured on my LinkedIn (Longi 550 W N-type
+        modules, Growatt 20 kW inverter), from the site survey to handover in {finish} working days. It is laid out
+        as a Primavera P6 project, with a WBS, activity IDs, logic links with lags and a Monday to Saturday calendar,
+        and the critical path and float are calculated from that logic. Durations are my own planning estimates.
       </p>
 
       <dl className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -499,8 +499,8 @@ export function ScheduleView() {
             is typed in.
           </li>
           <li>
-            Activity durations and the utility approval time are my planning assumptions for this demonstration. There
-            is no resource or cost loading.
+            Activity durations and the utility approval time are my own planning estimates. There is no resource or
+            cost loading.
           </li>
         </ul>
       </div>

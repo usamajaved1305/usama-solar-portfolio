@@ -60,7 +60,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const xls = shots["Advanced Excel"] ?? [];
   if (xls.length > 0) {
     artifacts["Advanced Excel"] = {
-      title: "Advanced Excel: BOM, procurement and cost tracker for a 100 kW commercial rooftop",
+      title: "Advanced Excel: BOM, procurement and cost tracker for a 115 kWp commercial rooftop",
       icon: "sheet",
       render: () => (
         <ScreenshotSet
@@ -68,16 +68,16 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                A workbook I built in Excel for a 100 kW commercial rooftop in Islamabad, the kind of commercial job I
-                delivered. It works out the module count and checks the string voltage on a cold morning against the
-                inverter limit, prices the bill of materials, turns the date each item is needed on site into an
-                order-by date, and tracks budget against committed and forecast cost. It is a demonstration project:
-                the PKR rates and purchase-order status are illustrative, and the module and inverter figures come from
-                the Jinko and Huawei datasheets.
+                A project workbook for a 115 kWp commercial rooftop in Islamabad, with 198 Jinko 580 W modules in 11
+                strings on a single Huawei SUN2000 inverter. It checks the string design against the inverter&apos;s
+                voltage limit, prices the bill of materials, sets an order-by date for each item from the date it is
+                needed on site, and tracks budget against committed and forecast cost.
               </p>
               <p>
-                Built with Excel Tables, XLOOKUP, IF, SUMIFS, COUNTIF, ROUNDUP, WORKDAY.INTL, conditional formatting,
-                drop-down lists, two charts and a PivotTable with a slicer. The screenshots are from Excel itself.
+                A dashboard sums up the job: cost position, late and overdue orders, and spend by supplier. The workbook
+                uses Excel Tables, XLOOKUP, SUMIFS, COUNTIF, nested IF and WORKDAY.INTL, with conditional formatting and
+                a PivotTable with a slicer. This is a sample project: module and inverter data come from the
+                manufacturers&apos; datasheets, and the PKR rates are indicative.
               </p>
               <p>
                 <a
@@ -88,19 +88,19 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 >
                   <Download size={14} aria-hidden="true" /> Download the workbook (.xlsx)
                 </a>{" "}
-                to see every formula.
+                to see the formulas.
               </p>
             </>
           }
           notes={{
             Dashboard:
-              "Budget PKR 7.11M against a forecast of PKR 7.14M (PKR 37,340 over), 3 items late or overdue, and a PivotTable with a Supplier slicer",
+              "Budget PKR 7.11M against a forecast of PKR 7.14M (PKR 37,340 over), 3 items late or overdue, and a PivotTable with a supplier slicer",
             "Inputs and BOM":
-              "18 modules per string gives 1,012 V on a -5 °C morning, under the inverter's 1,100 V limit, so the check shows OK. The formula bar shows the IF formula",
+              "18 modules per string reach 1,012 V on a -5 °C morning, inside the inverter's 1,100 V limit, so the check reads OK. The IF formula behind it is in the formula bar",
             "Procurement tracker":
-              "The inverter was ordered 4 working days after its order-by date, so it arrives a day after electrical works start. The formula bar shows the status formula, a nested IF",
+              "The inverter was ordered 4 working days after its order-by date, so it arrives a day after electrical works start. The formula bar shows the nested IF that sets the status",
             "Cost tracker":
-              "Mounting came in 6% over budget and AC cable 4% under. The formula bar shows SUMIFS adding up the budget by category",
+              "Mounting is 6% over budget and AC cable 4% under. The formula bar shows the SUMIFS that totals the budget by category",
           }}
         />
       ),
@@ -110,7 +110,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const pbi = shots["Power BI"] ?? [];
   if (pbi.length > 0) {
     artifacts["Power BI"] = {
-      title: "Power BI: cost and procurement report for a 100 kW commercial rooftop",
+      title: "Power BI: cost and procurement report for a 115 kWp commercial rooftop",
       icon: "chart",
       render: () => (
         <ScreenshotSet
@@ -118,25 +118,22 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                An entry-level Power BI report built on the Excel tracker behind the Advanced Excel chip, so the two tools
-                tell one story: Excel holds the data, Power BI reports on it. Power Query loads two tables from the
-                workbook in three clicked steps (keep the columns needed, remove Excel&apos;s total row, set the data
-                types), and four DAX measures drive the page: Budget, Forecast, Variance and Lines.
+                A one-page report for the same 115 kWp rooftop, fed from the Excel tracker. It shows budget, forecast
+                and variance at a glance, compares budget and forecast for each cost category, counts BOM lines by
+                procurement status, and lists the items that need action, most urgent first.
               </p>
               <p>
-                The page shows budget, forecast and variance, budget against forecast by category, BOM lines by
-                procurement status, and a table of the items that need action. The figures match the Excel workbook
-                exactly. It is a demonstration project with illustrative PKR rates, and the screenshots are from Power BI
-                Desktop itself.
+                Power Query imports and cleans the cost and procurement tables, and four DAX measures (Budget, Forecast,
+                Variance and Lines) drive the visuals. The totals agree with the Excel workbook, and as with the
+                workbook, the PKR rates are indicative.
               </p>
             </>
           }
           notes={{
-            "Report page":
-              "Three cards, a clustered bar chart, a column chart, and a table with a visual-level filter showing only the 7 lines that need action",
+            "Report page": "Three cards, a clustered bar chart, a column chart, and a table filtered to the 7 lines that need action",
             "Power Query":
-              "The applied steps on the right: remove other columns, filter out Excel's total row, set the data types. All 19 BOM lines come through",
-            "DAX measure": "Variance = [Budget] - [Forecast], shown in the formula bar with the measure's description",
+              "The applied steps on the right: keep the columns needed, filter out Excel's total row, set the data types. All 19 BOM lines come through",
+            "DAX measure": "Variance = [Budget] - [Forecast] in the formula bar, with the measure's description",
           }}
         />
       ),
@@ -146,7 +143,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const sql = shots["SQL"] ?? [];
   if (sql.length > 0) {
     artifacts["SQL"] = {
-      title: "SQL: BOM and procurement queries for a 100 kW commercial rooftop",
+      title: "SQL: BOM and procurement database for a 115 kWp commercial rooftop",
       icon: "db",
       render: () => (
         <ScreenshotSet
@@ -154,16 +151,15 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                An entry-level SQL project on the same 100 kW commercial rooftop as the Excel and Power BI chips. The
-                bill of materials and the procurement tracker from the Excel workbook become two SQLite tables, bom and
-                procurement, linked by the BOM line number. One script creates the tables and loads the 19 lines, and
-                seven queries answer the questions a project engineer asks: what costs the most, what the budget is by
-                category, and which items need action now.
+                An SQLite database for the same 115 kWp rooftop, built from the Excel tracker. It holds two linked
+                tables: the bill of materials, with quantity, rate, budget and forecast for each of the 19 lines, and
+                the procurement record for each line, with its order-by and delivery dates and status.
               </p>
               <p>
-                The queries use SELECT, WHERE, ORDER BY with LIMIT, GROUP BY with COUNT and SUM, a JOIN between the two
-                tables and a calculated column. The results match the Excel workbook and the Power BI report. It is a
-                demonstration project with illustrative PKR rates, and the screenshots are from DB Browser for SQLite.
+                Seven queries pull out the most expensive items, the budget by category, the procurement status of
+                every line and, through a join between the two tables, the items that need ordering or chasing, most
+                urgent first. The results agree with the Excel workbook and the Power BI report, and as with the
+                workbook, the PKR rates are indicative.
               </p>
               <p>
                 <a
@@ -174,19 +170,18 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 >
                   <Download size={14} aria-hidden="true" /> Download the SQL script (.sql)
                 </a>{" "}
-                to build the database and run the queries in any SQLite tool.
+                to build the database and run the queries.
               </p>
             </>
           }
           notes={{
             "Database structure":
-              "Two tables: bom has one row for each BOM line, and procurement links to it by the line number, the primary key in bom and a foreign key in procurement",
-            "Browse data":
-              "The bom table after the script has run: 19 lines with quantity, unit rate, budget and forecast in PKR, supplier and lead time",
+              "The two tables and their columns. The line number is the primary key of bom, and procurement uses it to link each row back to its BOM line",
+            "Browse data": "All 19 BOM lines with quantity, unit rate, budget and forecast in PKR, supplier and lead time",
             "Budget by category":
-              "GROUP BY category with COUNT and SUM. Modules are PKR 3.10M of the PKR 7.11M budget",
+              "Line count and budget for each category with GROUP BY. Modules account for PKR 3.10M of the PKR 7.11M total",
             "Items that need action":
-              "A JOIN adds the item names and suppliers from bom to the procurement status: 1 order overdue, 2 late deliveries and 4 orders due, most urgent first",
+              "The join adds item names and suppliers to the procurement status: 1 order overdue, 2 late deliveries and 4 orders due, most urgent first",
           }}
         />
       ),

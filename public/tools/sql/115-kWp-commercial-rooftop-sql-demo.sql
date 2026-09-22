@@ -1,4 +1,4 @@
--- Entry-level SQL project: 115 kWp commercial rooftop, Islamabad (demonstration data, illustrative PKR rates).
+-- SQL project: 115 kWp commercial rooftop, Islamabad (sample project, indicative PKR rates).
 -- Two tables, bom and procurement, taken from the Excel project tracker, then seven queries.
 -- Written for SQLite and run in DB Browser for SQLite. Run Parts 1 and 2 once, then run each query on its own.
 
