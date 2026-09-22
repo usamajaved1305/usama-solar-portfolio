@@ -4,7 +4,11 @@ import type { MediaItem } from "@/lib/media";
 import { ScheduleView } from "./ScheduleView";
 import { ScreenshotSet } from "./ScreenshotSet";
 
-export type ToolArtifact = { title: string; icon: "gantt" | "sheet" | "chart" | "db" | "code"; render: () => ReactNode };
+export type ToolArtifact = {
+  title: string;
+  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar";
+  render: () => ReactNode;
+};
 
 /** Screenshot folders under public/, one per tool. A tool only opens once its folder has images. */
 export const TOOL_SHOT_FOLDERS: Record<string, string> = {
@@ -13,6 +17,7 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   "Power BI": "tools/power-bi",
   SQL: "tools/sql",
   Python: "tools/python",
+  Helioscope: "tools/helioscope",
 };
 
 const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
@@ -258,6 +263,47 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               "New columns for the simple estimate, the PVGIS model and each month's performance ratio, then the totals for the year: 178,296 kWh, or 1,553 kWh per kWp",
             "Monthly energy chart":
               "A matplotlib bar chart of the PVGIS model, with the simple estimate as a line. The gap opens up in the hot months",
+          }}
+        />
+      ),
+    };
+  }
+
+  const helio = shots["Helioscope"] ?? [];
+  if (helio.length > 0) {
+    artifacts["Helioscope"] = {
+      title: "HelioScope: roof layout and energy simulation for a 115 kWp commercial rooftop",
+      icon: "solar",
+      render: () => (
+        <ScreenshotSet
+          shots={helio}
+          intro={
+            <>
+              <p>
+                The same 115 kWp system as the Excel, Power BI, SQL and Python projects, designed in HelioScope on a
+                typical industrial roof in Islamabad&apos;s I-9 area: 198 Jinko 580 W modules on fixed-tilt racking at
+                20°, wired in 11 strings of 18 into one Huawei SUN2000-100KTL-M2 inverter (DC/AC ratio 1.15).
+                HelioScope checked the strings against Islamabad temperatures: 998 V on the coldest morning, inside the
+                inverter&apos;s 1,100 V limit.
+              </p>
+              <p>
+                The rows follow the building, at an azimuth of 146° (34° east of south), to fit all 198 modules; that
+                costs about 2% of yield against due south. The simulation, on Meteonorm weather data, gives 158.8 MWh a
+                year, or 1,383 kWh per kWp at a performance ratio of 81%. That is about 9% below the PVGIS figure for the
+                same orientation, mainly because Meteonorm has 14% less sunshine for Islamabad than PVGIS&apos;s ERA5
+                data. It is a sample design, using HelioScope&apos;s default loss settings.
+              </p>
+            </>
+          }
+          notes={{
+            "Roof layout":
+              "The field segment on the roof: 198 modules at 20° tilt and 146° azimuth, capped at 114.84 kWp, with each roof edge measured in metres",
+            "Wiring and inverter":
+              "One Huawei 100 kW inverter and 11 strings of 18 modules on 6 mm² copper. The lines on the roof show how HelioScope routed the strings",
+            "Production report":
+              "158.8 MWh a year, 1,382.5 kWh/kWp and a performance ratio of 81.3%, with production by month and the loss breakdown",
+            "Loss breakdown":
+              "Step by step from 1,576.5 kWh/m² of sunlight to 158,761 kWh sent to the grid: shading 3.6%, reflection 3.0%, soiling 2.0%, heat 4.9%, mismatch 3.8% and the inverter 1.6%",
           }}
         />
       ),
