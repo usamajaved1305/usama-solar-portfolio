@@ -12,14 +12,22 @@ import {
   ChartGantt,
   Sheet,
   ChartColumn,
+  Database,
   type LucideIcon,
 } from "lucide-react";
 import { competencies, toolCategories } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import { Popover } from "./Popover";
 import { SectionHeading } from "./SectionHeading";
-import { buildToolArtifacts } from "./ToolArtifacts";
+import { buildToolArtifacts, type ToolArtifact } from "./ToolArtifacts";
 import type { MediaItem } from "@/lib/media";
+
+const ARTIFACT_ICONS: Record<ToolArtifact["icon"], LucideIcon> = {
+  gantt: ChartGantt,
+  sheet: Sheet,
+  chart: ChartColumn,
+  db: Database,
+};
 
 const ICONS: Record<string, LucideIcon> = {
   "hard-hat": HardHat,
@@ -80,8 +88,17 @@ export function Skills({ toolShots = {} }: { toolShots?: Record<string, MediaIte
                 {cat.title}
               </h3>
               <div className="mt-4 flex flex-wrap gap-2.5">
-                {cat.tools.map((t) =>
-                  toolArtifacts[t] ? (
+                {cat.tools.map((t) => {
+                  const artifact = toolArtifacts[t];
+                  if (!artifact) {
+                    return (
+                      <span key={t} className="chip">
+                        {t}
+                      </span>
+                    );
+                  }
+                  const ArtifactIcon = ARTIFACT_ICONS[artifact.icon];
+                  return (
                     <button
                       key={t}
                       type="button"
@@ -91,20 +108,10 @@ export function Skills({ toolShots = {} }: { toolShots?: Record<string, MediaIte
                       onClick={() => setOpenTool(t)}
                     >
                       {t}
-                      {toolArtifacts[t].icon === "sheet" ? (
-                        <Sheet size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
-                      ) : toolArtifacts[t].icon === "chart" ? (
-                        <ChartColumn size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
-                      ) : (
-                        <ChartGantt size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
-                      )}
+                      <ArtifactIcon size={14} aria-hidden="true" style={{ color: "var(--amber)" }} />
                     </button>
-                  ) : (
-                    <span key={t} className="chip">
-                      {t}
-                    </span>
-                  )
-                )}
+                  );
+                })}
               </div>
             </div>
           ))}

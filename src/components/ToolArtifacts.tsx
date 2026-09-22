@@ -4,16 +4,18 @@ import type { MediaItem } from "@/lib/media";
 import { ScheduleView } from "./ScheduleView";
 import { ScreenshotSet } from "./ScreenshotSet";
 
-export type ToolArtifact = { title: string; icon: "gantt" | "sheet" | "chart"; render: () => ReactNode };
+export type ToolArtifact = { title: string; icon: "gantt" | "sheet" | "chart" | "db"; render: () => ReactNode };
 
 /** Screenshot folders under public/, one per tool. A tool only opens once its folder has images. */
 export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   "MS Project": "tools/ms-project",
   "Advanced Excel": "tools/advanced-excel",
   "Power BI": "tools/power-bi",
+  SQL: "tools/sql",
 };
 
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
+const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
 
 // A tool listed here becomes a clickable chip that opens the work behind it.
 export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<string, ToolArtifact> {
@@ -135,6 +137,56 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             "Power Query":
               "The applied steps on the right: remove other columns, filter out Excel's total row, set the data types. All 19 BOM lines come through",
             "DAX measure": "Variance = [Budget] - [Forecast], shown in the formula bar with the measure's description",
+          }}
+        />
+      ),
+    };
+  }
+
+  const sql = shots["SQL"] ?? [];
+  if (sql.length > 0) {
+    artifacts["SQL"] = {
+      title: "SQL: BOM and procurement queries for a 100 kW commercial rooftop",
+      icon: "db",
+      render: () => (
+        <ScreenshotSet
+          shots={sql}
+          intro={
+            <>
+              <p>
+                An entry-level SQL project on the same 100 kW commercial rooftop as the Excel and Power BI chips. The
+                bill of materials and the procurement tracker from the Excel workbook become two SQLite tables, bom and
+                procurement, linked by the BOM line number. One script creates the tables and loads the 19 lines, and
+                seven queries answer the questions a project engineer asks: what costs the most, what the budget is by
+                category, and which items need action now.
+              </p>
+              <p>
+                The queries use SELECT, WHERE, ORDER BY with LIMIT, GROUP BY with COUNT and SUM, a JOIN between the two
+                tables and a calculated column. The results match the Excel workbook and the Power BI report. It is a
+                demonstration project with illustrative PKR rates, and the screenshots are from DB Browser for SQLite.
+              </p>
+              <p>
+                <a
+                  href={SQL_SCRIPT}
+                  download
+                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  <Download size={14} aria-hidden="true" /> Download the SQL script (.sql)
+                </a>{" "}
+                to build the database and run the queries in any SQLite tool.
+              </p>
+            </>
+          }
+          notes={{
+            "Database structure":
+              "Two tables: bom has one row for each BOM line, and procurement links to it by the line number, the primary key in bom and a foreign key in procurement",
+            "Browse data":
+              "The bom table after the script has run: 19 lines with quantity, unit rate, budget and forecast in PKR, supplier and lead time",
+            "Budget by category":
+              "GROUP BY category with COUNT and SUM. Modules are PKR 3.10M of the PKR 7.11M budget",
+            "Items that need action":
+              "A JOIN adds the item names and suppliers from bom to the procurement status: 1 order overdue, 2 late deliveries and 4 orders due, most urgent first",
           }}
         />
       ),
