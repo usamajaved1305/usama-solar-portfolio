@@ -4,7 +4,7 @@ import type { MediaItem } from "@/lib/media";
 import { ScheduleView } from "./ScheduleView";
 import { ScreenshotSet } from "./ScreenshotSet";
 
-export type ToolArtifact = { title: string; icon: "gantt" | "sheet" | "chart" | "db"; render: () => ReactNode };
+export type ToolArtifact = { title: string; icon: "gantt" | "sheet" | "chart" | "db" | "code"; render: () => ReactNode };
 
 /** Screenshot folders under public/, one per tool. A tool only opens once its folder has images. */
 export const TOOL_SHOT_FOLDERS: Record<string, string> = {
@@ -12,10 +12,13 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   "Advanced Excel": "tools/advanced-excel",
   "Power BI": "tools/power-bi",
   SQL: "tools/sql",
+  Python: "tools/python",
 };
 
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
+const PY_NOTEBOOK = "/tools/python/115-kWp-rooftop-energy-yield.ipynb";
+const PY_DATA = "/tools/python/pvgis_islamabad_monthly.csv";
 
 // A tool listed here becomes a clickable chip that opens the work behind it.
 export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<string, ToolArtifact> {
@@ -182,6 +185,64 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               "Line count and budget for each category with GROUP BY. Modules account for PKR 3.10M of the PKR 7.11M total",
             "Items that need action":
               "The join adds item names and suppliers to the procurement status: 1 order overdue, 2 late deliveries and 4 orders due, most urgent first",
+          }}
+        />
+      ),
+    };
+  }
+
+  const py = shots["Python"] ?? [];
+  if (py.length > 0) {
+    artifacts["Python"] = {
+      title: "Python: energy yield estimate for a 115 kWp commercial rooftop",
+      icon: "code",
+      render: () => (
+        <ScreenshotSet
+          shots={py}
+          intro={
+            <>
+              <p>
+                A Jupyter notebook that estimates how much energy the 115 kWp rooftop in Islamabad will produce each
+                month and over a year. It takes the system size from the bill of materials, reads PVGIS solar data for
+                the site (monthly averages for 2005 to 2023), and compares a simple estimate, system size x irradiation
+                x a performance ratio of 0.80, with the PVGIS model.
+              </p>
+              <p>
+                The system should produce about 178,300 kWh a year, or 1,553 kWh per kWp, with May the best month and
+                February the lowest. The simple estimate comes out 7% high: from May to August the modules run hot and
+                the performance ratio drops to about 0.71, so a flat 0.80 overstates the yield in Islamabad&apos;s
+                climate. Written in Python with pandas and matplotlib; the 20° south-facing tilt and 14% system losses
+                are assumptions.
+              </p>
+              <p>
+                <a
+                  href={PY_NOTEBOOK}
+                  download
+                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  <Download size={14} aria-hidden="true" /> Download the notebook (.ipynb)
+                </a>{" "}
+                and{" "}
+                <a
+                  href={PY_DATA}
+                  download
+                  className="font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  the PVGIS data (.csv)
+                </a>{" "}
+                to run it yourself.
+              </p>
+            </>
+          }
+          notes={{
+            "System size and data":
+              "198 modules of 580 W give 114.84 kWp, and pandas reads the PVGIS monthly irradiation and energy per kWp for Islamabad from a CSV file",
+            "Energy per month and year":
+              "New columns for the simple estimate, the PVGIS model and each month's performance ratio, then the totals for the year: 178,296 kWh, or 1,553 kWh per kWp",
+            "Monthly energy chart":
+              "A matplotlib bar chart of the PVGIS model, with the simple estimate as a line. The gap opens up in the hot months",
           }}
         />
       ),
