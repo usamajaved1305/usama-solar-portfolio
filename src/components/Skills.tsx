@@ -16,6 +16,7 @@ import {
   Code,
   SolarPanel,
   House,
+  Box,
   type LucideIcon,
 } from "lucide-react";
 import { competencies, toolCategories } from "@/lib/data";
@@ -33,6 +34,7 @@ const ARTIFACT_ICONS: Record<ToolArtifact["icon"], LucideIcon> = {
   code: Code,
   solar: SolarPanel,
   home: House,
+  model: Box,
 };
 
 const ICONS: Record<string, LucideIcon> = {

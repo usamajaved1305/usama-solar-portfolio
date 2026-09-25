@@ -6,7 +6,7 @@ import { ScreenshotSet } from "./ScreenshotSet";
 
 export type ToolArtifact = {
   title: string;
-  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar" | "home";
+  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar" | "home" | "model";
   render: () => ReactNode;
 };
 
@@ -19,11 +19,13 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   Python: "tools/python",
   Helioscope: "tools/helioscope",
   OpenSolar: "tools/opensolar",
+  SketchUp: "tools/sketchup",
 };
 
 const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
+const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
 const PY_NOTEBOOK = "/tools/python/115-kWp-rooftop-energy-yield.ipynb";
 const PY_DATA = "/tools/python/pvgis_islamabad_monthly.csv";
 
@@ -345,6 +347,56 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               "What the client sees: 36 x 550 W LONGi modules, 19.8 kW, one 20 kW Growatt inverter, 27,930 kWh a year, with the panel and inverter warranties",
             "System performance":
               "Production month by month against the household's use, 116% of a 24,000 kWh year, modelled with the System Advisor Model at 13.8% losses",
+          }}
+        />
+      ),
+    };
+  }
+
+  const sku = shots["SketchUp"] ?? [];
+  if (sku.length > 0) {
+    artifacts["SketchUp"] = {
+      title: "SketchUp: 3D model of the 20 kW roof, frames and winter shading",
+      icon: "model",
+      render: () => (
+        <ScreenshotSet
+          shots={sku}
+          intro={
+            <>
+              <p>
+                The 20 kW house system from the Primavera P6 and MS Project programmes, built in 3D: 36 LONGi 550 W
+                modules in 6 rows of 6 on single-tilt steel frames at 20° facing south. The array covers 6.80 m by 11.78
+                m on a 16 m by 14 m flat roof with a 0.9 m parapet, and the frames stand 0.30 m above the roof at the
+                front and 0.95 m at the back.
+              </p>
+              <p>
+                The model sits on the same roof as the OpenSolar design, in F-11/2 Islamabad, so SketchUp&apos;s shadows
+                are the real ones for the site. At midday on 21 December the sun is 32.9° above the horizon and each row
+                throws a 1.05 m shadow; with 2.0 m between rows that covers about 0.8 m of the row behind. Clearing it
+                takes 2.8 m between rows, which leaves room for five rows instead of six. That is the trade-off for
+                fitting 36 modules on this roof.
+              </p>
+              <p>
+                <a
+                  href={SKP_MODEL}
+                  download
+                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  <Download size={14} aria-hidden="true" /> Download the model (.skp)
+                </a>
+              </p>
+            </>
+          }
+          notes={{
+            "Array on the roof":
+              "The system in place: 36 modules in 6 rows on tilted steel frames, with the walkways left around them",
+            "Roof plan and dimensions":
+              "The setting out for site: 6.80 m by 11.78 m of array, 2.0 m from row to row, on a 16 m by 14 m roof",
+            "December noon shadows":
+              "The same model at midday on 21 December: the shadow of each row falls across the bottom of the row behind it",
+            "Frame and row spacing":
+              "The frames: modules at 20° on rails 0.30 m high at the front and 0.95 m at the back, with a gap to walk and work between rows",
           }}
         />
       ),
