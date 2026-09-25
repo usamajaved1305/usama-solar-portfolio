@@ -6,7 +6,7 @@ import { ScreenshotSet } from "./ScreenshotSet";
 
 export type ToolArtifact = {
   title: string;
-  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar";
+  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar" | "home";
   render: () => ReactNode;
 };
 
@@ -18,6 +18,7 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   SQL: "tools/sql",
   Python: "tools/python",
   Helioscope: "tools/helioscope",
+  OpenSolar: "tools/opensolar",
 };
 
 const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
@@ -304,6 +305,46 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               "158.8 MWh a year, 1,382.5 kWh/kWp and a performance ratio of 81.3%, with production by month and the loss breakdown",
             "Loss breakdown":
               "Step by step from 1,576.5 kWh/m² of sunlight to 158,761 kWh sent to the grid: shading 3.6%, reflection 3.0%, soiling 2.0%, heat 4.9%, mismatch 3.8% and the inverter 1.6%",
+          }}
+        />
+      ),
+    };
+  }
+
+  const os = shots["OpenSolar"] ?? [];
+  if (os.length > 0) {
+    artifacts["OpenSolar"] = {
+      title: "OpenSolar: rooftop design and customer proposal for a 20 kW house system",
+      icon: "home",
+      render: () => (
+        <ScreenshotSet
+          shots={os}
+          intro={
+            <>
+              <p>
+                The same 20 kW house system as the Primavera P6 and MS Project programmes, drawn in OpenSolar on a
+                rooftop in Islamabad&apos;s F-11/2: 36 LONGi 550 W modules, 19.8 kWp, on tilted frames facing south at
+                20°, wired as two strings of 18 into one Growatt MID 20KTL3-X, a 20 kW three-phase inverter, so the
+                DC/AC ratio is 0.99.
+              </p>
+              <p>
+                OpenSolar runs the layout through NREL&apos;s System Advisor Model and gives 27,930 kWh a year, or 1,410
+                kWh per kWp, at 13.8% system losses. Against a household using 24,000 kWh a year that covers 116%. It
+                then writes the customer proposal: the system, the monthly production and the local NEPRA tariff. It is
+                a sample design on flat satellite imagery, so shading is not modelled, and the pricing pages are left
+                out.
+              </p>
+            </>
+          }
+          notes={{
+            "Roof layout":
+              "36 modules on the flat roof, 6 rows of 6 on single-tilt frames at 20° facing 180°, covering 6.8 m by 11.84 m",
+            "Inverter and strings":
+              "One Growatt MID 20KTL3-X and its two MPPT inputs, with OpenSolar's automatic stringing: 18 modules per string, drawn across the array",
+            "Customer proposal":
+              "What the client sees: 36 x 550 W LONGi modules, 19.8 kW, one 20 kW Growatt inverter, 27,930 kWh a year, with the panel and inverter warranties",
+            "System performance":
+              "Production month by month against the household's use, 116% of a 24,000 kWh year, modelled with the System Advisor Model at 13.8% losses",
           }}
         />
       ),
