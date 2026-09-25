@@ -356,7 +356,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const sku = shots["SketchUp"] ?? [];
   if (sku.length > 0) {
     artifacts["SketchUp"] = {
-      title: "SketchUp: 3D model of the 20 kW roof, frames and winter shading",
+      title: "SketchUp: 3D model of the house and a ray traced shading study of the array",
       icon: "model",
       render: () => (
         <ScreenshotSet
@@ -364,17 +364,24 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                The 20 kW house system from the Primavera P6 and MS Project programmes, built in 3D: 36 LONGi 550 W
-                modules in 6 rows of 6 on single-tilt steel frames at 20° facing south. The array covers 6.80 m by 11.78
-                m on a 16 m by 14 m flat roof with a 0.9 m parapet, and the frames stand 0.30 m above the roof at the
-                front and 0.95 m at the back.
+                The 20 kW house system from the Primavera P6 and MS Project programmes, modelled on its building: a two
+                storey brick house 16 m by 14 m, with the stair block and the water tank that sit on almost every
+                Islamabad roof. On top are 36 LONGi 550 W modules, 19.8 kWp, in six rows of six on single-tilt steel
+                frames at 20° facing south, 6.80 m by 11.78 m of array with 2.0 m between rows.
               </p>
               <p>
-                The model sits on the same roof as the OpenSolar design, in F-11/2 Islamabad, so SketchUp&apos;s shadows
-                are the real ones for the site. At midday on 21 December the sun is 32.9° above the horizon and each row
-                throws a 1.05 m shadow; with 2.0 m between rows that covers about 0.8 m of the row behind. Clearing it
-                takes 2.8 m between rows, which leaves room for five rows instead of six. That is the trade-off for
-                fitting 36 modules on this roof.
+                The model is geo-located on the real roof in F-11/2, so the sun is the site&apos;s own. A script fires a
+                ray from 432 points across the array towards the sun at every daylight hour on the solstices and the
+                equinoxes, 19,008 tests in all, and records what blocks each one. The array averages{" "}
+                <strong>90.8% solar access</strong>. The worst module, beside the stair block, gets 70.5%; the best gets
+                94.9%. On 21 December only 47% of the array is in sun at 08:00 and 79% at midday, while in March, June
+                and September it is fully lit from mid morning to mid afternoon.
+              </p>
+              <p>
+                The map colours every module by its own result, and the two winter views show where the losses come
+                from: the stair block across the back row, the water tank across the front corner, and the rows across
+                each other around midday. Solar access counts sun hours equally, so it is a geometry check, not an
+                energy figure.
               </p>
               <p>
                 <a
@@ -383,20 +390,24 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                   className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
                   style={{ color: "var(--amber)" }}
                 >
-                  <Download size={14} aria-hidden="true" /> Download the model (.skp)
+                  <Download size={14} aria-hidden="true" /> Download the model (.skp, 37 MB)
                 </a>
               </p>
             </>
           }
           notes={{
-            "Array on the roof":
-              "The system in place: 36 modules in 6 rows on tilted steel frames, with the walkways left around them",
+            "House and array":
+              "The house as modelled: brick, plaster bands, stone plinth, windows and porch, with the stair block, the water tank and the 19.8 kWp array on the roof",
             "Roof plan and dimensions":
               "The setting out for site: 6.80 m by 11.78 m of array, 2.0 m from row to row, on a 16 m by 14 m roof",
+            "December morning shadows":
+              "21 December at 09:00, with the sun 17.8° up: the stair block and the water tank throw shadows across the array",
             "December noon shadows":
-              "The same model at midday on 21 December: the shadow of each row falls across the bottom of the row behind it",
+              "21 December at 12:00, sun 32.9° up: the rows now clip the bottom of the row behind them",
+            "Solar access map":
+              "Every module coloured by its ray traced result: 90.8% across the array, 70.5% at the worst module beside the stair block",
             "Frame and row spacing":
-              "The frames: modules at 20° on rails 0.30 m high at the front and 0.95 m at the back, with a gap to walk and work between rows",
+              "The frames: modules at 20° on rails 0.30 m high at the front and 0.95 m at the back, with room to walk between rows",
           }}
         />
       ),
