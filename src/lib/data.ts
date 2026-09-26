@@ -89,7 +89,7 @@ export const experience = [
     company: "Solar Neon Engineering Pvt Ltd",
     period: "May 2025 to Mar 2026",
     highlights: [
-      "Managed delivery of 36 residential and commercial solar PV projects totalling 790 kWp, covering site assessment, design validation, installation supervision, commissioning and client handover.",
+      "Managed delivery of 36 residential and commercial solar PV projects, covering site assessment, design validation, installation supervision, commissioning and client handover.",
       "Led three technical engineers and installation crews totalling up to 40 people across five concurrent sites, allocating daily works and sequencing activities to hold projects to programme.",
       "Held 85% on-time completion, tracing slippage to material availability and labour shortages and re-sequencing works to contain the impact on downstream activities.",
       "Built and maintained project programmes and cost baselines, tracked actual progress against plan and reported status to senior management.",
