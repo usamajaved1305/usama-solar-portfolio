@@ -125,10 +125,11 @@ export function ScheduleView() {
   return (
     <div>
       <p className="text-[13.5px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
-        Installation programme for the 20 kW on-grid residential system featured on my LinkedIn (Longi 550 W N-type
-        modules, Growatt 20 kW inverter), from the site survey to handover in {finish} working days. It is laid out
-        as a Primavera P6 project, with a WBS, activity IDs, logic links with lags and a Monday to Saturday calendar,
-        and the critical path and float are calculated from that logic. Durations are my own planning estimates.
+        The same programme again, recalculated here in the browser from the activity list and the logic links, so the
+        critical path and every float are computed rather than typed in. It is a check on the P6 schedule above and it
+        agrees with it activity for activity: {finish} working days from the site survey to handover, the same
+        durations, the same total floats. The system is the 20 kW on-grid job featured on my LinkedIn (Longi 550 W
+        N-type modules, Growatt 20 kW inverter). Durations are my own planning estimates.
       </p>
 
       <dl className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">

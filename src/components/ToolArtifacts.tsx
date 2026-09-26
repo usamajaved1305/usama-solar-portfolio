@@ -12,6 +12,7 @@ export type ToolArtifact = {
 
 /** Screenshot folders under public/, one per tool. A tool only opens once its folder has images. */
 export const TOOL_SHOT_FOLDERS: Record<string, string> = {
+  "Primavera P6": "tools/p6",
   "MS Project": "tools/ms-project",
   "Advanced Excel": "tools/advanced-excel",
   "Power BI": "tools/power-bi",
@@ -22,6 +23,7 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   SketchUp: "tools/sketchup",
 };
 
+const P6_XER = "/tools/p6/20-kW-residential-pv-p6.xer";
 const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
@@ -31,11 +33,71 @@ const PY_DATA = "/tools/python/pvgis_islamabad_monthly.csv";
 
 // A tool listed here becomes a clickable chip that opens the work behind it.
 export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<string, ToolArtifact> {
+  const p6 = shots["Primavera P6"] ?? [];
   const artifacts: Record<string, ToolArtifact> = {
     "Primavera P6": {
       title: "Primavera P6: installation programme for a 20 kW residential PV system",
       icon: "gantt",
-      render: () => <ScheduleView />,
+      render: () =>
+        p6.length === 0 ? (
+          <ScheduleView />
+        ) : (
+          <div>
+            <ScreenshotSet
+              shots={p6}
+              intro={
+                <>
+                  <p>
+                    The installation programme for the 20 kW on-grid residential system, built in Primavera P6
+                    Professional 25.12 on a standalone database: <strong>25 activities</strong> under four WBS groups,
+                    from the site survey to handover, joined by <strong>31 relationships</strong> on a Monday to
+                    Saturday calendar. Starting Mon 5 Oct 2026, P6 schedules the job to finish on{" "}
+                    <strong>Mon 2 Nov 2026</strong>, working day 25, with <strong>17 activities on the critical path</strong>{" "}
+                    and no date constraints anywhere in the logic.
+                  </p>
+                  <p>
+                    The programme is worth more than its bar chart. Utility approval takes 14 days but carries 2 days of
+                    float, so it is not what drives the job; the mounting steel is. Cables have 9 days of float, the
+                    modules 7 and the inverter 5, which is what tells you where a late delivery actually hurts. Stretch
+                    the inverter from 6 days to 13 and the finish moves only <strong>2 days</strong>, because the float
+                    absorbs the rest, but the critical path jumps off the steel and onto the inverter, so the job now
+                    has to be managed somewhere else.
+                  </p>
+                  <p>
+                    P6&apos;s own scheduler was checked against the critical path this site calculates in the browser,
+                    shown below the screenshots: every duration and every total float agrees, 17 critical activities in
+                    both, and the same working day 25 finish that the MS Project version gives. The start date is an
+                    example and the durations are my own planning estimates.
+                  </p>
+                  <p>
+                    <a
+                      href={P6_XER}
+                      download
+                      className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                      style={{ color: "var(--amber)" }}
+                    >
+                      <Download size={14} aria-hidden="true" /> Download the programme (.xer)
+                    </a>{" "}
+                    to open it in any copy of P6.
+                  </p>
+                </>
+              }
+              notes={{
+                "Gantt with the critical path":
+                  "All 25 activities under the four WBS groups, with original duration, start, finish and total float. Red bars are critical, green bars have float, diamonds are milestones and the black bars are the WBS summaries",
+                "Critical activities only":
+                  "P6's Critical filter, showing only the 17 activities with zero total float: survey, design, sign-off, the mounting steel, the installation sequence and everything from pre-commissioning to handover",
+                "Relationships and lag":
+                  "Mounting the inverter has two predecessors: the inverter delivery finish-to-start, and the mounting structure start-to-start with a 2 day lag, so the electrical work begins while the steel is still going up",
+                "What if the inverter is late":
+                  "The inverter delivery stretched from 6 days to 13. The finish slips only to Wed 4 Nov because the activity had 5 days of float, and the critical path moves off the mounting steel onto the inverter chain",
+              }}
+            />
+            <div className="mt-8 border-t pt-6" style={{ borderColor: "var(--line)" }}>
+              <ScheduleView />
+            </div>
+          </div>
+        ),
     },
   };
 
