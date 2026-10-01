@@ -29,7 +29,6 @@ const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
 const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
-const DWG_20KW = "/tools/autocad/20-kW-residential-pv-drawings.dxf";
 const DWG_115KWP = "/tools/autocad/115-kWp-commercial-rooftop-sld.dxf";
 const PY_NOTEBOOK = "/tools/python/115-kWp-rooftop-energy-yield.ipynb";
 const PY_DATA = "/tools/python/pvgis_islamabad_monthly.csv";
@@ -482,7 +481,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const cad = shots["AutoCAD"] ?? [];
   if (cad.length > 0) {
     artifacts["AutoCAD"] = {
-      title: "AutoCAD: drawings for the 20 kW house system and the 115 kWp commercial rooftop",
+      title: "AutoCAD: the single line diagram for the 115 kWp commercial rooftop",
       icon: "draft",
       render: () => (
         <ScreenshotSet
@@ -490,21 +489,20 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                Two drawings for the two systems the rest of this portfolio is built around. The first is a two sheet
-                set for the 20 kW house: a roof layout at 1:100 on A3 with the 36 modules set out and dimensioned, and
-                the single line diagram beside it. The second is the single line diagram for the 115 kWp commercial
-                rooftop, 198 modules in eleven strings on a 100 kW inverter.
+                Drawing PV-03, the single line diagram for the 115 kWp commercial rooftop in Sector I-9, Islamabad. It
+                is the same system as the Excel, Power BI, SQL, Python and HelioScope work in this portfolio: 198 Jinko
+                JKM580N 580 W modules, 114.84 kWp, eleven strings of eighteen into one Huawei SUN2000-100KTL-M2.
               </p>
               <p>
-                Everything is drawn full size in millimetres with the sheet border scaled by 100, which is what makes
-                the plot come out at 1:100 and keeps every dimension pulled off the model true. The roof layout shares
-                its geometry with the SketchUp model, so the array is the same 6,804 mm by 11,776 mm at the same 2.0 m
-                row pitch on both.
+                Drawn full size in millimetres on an A3 sheet with the border scaled by 100, which is what makes the
+                plot come out right and keeps every figure read off the drawing true. The first image is the file open
+                in AutoCAD Web. The four after it are the same drawing enlarged block by block, because an A3 sheet
+                shrunk to fit a screen puts 2.5 mm lettering below the size anyone can read.
               </p>
               <p>
-                The numbers on the diagrams are worked rather than assumed, and the working is printed on the sheet.
-                Module voltage rises as temperature falls, so the check that matters is the cold one. On the 115 kWp
-                system, 52.31 V open circuit becomes <strong>56.23 V at -5 °C</strong>, and eighteen in series gives{" "}
+                The numbers are worked rather than assumed, and the working is printed on the sheet. Module voltage
+                rises as temperature falls, so the check that matters is the cold one: 52.31 V open circuit becomes{" "}
+                <strong>56.23 V at -5 °C</strong>, and eighteen in series gives{" "}
                 <strong>1,012 V against the inverter&apos;s 1,100 V limit</strong>. On the AC side, 100 kW at 400 V
                 three phase is 144.3 A, so a 160 A four pole MCCB.
               </p>
@@ -516,32 +514,67 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 rating. Combine the eleven in a junction box instead and the fuses come back.
               </p>
               <p>
-                <a
-                  href={DWG_20KW}
-                  download
-                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
-                  style={{ color: "var(--amber)" }}
-                >
-                  <Download size={14} aria-hidden="true" /> 20 kW drawing set (.dxf)
-                </a>{" "}
+                The cable and protection schedule sits on the sheet between the diagram and the notes. It is the widest
+                block on the drawing, so rather than show it as a strip of unreadable pixels, here it is as it reads:
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-[12.5px]" style={{ borderCollapse: "collapse" }}>
+                  <thead>
+                    <tr style={{ color: "var(--text)" }}>
+                      {["Ref", "Section", "Cable", "Protection"].map((h) => (
+                        <th
+                          key={h}
+                          className="py-1.5 pr-3 font-semibold"
+                          style={{ borderBottom: "1px solid var(--line)" }}
+                        >
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      ["1", "Module interconnect", "4 mm² PV1-F", "None"],
+                      ["2", "String to inverter input", "6 mm² PV1-F, 968 m total", "No string fuse, see note 4"],
+                      ["3", "DC input", "At inverter terminal", "Type 2 DC SPD, integral"],
+                      ["4", "Inverter to AC isolator", "4C 95 mm² Cu", "250 A 4 pole isolator"],
+                      ["5", "AC isolator to LV board", "4C 95 mm² Cu, 33 m", "160 A 4 pole MCCB"],
+                      ["6", "Earthing and bonding", "16 mm² Cu main, 6 mm² frame", "Bonded to array frame"],
+                    ].map((row) => (
+                      <tr key={row[0]}>
+                        {row.map((cell, j) => (
+                          <td key={j} className="py-1.5 pr-3 align-top" style={{ borderBottom: "1px solid var(--line)" }}>
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p>
                 <a
                   href={DWG_115KWP}
                   download
                   className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
                   style={{ color: "var(--amber)" }}
                 >
-                  <Download size={14} aria-hidden="true" /> 115 kWp diagram (.dxf)
+                  <Download size={14} aria-hidden="true" /> 115 kWp single line diagram (.dxf)
                 </a>
               </p>
             </>
           }
           notes={{
-            "Roof layout and array setting out":
-              "The roof plan at 1:100: the 36 modules in six rows, the parapet, the stair block and the water tank, with the overall 16000 by 14000, the 6804 by 11776 array and the 2000 row pitch dimensioned from the south parapet",
-            "The 20 kW drawing set":
-              "Both sheets together. The roof layout on the left, and on the right the single line diagram with its cable and protection schedule and the design notes that show the voltage and current working",
-            "115 kWp single line diagram":
-              "Eleven strings of eighteen, each landing on its own MPP tracker except one that carries two, into a Huawei 100 kW inverter, then isolator, 160 A MCCB, the existing LV board, a net meter and the grid",
+            "The sheet open in AutoCAD":
+              "The whole A3 in AutoCAD Web, view only because it is a DXF. This is the shape of the drawing: array and strings top left, the chain across to the grid, the cable and protection schedule, the design notes and the title block. The four views below are the same file enlarged so the lettering can be read",
+            "Strings and MPP trackers":
+              "Eleven strings of eighteen modules in series. Ten take an MPP tracker to themselves and the eleventh shares tracker 10 as its second input, which is the reason there are no string fuses anywhere on this drawing",
+            "Inverter and DC inputs":
+              "The inverter block carries the figures the string sizing has to satisfy: 10 MPP trackers, 20 DC inputs, an MPPT window of 200 to 1,000 V and a 1,100 V ceiling. The cyan line is the earth, taken from the inverter to the electrode and on to the main earth bar",
+            "AC side to the grid":
+              "144.3 A at 400 V three phase, so a 250 A isolator, a 160 A four pole MCCB, into the existing LV board, through a net meter and out to the grid",
+            "Design notes on the sheet":
+              "The working printed on the drawing, so a reviewer can check it without opening a spreadsheet: the cold voltage check, the string current, the fusing argument, the AC current and what would still need confirming before the drawing could be issued",
           }}
         />
       ),
