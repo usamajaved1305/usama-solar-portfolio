@@ -536,10 +536,12 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             </>
           }
           notes={{
-            "20 kW drawing set in AutoCAD":
-              "Both sheets of the house set: the roof plan with the parapet, the stair block, the water tank and the 36 modules dimensioned for setting out, and the single line diagram beside it",
+            "Roof layout and array setting out":
+              "The roof plan at 1:100: the 36 modules in six rows, the parapet, the stair block and the water tank, with the overall 16000 by 14000, the 6804 by 11776 array and the 2000 row pitch dimensioned from the south parapet",
+            "The 20 kW drawing set":
+              "Both sheets together. The roof layout on the left, and on the right the single line diagram with its cable and protection schedule and the design notes that show the voltage and current working",
             "115 kWp single line diagram":
-              "Eleven strings of eighteen into one Huawei 100 kW inverter, then isolator, MCCB, the existing LV board, a net meter and the grid, with the cable and protection schedule and the design notes underneath",
+              "Eleven strings of eighteen, each landing on its own MPP tracker except one that carries two, into a Huawei 100 kW inverter, then isolator, 160 A MCCB, the existing LV board, a net meter and the grid",
           }}
         />
       ),
