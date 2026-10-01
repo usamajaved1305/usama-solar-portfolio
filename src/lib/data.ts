@@ -79,7 +79,7 @@ export const toolCategories = [
   },
   {
     title: "Design Software",
-    tools: ["Helioscope", "OpenSolar", "SketchUp", "SolidWorks"],
+    tools: ["Helioscope", "OpenSolar", "SketchUp", "AutoCAD", "SolidWorks"],
   },
 ];
 

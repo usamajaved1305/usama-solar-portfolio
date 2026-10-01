@@ -6,7 +6,7 @@ import { ScreenshotSet } from "./ScreenshotSet";
 
 export type ToolArtifact = {
   title: string;
-  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar" | "home" | "model";
+  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar" | "home" | "model" | "draft";
   render: () => ReactNode;
 };
 
@@ -21,6 +21,7 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   Helioscope: "tools/helioscope",
   OpenSolar: "tools/opensolar",
   SketchUp: "tools/sketchup",
+  AutoCAD: "tools/autocad",
 };
 
 const P6_XER = "/tools/p6/20-kW-residential-pv-p6.xer";
@@ -28,6 +29,8 @@ const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
 const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
+const DWG_20KW = "/tools/autocad/20-kW-residential-pv-drawings.dxf";
+const DWG_115KWP = "/tools/autocad/115-kWp-commercial-rooftop-sld.dxf";
 const PY_NOTEBOOK = "/tools/python/115-kWp-rooftop-energy-yield.ipynb";
 const PY_DATA = "/tools/python/pvgis_islamabad_monthly.csv";
 
@@ -470,6 +473,73 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               "Every module coloured by its ray traced result: 90.8% across the array, 70.5% at the worst module beside the stair block",
             "Frame and row spacing":
               "The frames: modules at 20° on rails 0.30 m high at the front and 0.95 m at the back, with room to walk between rows",
+          }}
+        />
+      ),
+    };
+  }
+
+  const cad = shots["AutoCAD"] ?? [];
+  if (cad.length > 0) {
+    artifacts["AutoCAD"] = {
+      title: "AutoCAD: drawings for the 20 kW house system and the 115 kWp commercial rooftop",
+      icon: "draft",
+      render: () => (
+        <ScreenshotSet
+          shots={cad}
+          intro={
+            <>
+              <p>
+                Two drawings for the two systems the rest of this portfolio is built around. The first is a two sheet
+                set for the 20 kW house: a roof layout at 1:100 on A3 with the 36 modules set out and dimensioned, and
+                the single line diagram beside it. The second is the single line diagram for the 115 kWp commercial
+                rooftop, 198 modules in eleven strings on a 100 kW inverter.
+              </p>
+              <p>
+                Everything is drawn full size in millimetres with the sheet border scaled by 100, which is what makes
+                the plot come out at 1:100 and keeps every dimension pulled off the model true. The roof layout shares
+                its geometry with the SketchUp model, so the array is the same 6,804 mm by 11,776 mm at the same 2.0 m
+                row pitch on both.
+              </p>
+              <p>
+                The numbers on the diagrams are worked rather than assumed, and the working is printed on the sheet.
+                Module voltage rises as temperature falls, so the check that matters is the cold one. On the 115 kWp
+                system, 52.31 V open circuit becomes <strong>56.23 V at -5 °C</strong>, and eighteen in series gives{" "}
+                <strong>1,012 V against the inverter&apos;s 1,100 V limit</strong>. On the AC side, 100 kW at 400 V
+                three phase is 144.3 A, so a 160 A four pole MCCB.
+              </p>
+              <p>
+                The part worth asking about is the fusing. Eleven strings in parallel normally means string fuses, but
+                that Huawei inverter has <strong>ten MPP trackers and twenty DC inputs</strong>, so ten strings take a
+                tracker each and only one tracker carries two. Those two draw 28.94 A against a 30 A tracker limit, and
+                a faulted string can be back fed by at most one other, which stays inside the module&apos;s reverse
+                rating. Combine the eleven in a junction box instead and the fuses come back.
+              </p>
+              <p>
+                <a
+                  href={DWG_20KW}
+                  download
+                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  <Download size={14} aria-hidden="true" /> 20 kW drawing set (.dxf)
+                </a>{" "}
+                <a
+                  href={DWG_115KWP}
+                  download
+                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  <Download size={14} aria-hidden="true" /> 115 kWp diagram (.dxf)
+                </a>
+              </p>
+            </>
+          }
+          notes={{
+            "20 kW drawing set in AutoCAD":
+              "Both sheets of the house set: the roof plan with the parapet, the stair block, the water tank and the 36 modules dimensioned for setting out, and the single line diagram beside it",
+            "115 kWp single line diagram":
+              "Eleven strings of eighteen into one Huawei 100 kW inverter, then isolator, MCCB, the existing LV board, a net meter and the grid, with the cable and protection schedule and the design notes underneath",
           }}
         />
       ),
