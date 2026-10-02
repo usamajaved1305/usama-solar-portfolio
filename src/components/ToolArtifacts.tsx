@@ -495,9 +495,10 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               </p>
               <p>
                 Drawn full size in millimetres on an A3 sheet with the border scaled by 100, which is what makes the
-                plot come out right and keeps every figure read off the drawing true. A whole A3 shrunk to fit a screen
-                puts 2.5 mm lettering below the size anyone can read, so the sheet is shown here block by block instead,
-                at a size the text survives. The drawing itself is one file, and it is on the download below.
+                plot come out right and keeps every figure read off the drawing true. The views below are the drawing
+                open in AutoCAD Web, zoomed in one block at a time, because a whole A3 shrunk to fit a screen puts
+                2.5 mm lettering below the size anyone can read. It is all one sheet, and the file is on the download
+                below.
               </p>
               <p>
                 The numbers are worked rather than assumed, and the working is printed on the sheet. Module voltage
@@ -565,12 +566,16 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             </>
           }
           notes={{
-            "Strings and MPP trackers":
-              "Eleven strings of eighteen modules in series. Ten take an MPP tracker to themselves and the eleventh shares tracker 10 as its second input, which is the reason there are no string fuses anywhere on this drawing",
-            "Inverter and DC inputs":
-              "The inverter block carries the figures the string sizing has to satisfy: 10 MPP trackers, 20 DC inputs, an MPPT window of 200 to 1,000 V and a 1,100 V ceiling. The cyan line is the earth, taken from the inverter to the electrode and on to the main earth bar",
-            "AC side to the grid":
+            "The array and strings 1 to 6":
+              "198 Jinko JKM580N modules at 580 W, wired as eleven strings of eighteen in series. Each row of three symbols stands for one string of eighteen, which is how a single line diagram keeps a 198 module array on one sheet",
+            "All eleven strings into the MPP trackers":
+              "Where the fusing argument lives. Ten strings take an MPP tracker to themselves and the eleventh lands on tracker 10 as its second input, so no two strings are ever combined before the inverter",
+            "The inverter and its DC inputs":
+              "The inverter block carries the figures the string sizing has to satisfy: 10 MPP trackers, 20 DC inputs, an MPPT window of 200 to 1,000 V and a 1,100 V ceiling. The cyan line is the earth, out of the inverter to the electrode and on to the main earth bar",
+            "The AC side to the grid":
               "144.3 A at 400 V three phase, so a 250 A isolator, a 160 A four pole MCCB, into the existing LV board, through a net meter and out to the grid",
+            "Cable and protection schedule":
+              "The schedule block as it is drawn, showing the reference, section and cable columns. The protection column runs off to the right of this view and the whole table is set out above",
             "Design notes on the sheet":
               "The working printed on the drawing, so a reviewer can check it without opening a spreadsheet: the cold voltage check, the string current, the fusing argument, the AC current and what would still need confirming before the drawing could be issued",
             "Title block":
