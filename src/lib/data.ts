@@ -244,8 +244,6 @@ export const certifications = [
     issued: "Jul 2024",
     image: "introduction-to-solar-pv-design-heatspring.png",
   },
-  { name: "Know Your Code, Solar Roof Mounting", issuer: "IronRidge", issued: "Mar 2024" },
-  { name: "Solar 101, Residential Sales", issuer: "SolarEdge Technologies", issued: "Sep 2024" },
   {
     name: "ASME Student Member",
     issuer: "American Society of Mechanical Engineers",
