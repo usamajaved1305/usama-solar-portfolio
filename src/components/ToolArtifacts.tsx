@@ -495,9 +495,9 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               </p>
               <p>
                 Drawn full size in millimetres on an A3 sheet with the border scaled by 100, which is what makes the
-                plot come out right and keeps every figure read off the drawing true. The first image is the file open
-                in AutoCAD Web. The four after it are the same drawing enlarged block by block, because an A3 sheet
-                shrunk to fit a screen puts 2.5 mm lettering below the size anyone can read.
+                plot come out right and keeps every figure read off the drawing true. A whole A3 shrunk to fit a screen
+                puts 2.5 mm lettering below the size anyone can read, so the sheet is shown here block by block instead,
+                at a size the text survives. The drawing itself is one file, and it is on the download below.
               </p>
               <p>
                 The numbers are worked rather than assumed, and the working is printed on the sheet. Module voltage
@@ -565,8 +565,6 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             </>
           }
           notes={{
-            "The sheet open in AutoCAD":
-              "The whole A3 in AutoCAD Web, view only because it is a DXF. This is the shape of the drawing: array and strings top left, the chain across to the grid, the cable and protection schedule, the design notes and the title block. The four views below are the same file enlarged so the lettering can be read",
             "Strings and MPP trackers":
               "Eleven strings of eighteen modules in series. Ten take an MPP tracker to themselves and the eleventh shares tracker 10 as its second input, which is the reason there are no string fuses anywhere on this drawing",
             "Inverter and DC inputs":
@@ -575,6 +573,8 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               "144.3 A at 400 V three phase, so a 250 A isolator, a 160 A four pole MCCB, into the existing LV board, through a net meter and out to the grid",
             "Design notes on the sheet":
               "The working printed on the drawing, so a reviewer can check it without opening a spreadsheet: the cold voltage check, the string current, the fusing argument, the AC current and what would still need confirming before the drawing could be issued",
+            "Title block":
+              "Bottom right of the sheet. Drawing PV-03, single line diagram, site Sector I-9 Islamabad, not to scale because a schematic has no scale",
           }}
         />
       ),
