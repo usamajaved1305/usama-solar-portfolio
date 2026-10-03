@@ -13,8 +13,8 @@ export const profile = {
 };
 
 export const stats = [
-  { value: "100+", label: "PV installations delivered", sub: "5 kWp domestic systems to a 150 kWp factory rooftop" },
-  { value: "790 kWp", label: "Capacity delivered", sub: "36 projects, 85% completed on time" },
+  { value: "100+", label: "PV installations delivered", sub: "5 kWp domestic systems to a 115 kWp commercial rooftop" },
+  { value: "790 kWp", label: "Capacity delivered", sub: "36 projects, 85 to 90% completed on time" },
   { value: "Up to 40", label: "Crew members supervised", sub: "across five concurrent sites" },
   { value: "3.5 years", label: "Solar PV experience", sub: "from site survey through commissioning" },
 ];
@@ -91,7 +91,7 @@ export const experience = [
     highlights: [
       "Managed delivery of 36 residential and commercial solar PV projects, covering site assessment, design validation, installation supervision, commissioning and client handover.",
       "Led three technical engineers and installation crews totalling up to 40 people across five concurrent sites, allocating daily works and sequencing activities to hold projects to programme.",
-      "Held 85% on-time completion, tracing slippage to material availability and labour shortages and re-sequencing works to contain the impact on downstream activities.",
+      "Held 85 to 90% on-time completion, tracing slippage to material availability and labour shortages and re-sequencing works to contain the impact on downstream activities.",
       "Built and maintained project programmes and cost baselines, tracked actual progress against plan and reported status to senior management.",
       "Validated roof structure, shading, load calculations and system sizing before mobilisation, cutting on-site design changes and rework.",
       "Acted as site escalation point through installation and commissioning, resolving interface conflicts between mechanical mounting, DC string routing and AC connection works.",
@@ -99,7 +99,7 @@ export const experience = [
     metrics: [
       { label: "Projects", value: "36" },
       { label: "Capacity", value: "790 kWp" },
-      { label: "On-time", value: "85%" },
+      { label: "On-time", value: "85 to 90%" },
       { label: "Crew, 5 sites", value: "Up to 40" },
     ],
   },
@@ -108,7 +108,7 @@ export const experience = [
     company: "Islamabad Solar House Pvt Ltd",
     period: "Feb 2023 to Apr 2025",
     highlights: [
-      "Ran the full project lifecycle on 59 residential and commercial PV installations ranging from 5 kWp to 150 kWp: site assessment, system design, installation coordination, commissioning and aftercare.",
+      "Ran the full project lifecycle on 59 residential and commercial PV installations ranging from 5 kWp to 115 kWp: site assessment, system design, installation coordination, commissioning and aftercare.",
       "Delivered 85 to 95% of projects within the agreed programme while running two concurrent projects at a time.",
       "Managed a two month programme delay caused by an inverter supply shortage, re-planning installation dates and re-sequencing site works to limit knock-on effects for the client.",
       "Reviewed and approved installation drawings, single line diagrams and technical specifications for on-grid, hybrid and off-grid systems.",
@@ -117,7 +117,7 @@ export const experience = [
     ],
     metrics: [
       { label: "Installations", value: "59" },
-      { label: "System size", value: "5 to 150 kWp" },
+      { label: "System size", value: "5 to 115 kWp" },
       { label: "On-time", value: "85 to 95%" },
       { label: "Concurrent", value: "2 projects" },
     ],
@@ -150,13 +150,15 @@ export const experience = [
 
 export const projects = [
   {
-    title: "150 kWp Factory Rooftop",
+    title: "115 kWp Commercial Rooftop",
     tag: "Design under constraint",
     challenge:
-      "The client restricted the usable roof area and the available footprint suffered significant shading, capping achievable yield.",
-    action: "Reworked module placement and string layout to keep shaded modules off critical strings.",
-    result: "Protected output while holding the system within the client's cost ceiling and the area allowed.",
-    stack: ["Shading analysis", "String layout", "Module placement"],
+      "The roof runs south east rather than south. Turning the array to face due south fits only 163 modules, so the orientation that looks right on paper is the one that costs the most capacity.",
+    action:
+      "Set the array out along the building at 146 degrees instead, sized the strings against the coldest morning rather than the nameplate, and settled the fusing from the inverter's tracker layout rather than the string count.",
+    result:
+      "198 modules at 114.84 kWp, eleven strings of eighteen sitting at 1,012 V against an 1,100 V inverter limit, and no string fuses needed. The turn off south costs under 2% of annual yield and buys 35 more modules.",
+    stack: ["String sizing", "Array setting out", "Protection design"],
   },
   {
     title: "Inverter Shortage Recovery",
@@ -172,7 +174,7 @@ export const projects = [
     challenge: "Material availability and labour shortages caused slippage while crews worked five sites at once.",
     action:
       "Allocated daily works across crews of up to 40 people, traced slippage to its causes and re-sequenced works to contain the impact on downstream activities.",
-    result: "Held 85% on-time completion across 36 projects in the year.",
+    result: "Held 85 to 90% on-time completion across 36 projects in the year.",
     stack: ["Crew allocation", "Slippage tracking", "Programme control"],
   },
 ];

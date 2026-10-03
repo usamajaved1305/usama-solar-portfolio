@@ -5,7 +5,7 @@ import { SITE_URL } from "./site";
 export const TITLE = `${profile.name} | ${profile.headline}`;
 
 export const DESCRIPTION =
-  "Solar PV engineer in Dublin. Over 100 residential and commercial PV installations from 5 to 150 kWp, and 790 kWp across 36 projects in one year.";
+  "Solar PV engineer in Dublin. Over 100 residential and commercial PV installations from 5 to 115 kWp, and 790 kWp across 36 projects in one year.";
 
 export const SHORT_DESCRIPTION =
   "Over 100 residential and commercial solar PV installations delivered. Site supervision, project engineering and planning. Dublin, Ireland.";

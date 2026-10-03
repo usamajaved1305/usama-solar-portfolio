@@ -19,7 +19,7 @@ export function Experience() {
         <SectionHeading
           kicker="Experience"
           title="From site survey to client handover"
-          desc="Roughly 70% residential and 30% commercial work across on-grid, hybrid and off-grid systems, from small domestic systems to factory rooftops."
+          desc="Roughly 70% residential and 30% commercial work across on-grid, hybrid and off-grid systems, from small domestic systems to commercial rooftops."
         />
 
         <div className="relative">
