@@ -510,7 +510,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               <p>
                 The part worth asking about is the fusing. Eleven strings in parallel normally means string fuses, but
                 that Huawei inverter has <strong>ten MPP trackers and twenty DC inputs</strong>, so ten strings take a
-                tracker each and only one tracker carries two. Those two draw 28.94 A against a 30 A tracker limit, and
+                tracker each and only one tracker carries two. Those two draw 28.02 A against a 30 A tracker limit, and
                 a faulted string can be back fed by at most one other, which stays inside the module&apos;s reverse
                 rating. Combine the eleven in a junction box instead and the fuses come back.
               </p>
@@ -554,6 +554,41 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 </table>
               </div>
               <p>
+                The design notes are printed on the sheet too, below the schedule. They are the working, so that a
+                reviewer can check the drawing without opening a spreadsheet:
+              </p>
+              <ol className="list-decimal space-y-1.5 pl-5">
+                <li>
+                  Array 198 Jinko JKM580N-72HL4-V at 580&nbsp;W = 114.84&nbsp;kWp. Inverter 100&nbsp;kW AC. DC/AC ratio
+                  1.15.
+                </li>
+                <li>
+                  String sizing 18 modules. Voc 52.31&nbsp;V at STC, temperature coefficient -0.25&nbsp;%/°C. At a
+                  design minimum of -5&nbsp;°C, Voc = 52.31 × (1 + 0.0025 × 30) = 56.23&nbsp;V, and ×18 = 1,012&nbsp;V.
+                  The inverter maximum DC input is 1,100&nbsp;V, so the string has 8% headroom on the coldest morning.
+                </li>
+                <li>
+                  String design current = 1.25 × Isc = 1.25 × 14.01 = <strong>17.5&nbsp;A</strong>. 6&nbsp;mm² PV cable
+                  throughout.
+                </li>
+                <li>
+                  No string fuses. The inverter has 10 MPP trackers and 20 DC inputs, so ten strings take an input each
+                  and only one tracker carries two. Where two share a tracker the combined current is 2 × 14.01 ={" "}
+                  <strong>28.02&nbsp;A</strong> against a 30&nbsp;A tracker limit, and a faulted string can be fed by at
+                  most one other, which is inside the module reverse rating. Fuses would be required if the strings were
+                  combined in a junction box instead.
+                </li>
+                <li>AC current = 100000 / (1.732 × 400) = 144.3&nbsp;A. Protected by a 160&nbsp;A 4 pole MCCB.</li>
+                <li>
+                  Array oriented at 146° rather than due south to follow the building. Due south fits only 163 modules
+                  on this roof, and the turn costs under 2% of annual yield.
+                </li>
+                <li>
+                  Equipment ratings from manufacturer datasheets. Cable sizes are design figures for this drawing and
+                  would be confirmed against installed route lengths, grouping and volt drop.
+                </li>
+              </ol>
+              <p>
                 <a
                   href={DWG_115KWP}
                   download
@@ -576,8 +611,6 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               "144.3 A at 400 V three phase, so a 250 A isolator, a 160 A four pole MCCB, into the existing LV board, through a net meter and out to the grid",
             "Cable and protection schedule":
               "The schedule block as it is drawn, showing the reference, section and cable columns. The protection column runs off to the right of this view and the whole table is set out above",
-            "Design notes on the sheet":
-              "The working printed on the drawing, so a reviewer can check it without opening a spreadsheet: the cold voltage check, the string current, the fusing argument, the AC current and what would still need confirming before the drawing could be issued",
             "Title block":
               "Bottom right of the sheet. Drawing PV-03, single line diagram, site Sector I-9 Islamabad, not to scale because a schematic has no scale",
           }}
