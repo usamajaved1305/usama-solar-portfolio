@@ -36,6 +36,7 @@ const BESS_DWGS: [string, string][] = [
   ["PV-02 electrical SLD", "/tools/bess/80-kW-bess-PV-02-electrical-sld.dxf"],
   ["PV-03 battery control", "/tools/bess/80-kW-bess-PV-03-battery-control.dxf"],
   ["PV-04 battery SLD", "/tools/bess/80-kW-bess-PV-04-battery-sld.dxf"],
+  ["Single line overview", "/tools/bess/80-kW-bess-single-line-overview.dxf"],
 ];
 
 /** Small bordered table for the figures that read better as text than as a picture. */
@@ -716,6 +717,12 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 layout, system single line, battery single line, and a control and performance sheet.
               </p>
               <p>
+                <strong>Figure 1 is the single line diagram</strong>, the whole battery system on one line. Figures 2
+                to 5 are the same drawing opened up block by block, because the sheet it comes from is A1 and an A1
+                sheet reduced to the width of this panel puts its lettering under 3 px. The full sheets are the
+                downloads at the end.
+              </p>
+              <p>
                 The first thing the model said was that the battery was not worth fitting. Charged only from surplus PV
                 it cycled about twelve times a year, because the site load is <strong>3.3 times</strong> the generation
                 and there is almost no surplus to store. That result is what shaped everything after it: the battery
@@ -768,6 +775,8 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             </>
           }
           notes={{
+            "The single line diagram":
+              "Battery, DC isolation and protection, the hybrid inverter, and out to the grid on one side and the essential board on the other. The PV array comes in from above and the earth leaves below. This is drawing PV-04 reduced to its chain, and the four views after it are the same drawing at full detail",
             "The battery stack":
               "Nine CQ7 modules in series, one master carrying the BMU and the switchgear and eight slaves above it, with the running voltage down the left from 57.6 V to 518.4 V. Series, not parallel, so there is one current path and no module can back feed another",
             "DC protection and the BMS":
