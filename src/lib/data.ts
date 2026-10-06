@@ -81,6 +81,10 @@ export const toolCategories = [
     title: "Design Software",
     tools: ["Helioscope", "OpenSolar", "SketchUp", "AutoCAD"],
   },
+  {
+    title: "Energy Storage",
+    tools: ["BESS"],
+  },
 ];
 
 export const experience = [

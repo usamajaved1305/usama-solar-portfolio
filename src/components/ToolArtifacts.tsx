@@ -6,7 +6,7 @@ import { ScreenshotSet } from "./ScreenshotSet";
 
 export type ToolArtifact = {
   title: string;
-  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar" | "home" | "model" | "draft";
+  icon: "gantt" | "sheet" | "chart" | "db" | "code" | "solar" | "home" | "model" | "draft" | "battery";
   render: () => ReactNode;
 };
 
@@ -22,6 +22,7 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   OpenSolar: "tools/opensolar",
   SketchUp: "tools/sketchup",
   AutoCAD: "tools/autocad",
+  BESS: "tools/bess",
 };
 
 const P6_XER = "/tools/p6/20-kW-residential-pv-p6.xer";
@@ -30,6 +31,85 @@ const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-d
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
 const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
 const DWG_115KWP = "/tools/autocad/115-kWp-commercial-rooftop-sld.dxf";
+const BESS_DWGS: [string, string][] = [
+  ["PV-01 mechanical", "/tools/bess/80-kW-bess-PV-01-mechanical.dxf"],
+  ["PV-02 electrical SLD", "/tools/bess/80-kW-bess-PV-02-electrical-sld.dxf"],
+  ["PV-03 battery control", "/tools/bess/80-kW-bess-PV-03-battery-control.dxf"],
+  ["PV-04 battery SLD", "/tools/bess/80-kW-bess-PV-04-battery-sld.dxf"],
+];
+
+/** Small bordered table for the figures that read better as text than as a picture. */
+function MiniTable({ head, rows, mark }: { head: string[]; rows: string[][]; mark?: number }) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-left text-[12.5px]" style={{ borderCollapse: "collapse" }}>
+        <thead>
+          <tr style={{ color: "var(--text)" }}>
+            {head.map((h) => (
+              <th key={h} className="py-1.5 pr-3 font-semibold" style={{ borderBottom: "1px solid var(--line)" }}>
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i} style={mark === i ? { color: "var(--text)", fontWeight: 600 } : undefined}>
+              {row.map((cell, j) => (
+                <td key={j} className="py-1.5 pr-3 align-top" style={{ borderBottom: "1px solid var(--line)" }}>
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const BESS_TABLE_CONTROL = (
+  <MiniTable
+    head={["Period", "Action", "Limit"]}
+    rows={[
+      ["00:00 to 05:00", "Charge from the grid at the off peak rate", "Stop at 75% SoC"],
+      ["06:00 to 18:00", "Charge from PV surplus", "Up to 100%"],
+      ["06:00 to 18:00", "Discharge only to hold grid import down", "Not below 55%"],
+      ["18:00 to 20:00", "Grid off, EPS board runs on PV and battery", "Down to 10%"],
+      ["20:00 to 24:00", "Discharge if import would exceed the target", "Down to 10%"],
+    ]}
+  />
+);
+
+const BESS_TABLE_RESULT = (
+  <MiniTable
+    head={["Over a year", "Without battery", "With battery"]}
+    rows={[
+      ["PV generated", "116,742 kWh", "116,742 kWh"],
+      ["Site load", "383,139 kWh", "383,139 kWh"],
+      ["Grid import, total", "240,188 kWh", "250,546 kWh"],
+      ["of which off peak charging", "none", "12,649 kWh"],
+      ["Annual grid peak", "75.2 kW", "75.2 kW"],
+      ["Hours over the 55 kW target", "1,078", "695, down 35.5%"],
+      ["Outage demand met", "0%", "96.8%"],
+      ["Battery throughput", "none", "12,729 kWh, 223.9 full cycles"],
+      ["Round trip loss", "none", "641 kWh"],
+    ]}
+  />
+);
+
+const BESS_TABLE_SENS = (
+  <MiniTable
+    head={["Off peak charge target", "Outage met", "Hours over target", "PV kept", "Cycles"]}
+    rows={[
+      ["60%", "95.5%", "965", "1,106 kWh", "193.5"],
+      ["75%, the one drawn", "96.8%", "695", "720 kWh", "223.9"],
+      ["90%", "97.4%", "503", "305 kWh", "247.2"],
+      ["100%", "97.7%", "390", "none", "260.2"],
+    ]}
+    mark={1}
+  />
+);
 const PY_NOTEBOOK = "/tools/python/115-kWp-rooftop-energy-yield.ipynb";
 const PY_DATA = "/tools/python/pvgis_islamabad_monthly.csv";
 
@@ -613,6 +693,91 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               "The schedule block as it is drawn, showing the reference, section and cable columns. The protection column runs off to the right of this view and the whole table is set out above",
             "Title block":
               "Bottom right of the sheet. Drawing PV-03, single line diagram, site Sector I-9 Islamabad, not to scale because a schematic has no scale",
+          }}
+        />
+      ),
+    };
+  }
+
+  const bess = shots["BESS"] ?? [];
+  if (bess.length > 0) {
+    artifacts["BESS"] = {
+      title: "Battery storage: an 80 kW rooftop with a 63 kWh FoxESS battery",
+      icon: "battery",
+      render: () => (
+        <ScreenshotSet
+          shots={bess}
+          intro={
+            <>
+              <p>
+                A four sheet design for a commercial unit in Islamabad: 136 Jinko 580&nbsp;W modules at{" "}
+                <strong>78.88&nbsp;kWp</strong> on a <strong>FoxESS P3-80-Plus</strong> hybrid inverter, with{" "}
+                <strong>nine FoxESS CQ7 modules</strong> in series giving 63.18&nbsp;kWh at 518.4&nbsp;V. Mechanical
+                layout, system single line, battery single line, and a control and performance sheet.
+              </p>
+              <p>
+                The first thing the model said was that the battery was not worth fitting. Charged only from surplus PV
+                it cycled about twelve times a year, because the site load is <strong>3.3 times</strong> the generation
+                and there is almost no surplus to store. That result is what shaped everything after it: the battery
+                only earns its place if it is charged off peak and given the job of carrying the site through the daily
+                outage.
+              </p>
+              <p>
+                Dispatch was modelled hour by hour for a year in plain Python with no libraries, so every number can be
+                traced by reading the file. Three jobs, in priority order: hold a reserve so the essential board always
+                rides through the outage, keep grid import under the maximum demand target, and soak up whatever PV
+                would otherwise be exported.
+              </p>
+              {BESS_TABLE_CONTROL}
+              {BESS_TABLE_RESULT}
+              <p>
+                Total import rises because off peak charging is itself an import. What matters is that 12,649&nbsp;kWh
+                moves from the day rate to the night rate, and that the site keeps running through every outage.
+              </p>
+              <p>
+                <strong>The annual peak does not move, and that is worth saying out loud.</strong> It falls on a
+                December afternoon when there is no PV left and the state of charge is pinned at the 55% floor that
+                protects the 18:00 outage. Hours spent over the target do fall, by a third. Lowering the maximum as well
+                needs a second CQ7 stack on port two, or an agreement to accept a shorter backup through the winter.
+                That is a commercial decision, not an electrical one.
+              </p>
+              <p>
+                How full to charge off peak is the one setting that trades the three jobs against each other. Charging
+                fuller shaves better and covers the outage better, but leaves no room for the midday PV surplus. At 100%
+                the battery takes no PV at all.
+              </p>
+              {BESS_TABLE_SENS}
+              <p>
+                Equipment figures come from the FoxESS P3 Plus and CQ7 datasheets and the Jinko 72HL4-V datasheet. The
+                load profile, the outage window and the tariff periods are design assumptions, declared at the top of
+                the model, and would be replaced with half hourly meter data before anything was ordered.
+              </p>
+              <p className="flex flex-wrap gap-x-4 gap-y-1.5">
+                {BESS_DWGS.map(([label, href]) => (
+                  <a
+                    key={href}
+                    href={href}
+                    download
+                    className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                    style={{ color: "var(--amber)" }}
+                  >
+                    <Download size={14} aria-hidden="true" /> {label} (.dxf)
+                  </a>
+                ))}
+              </p>
+            </>
+          }
+          notes={{
+            "The battery stack":
+              "Nine CQ7 modules in series, one master carrying the BMU and the switchgear and eight slaves above it, with the running voltage down the left from 57.6 V to 518.4 V. Series, not parallel, so there is one current path and no module can back feed another",
+            "DC protection and the BMS":
+              "A 125 A MCB: above the 110 A sixty second peak so it does not nuisance trip, and below the rating of the 35 mm² cable so the cable stays protected. The isolator is for safe isolation, not for clearing faults. The BMS sets the charge limits and the inverter follows them over CAN",
+            "The three battery ports":
+              "One port in use and two left spare on purpose. Each port carries 80 A, so 41.5 kW at 518.4 V, and the inverter would take 240 A across all three. Power and energy both treble without changing the inverter",
+            "The AC side and the EPS board":
+              "The essential board is fed from the inverter at all times rather than switched to it on failure, so the sub 10 ms transfer is internal and the board never sees the grid go. 15 kW of essential load, 1.9 hours at the reserve floor and 3.79 hours on a full battery",
+            "A year of dispatch in two days":
+              "The same control on the two days that matter. In April the grid import sits flat on the 55 kW target all day. In December there is no PV left by the afternoon and the state of charge is pinned at the floor, so the import climbs to the 75.2 kW that sets the annual peak",
           }}
         />
       ),
