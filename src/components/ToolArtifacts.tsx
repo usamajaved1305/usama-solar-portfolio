@@ -33,10 +33,8 @@ const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
 const DWG_115KWP = "/tools/autocad/115-kWp-commercial-rooftop-sld.dxf";
 const BESS_DWGS: [string, string][] = [
   ["PV-01 mechanical", "/tools/bess/80-kW-bess-PV-01-mechanical.dxf"],
-  ["PV-02 electrical SLD", "/tools/bess/80-kW-bess-PV-02-electrical-sld.dxf"],
   ["PV-03 battery control", "/tools/bess/80-kW-bess-PV-03-battery-control.dxf"],
-  ["PV-04 battery SLD", "/tools/bess/80-kW-bess-PV-04-battery-sld.dxf"],
-  ["Single line overview", "/tools/bess/80-kW-bess-single-line-overview.dxf"],
+  ["PV-04 single line diagram", "/tools/bess/80-kW-bess-PV-04-single-line-diagram.dxf"],
 ];
 
 /** Small bordered table for the figures that read better as text than as a picture. */
@@ -68,6 +66,34 @@ function MiniTable({ head, rows, mark }: { head: string[]; rows: string[][]; mar
     </div>
   );
 }
+
+const BESS_TABLE_CABLE = (
+  <MiniTable
+    head={["Tag", "Cable", "Length", "Protection"]}
+    rows={[
+      ["W1", "8 × 6 mm² PV1-F", "45 m", "None, one string per MPPT"],
+      ["W2", "2 × 35 mm² Cu XLPE", "8 m", "QF1, 125 A curve C"],
+      ["W3", "4C 95 mm² Cu SWA", "32 m", "QF2, 160 A MCCB"],
+      ["W4", "4C 35 mm² Cu", "12 m", "QF4, 63 A MCB"],
+      ["W5", "1C 50 mm² green/yellow", "20 m", "Main earthing conductor"],
+    ]}
+  />
+);
+
+const BESS_TABLE_PROT = (
+  <MiniTable
+    head={["Function", "Setting", "Trip time"]}
+    rows={[
+      ["27 under voltage", "0.80 Un", "2.5 s"],
+      ["27 stage 2", "0.50 Un", "0.5 s"],
+      ["59 over voltage", "1.15 Un", "1.0 s"],
+      ["81 under frequency", "47.5 Hz", "0.5 s"],
+      ["81 over frequency", "51.5 Hz", "0.5 s"],
+      ["ROCOF", "1.0 Hz/s", "0.5 s"],
+      ["Reconnect delay", "—", "180 s"],
+    ]}
+  />
+);
 
 const BESS_TABLE_CONTROL = (
   <MiniTable
@@ -711,16 +737,22 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                A four sheet design for a commercial unit in Islamabad: 136 Jinko 580&nbsp;W modules at{" "}
+                A design for a commercial unit in Islamabad: 136 Jinko 580&nbsp;W modules at{" "}
                 <strong>78.88&nbsp;kWp</strong> on a <strong>FoxESS P3-80-Plus</strong> hybrid inverter, with{" "}
                 <strong>nine FoxESS CQ7 modules</strong> in series giving 63.18&nbsp;kWh at 518.4&nbsp;V. Mechanical
-                layout, system single line, battery single line, and a control and performance sheet.
+                layout, a control and performance sheet, and the single line diagram below.
               </p>
               <p>
-                <strong>Figure 1 is the single line diagram</strong>, the whole system on one sheet with a cable
-                schedule under it. Figures 2 to 5 open the A1 original up block by block, because an A1 sheet reduced
-                to the width of this panel puts its lettering under 3 px. The full sheets are the downloads at the
-                end.
+                <strong>Drawing PV-04 is the single line diagram, drawn the way it would be issued.</strong> Frame and
+                title block, revision history, legend, a tag on every device and every conductor, surge arresters on
+                the DC and AC sides, current transformers and metering, interface protection with its settings, the
+                existing LV board and the point of connection, and the earthing arrangement. Figures 1 to 8 are that
+                one A1 sheet opened up block by block, because an A1 sheet reduced to the width of this panel puts its
+                lettering under 3&nbsp;px. The whole sheet is the download at the end.
+              </p>
+              <p>
+                Figure 1 is the key diagram from the bottom left of the sheet, which is the whole system on one line
+                before any of the detail. Everything after it is a zoom into the same drawing.
               </p>
               <p>
                 The first thing the model said was that the battery was not worth fitting. Charged only from surplus PV
@@ -755,6 +787,12 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               </p>
               {BESS_TABLE_SENS}
               <p>
+                The cable schedule and the interface protection settings as they appear on the sheet. Lengths are
+                design figures for this building; the voltage drop on W3 works out at 1.4%, inside the 3% allowed.
+              </p>
+              {BESS_TABLE_CABLE}
+              {BESS_TABLE_PROT}
+              <p>
                 Equipment figures come from the FoxESS P3 Plus and CQ7 datasheets and the Jinko 72HL4-V datasheet. The
                 load profile, the outage window and the tariff periods are design assumptions, declared at the top of
                 the model, and would be replaced with half hourly meter data before anything was ordered.
@@ -775,16 +813,22 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             </>
           }
           notes={{
-            "The single line diagram":
-              "Battery, DC isolation and protection, the hybrid inverter, and out to the grid on one side and the essential board on the other, drawn with the usual symbols rather than labelled boxes. The PV array comes in from above and the earth leaves below. Each conductor carries a tag and its size and protection sit in the schedule, which is how a single line stays readable",
-            "The battery stack":
-              "Nine CQ7 modules in series, one master carrying the BMU and the switchgear and eight slaves above it, with the running voltage down the left from 57.6 V to 518.4 V. Series, not parallel, so there is one current path and no module can back feed another",
-            "DC protection and the BMS":
-              "A 125 A MCB: above the 110 A sixty second peak so it does not nuisance trip, and below the rating of the 35 mm² cable so the cable stays protected. The isolator is for safe isolation, not for clearing faults. The BMS sets the charge limits and the inverter follows them over CAN",
-            "The three battery ports":
-              "One port in use and two left spare on purpose. Each port carries 80 A, so 41.5 kW at 518.4 V, and the inverter would take 240 A across all three. Power and energy both treble without changing the inverter",
-            "The AC side and the EPS board":
-              "The essential board is fed from the inverter at all times rather than switched to it on failure, so the sub 10 ms transfer is internal and the board never sees the grid go. 15 kW of essential load, 1.9 hours at the reserve floor and 3.79 hours on a full battery",
+            "The key diagram":
+              "The bottom left corner of the sheet. Array and battery into the hybrid inverter, out to the grid on one side and the essential board on the other, with the device tags that every other view uses. A key diagram is there so somebody can take in the shape of the system before reading any of the detail",
+            "The array and its DC protection":
+              "Eight strings of seventeen, one per MPP tracker, so there is no parallel path on the DC side and no string fuse is needed. A Type 2 surge arrester sits on the array cable ahead of the inverter, and the DC switch is the one integral to the P3-80-Plus. 956 V at minus 5 degrees against the 1,100 V ceiling",
+            "The battery and its protection":
+              "Nine CQ7 modules in series, 63.18 kWh at 518.4 V. The 125 A MCB is above the 110 A sixty second peak so it does not nuisance trip and below the rating of the 35 mm² cable so the cable stays protected. The isolator is for safe isolation, not for clearing faults. The BMS sets the charge limits and the inverter follows them over CAN, and the emergency stop is in that same loop",
+            "The inverter":
+              "The functions that live inside the unit rather than on the wall beside it: eight MPP trackers, the integral DC switch, a Type B residual current monitor, anti islanding to IEC 62116, and three battery ports of which one is in use. Knowing what is already inside the box is what stops you specifying it twice",
+            "The metering and interface protection":
+              "A current transformer on the generation cable feeding the generation meter, and an interface protection relay watching voltage, frequency and rate of change of frequency. Its trip goes to the incoming breaker. This is the block a network operator asks about first on any grid connected generator",
+            "The essential board and earthing":
+              "The essential board is fed from the inverter at all times rather than switched to it on failure, so the sub 10 ms transfer is internal and the board never sees the grid go. Below it the main earth bar, with the array frame, the battery enclosure, the inverter and the main board all bonded to it and an electrode under 10 ohms",
+            "The point of connection":
+              "Where the system actually joins the building. A new 160 A way on the existing busbar, the existing 630 A incomer and its transformer above, the import export meter, and the current transformer whose signal limits export. Drawing the existing installation is what turns a schematic into something a contractor can work from",
+            "The title block and revisions":
+              "Client, project, drawing title, number, scale and revision, with the history above it: issued for comment, surge protection and metering added, then issued for construction. Without this a drawing cannot be referenced, superseded or checked",
             "A year of dispatch in two days":
               "The same control on the two days that matter. In April the grid import sits flat on the 55 kW target all day. In December there is no PV left by the afternoon and the state of charge is pinned at the floor, so the import climbs to the 75.2 kW that sets the annual peak",
           }}
