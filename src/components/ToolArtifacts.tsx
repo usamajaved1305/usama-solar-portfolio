@@ -717,10 +717,10 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 layout, system single line, battery single line, and a control and performance sheet.
               </p>
               <p>
-                <strong>Figure 1 is the single line diagram</strong>, the whole battery system on one line. Figures 2
-                to 5 are the same drawing opened up block by block, because the sheet it comes from is A1 and an A1
-                sheet reduced to the width of this panel puts its lettering under 3 px. The full sheets are the
-                downloads at the end.
+                <strong>Figure 1 is the single line diagram</strong>, the whole system on one sheet with a cable
+                schedule under it. Figures 2 to 5 open the A1 original up block by block, because an A1 sheet reduced
+                to the width of this panel puts its lettering under 3 px. The full sheets are the downloads at the
+                end.
               </p>
               <p>
                 The first thing the model said was that the battery was not worth fitting. Charged only from surplus PV
@@ -776,7 +776,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           }
           notes={{
             "The single line diagram":
-              "Battery, DC isolation and protection, the hybrid inverter, and out to the grid on one side and the essential board on the other. The PV array comes in from above and the earth leaves below. This is drawing PV-04 reduced to its chain, and the four views after it are the same drawing at full detail",
+              "Battery, DC isolation and protection, the hybrid inverter, and out to the grid on one side and the essential board on the other, drawn with the usual symbols rather than labelled boxes. The PV array comes in from above and the earth leaves below. Each conductor carries a tag and its size and protection sit in the schedule, which is how a single line stays readable",
             "The battery stack":
               "Nine CQ7 modules in series, one master carrying the BMU and the switchgear and eight slaves above it, with the running voltage down the left from 57.6 V to 518.4 V. Series, not parallel, so there is one current path and no module can back feed another",
             "DC protection and the BMS":
