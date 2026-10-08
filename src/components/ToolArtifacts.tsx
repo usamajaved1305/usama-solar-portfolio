@@ -31,10 +31,11 @@ const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-d
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
 const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
 const DWG_115KWP = "/tools/autocad/115-kWp-commercial-rooftop-sld.dxf";
-const BESS_DWGS: [string, string][] = [
-  ["PV-01 mechanical", "/tools/bess/80-kW-bess-PV-01-mechanical.dxf"],
-  ["PV-03 battery control", "/tools/bess/80-kW-bess-PV-03-battery-control.dxf"],
-  ["PV-04 single line diagram", "/tools/bess/80-kW-bess-PV-04-single-line-diagram.dxf"],
+/** The three BESS sheets as drawn in AutoCAD: the plotted A1 PDF and the DWG behind it. */
+const BESS_SHEETS: [string, string][] = [
+  ["PV-01 mechanical", "/tools/bess/80-kW-bess-PV-01-mechanical"],
+  ["PV-03 battery control", "/tools/bess/80-kW-bess-PV-03-battery-control"],
+  ["PV-04 single line diagram", "/tools/bess/80-kW-bess-PV-04-single-line-diagram"],
 ];
 
 /** Small bordered table for the figures that read better as text than as a picture. */
@@ -71,8 +72,8 @@ const BESS_TABLE_CABLE = (
   <MiniTable
     head={["Tag", "Cable", "Length", "Protection"]}
     rows={[
-      ["W1", "8 × 6 mm² PV1-F", "45 m", "None, one string per MPPT"],
-      ["W2", "2 × 35 mm² Cu XLPE", "8 m", "QF1, 125 A curve C"],
+      ["W1", "16 × 1C 6 mm² PV1-F", "45 m", "None, one string per MPPT"],
+      ["W2", "2 × 1C 35 mm² Cu XLPE", "8 m", "QF1, 125 A DC, 2 pole"],
       ["W3", "4C 95 mm² Cu SWA", "32 m", "QF2, 160 A MCCB"],
       ["W4", "4C 35 mm² Cu", "12 m", "QF4, 63 A MCB"],
       ["W5", "1C 50 mm² green/yellow", "20 m", "Main earthing conductor"],
@@ -90,7 +91,7 @@ const BESS_TABLE_PROT = (
       ["81 under frequency", "47.5 Hz", "0.5 s"],
       ["81 over frequency", "51.5 Hz", "0.5 s"],
       ["ROCOF", "1.0 Hz/s", "0.5 s"],
-      ["Reconnect delay", "—", "180 s"],
+      ["Reconnect delay", "After the grid returns", "180 s"],
     ]}
   />
 );
@@ -103,7 +104,7 @@ const BESS_TABLE_CONTROL = (
       ["06:00 to 18:00", "Charge from PV surplus", "Up to 100%"],
       ["06:00 to 18:00", "Discharge only to hold grid import down", "Not below 55%"],
       ["18:00 to 20:00", "Grid off, EPS board runs on PV and battery", "Down to 10%"],
-      ["20:00 to 24:00", "Discharge if import would exceed the target", "Down to 10%"],
+      ["20:00 to 06:00", "Discharge if import would exceed the target", "Down to 10%"],
     ]}
   />
 );
@@ -120,14 +121,14 @@ const BESS_TABLE_RESULT = (
       ["Hours over the 55 kW target", "1,078", "695, down 35.5%"],
       ["Outage demand met", "0%", "96.8%"],
       ["Battery throughput", "none", "12,729 kWh, 223.9 full cycles"],
-      ["Round trip loss", "none", "641 kWh"],
+      ["Round trip loss, battery only", "none", "641 kWh"],
     ]}
   />
 );
 
 const BESS_TABLE_SENS = (
   <MiniTable
-    head={["Off peak charge target", "Outage met", "Hours over target", "PV kept", "Cycles"]}
+    head={["Off peak charge target", "Outage met", "Hours over 55 kW", "PV stored", "Cycles a year"]}
     rows={[
       ["60%", "95.5%", "965", "1,106 kWh", "193.5"],
       ["75%, the one drawn", "96.8%", "695", "720 kWh", "223.9"],
@@ -746,9 +747,10 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 <strong>Drawing PV-04 is the single line diagram, drawn the way it would be issued.</strong> Frame and
                 title block, revision history, legend, a tag on every device and every conductor, surge arresters on
                 the DC and AC sides, current transformers and metering, interface protection with its settings, the
-                existing LV board and the point of connection, and the earthing arrangement. Figures 1 to 8 are that
+                existing LV board and the point of connection, and the earthing arrangement. All three sheets were
+                drawn in AutoCAD 2027. Figures 1 to 8 are that
                 one A1 sheet opened up block by block, because an A1 sheet reduced to the width of this panel puts its
-                lettering under 3&nbsp;px. The whole sheet is the download at the end.
+                lettering under 3&nbsp;px. The whole sheet, plotted from AutoCAD, is the PDF at the end.
               </p>
               <p>
                 Figure 1 is the key diagram from the bottom left of the sheet, which is the whole system on one line
@@ -756,22 +758,25 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               </p>
               <p>
                 The first thing the model said was that the battery was not worth fitting. Charged only from surplus PV
-                it cycled about twelve times a year, because the site load is <strong>3.3 times</strong> the generation
+                it cycled about 13 times a year, because the site load is <strong>3.3 times</strong> the generation
                 and there is almost no surplus to store. That result is what shaped everything after it: the battery
                 only earns its place if it is charged off peak and given the job of carrying the site through the daily
                 outage.
               </p>
               <p>
                 Dispatch was modelled hour by hour for a year in plain Python with no libraries, so every number can be
-                traced by reading the file. Three jobs, in priority order: hold a reserve so the essential board always
-                rides through the outage, keep grid import under the maximum demand target, and soak up whatever PV
+                traced by reading the file. Three jobs, in priority order: hold a reserve for the essential board
+                through the evening outage, keep grid import under the maximum demand target, and soak up whatever PV
                 would otherwise be exported.
               </p>
               {BESS_TABLE_CONTROL}
               {BESS_TABLE_RESULT}
               <p>
-                Total import rises because off peak charging is itself an import. What matters is that 12,649&nbsp;kWh
-                moves from the day rate to the night rate, and that the site keeps running through every outage.
+                Total import rises because off peak charging is itself an import. Of the 12,729&nbsp;kWh the battery
+                delivers in a year, 10,438&nbsp;kWh carries the essential board through the evening outage and
+                2,291&nbsp;kWh cuts daytime import above the target. The 55% floor holds 1.9 hours of reserve against a
+                2 hour outage, so 96.8% of outage demand is met. A higher floor would cover more of the outage and
+                leave less for daytime shaving.
               </p>
               <p>
                 <strong>The annual peak does not move, and that is worth saying out loud.</strong> It falls on a
@@ -788,7 +793,8 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               {BESS_TABLE_SENS}
               <p>
                 The cable schedule and the interface protection settings as they appear on the sheet. Lengths are
-                design figures for this building; the voltage drop on W3 works out at 1.4%, inside the 3% allowed.
+                design figures for this building. Cable sizes and volt drop are to be confirmed on the actual route, and
+                the relay settings with IESCO, before the sheet goes out for construction.
               </p>
               {BESS_TABLE_CABLE}
               {BESS_TABLE_PROT}
@@ -798,17 +804,19 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 the model, and would be replaced with half hourly meter data before anything was ordered.
               </p>
               <p className="flex flex-wrap gap-x-4 gap-y-1.5">
-                {BESS_DWGS.map(([label, href]) => (
-                  <a
-                    key={href}
-                    href={href}
-                    download
-                    className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
-                    style={{ color: "var(--amber)" }}
-                  >
-                    <Download size={14} aria-hidden="true" /> {label} (.dxf)
-                  </a>
-                ))}
+                {BESS_SHEETS.flatMap(([label, base]) =>
+                  (["pdf", "dwg"] as const).map((ext) => (
+                    <a
+                      key={`${base}.${ext}`}
+                      href={`${base}.${ext}`}
+                      download
+                      className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                      style={{ color: "var(--amber)" }}
+                    >
+                      <Download size={14} aria-hidden="true" /> {label} (.{ext})
+                    </a>
+                  )),
+                )}
               </p>
             </>
           }
@@ -816,21 +824,21 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             "The key diagram":
               "The bottom left corner of the sheet. Array and battery into the hybrid inverter, out to the grid on one side and the essential board on the other, with the device tags that every other view uses. A key diagram is there so somebody can take in the shape of the system before reading any of the detail",
             "The array and its DC protection":
-              "Eight strings of seventeen, one per MPP tracker, so there is no parallel path on the DC side and no string fuse is needed. A Type 2 surge arrester sits on the array cable ahead of the inverter, and the DC switch is the one integral to the P3-80-Plus. 956 V at minus 5 degrees against the 1,100 V ceiling",
+              "Eight strings of seventeen, each run to its own MPP tracker as a separate circuit, so nothing is paralleled on the DC side and no string fuse is needed. A Type 2 surge arrester per tracker sits at the array end, and the DC switch is the one built into the P3-80-Plus. 956 V at minus 5 degrees, under the inverter's 1,000 V limit",
             "The battery and its protection":
-              "Nine CQ7 modules in series, 63.18 kWh at 518.4 V. The 125 A MCB is above the 110 A sixty second peak so it does not nuisance trip and below the rating of the 35 mm² cable so the cable stays protected. The isolator is for safe isolation, not for clearing faults. The BMS sets the charge limits and the inverter follows them over CAN, and the emergency stop is in that same loop",
+              "Nine CQ7 modules in series, 63.18 kWh at 518.4 V. The 125 A two pole DC breaker, rated 1,000 V DC, is above the 110 A sixty second peak so it does not nuisance trip and below the rating of the 35 mm² cable so the cable stays protected. The isolator is for safe isolation, not for clearing faults. The BMS sets the charge limits and the inverter follows them over CAN, and the emergency stop is in that same loop",
             "The inverter":
-              "The functions that live inside the unit rather than on the wall beside it: eight MPP trackers, the integral DC switch, a Type B residual current monitor, anti islanding to IEC 62116, and three battery ports of which one is in use. Knowing what is already inside the box is what stops you specifying it twice",
+              "The functions that live inside the unit rather than on the wall beside it: eight MPP trackers, the integral DC switch, Type 2 surge protection on the DC and AC sides, a Type B residual current monitor, anti islanding to IEC 62116, and three battery ports of which one is in use. Knowing what is already inside the box is what stops you specifying it twice",
             "The metering and interface protection":
-              "A current transformer on the generation cable feeding the generation meter, and an interface protection relay watching voltage, frequency and rate of change of frequency. Its trip goes to the incoming breaker. This is the block a network operator asks about first on any grid connected generator",
+              "A current transformer on the generation cable feeding the generation meter, and an interface protection relay watching voltage, frequency and rate of change of frequency. Its trip output opens the new 160 A way through a shunt trip, which takes the whole system off the board. This is the block a network operator asks about first on any grid connected generator",
             "The essential board and earthing":
-              "The essential board is fed from the inverter at all times rather than switched to it on failure, so the sub 10 ms transfer is internal and the board never sees the grid go. Below it the main earth bar, with the array frame, the battery enclosure, the inverter and the main board all bonded to it and an electrode under 10 ohms",
+              "The essential board is fed only from the inverter's EPS port. In normal running the inverter passes grid power through to it, and when the grid fails it changes over inside the unit in under 10 ms, so the board never sees the grid go. Below it the main earth bar, with the array frame, the battery enclosure, the inverter and the main board all bonded to it and an electrode under 10 ohms",
             "The point of connection":
-              "Where the system actually joins the building. A new 160 A way on the existing busbar, the existing 630 A incomer and its transformer above, the import export meter, and the current transformer whose signal limits export. Drawing the existing installation is what turns a schematic into something a contractor can work from",
+              "Where the system actually joins the building. A new 160 A way on the existing busbar, the existing 630 A incomer, the utility transformer outside the board with the point of supply marked, the import export meter, and the current transformer whose signal limits export. Drawing the existing installation is what turns a schematic into something a contractor can work from",
             "The title block and revisions":
-              "Client, project, drawing title, number, scale and revision, with the history above it: issued for comment, surge protection and metering added, then issued for construction. Without this a drawing cannot be referenced, superseded or checked",
+              "Client, project, drawing title, number, scale and revision, with the history above it: issued for comment, surge protection and metering added, then issued for comment again after a full drawing review. It stays at P status until the cable sizes and protection settings are confirmed. Without this a drawing cannot be referenced, superseded or checked",
             "A year of dispatch in two days":
-              "The same control on the two days that matter. In April the grid import sits flat on the 55 kW target all day. In December there is no PV left by the afternoon and the state of charge is pinned at the floor, so the import climbs to the 75.2 kW that sets the annual peak",
+              "The same control on the two days that matter. In April grid import stays at or below the 55 kW target all day. In December there is no PV left by the afternoon and the state of charge is pinned at the floor, so the import climbs to the 75.2 kW that sets the annual peak",
           }}
         />
       ),
