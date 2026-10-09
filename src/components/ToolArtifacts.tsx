@@ -495,13 +495,15 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             <>
               <p>
                 The same 20 kW house system as the Primavera P6 and MS Project programmes, drawn in OpenSolar on a
-                rooftop in Islamabad&apos;s F-11/2: 36 LONGi 550 W modules, 19.8 kWp, on tilted frames facing south at
-                20°, wired as two strings of 18 into one Growatt MID 20KTL3-X, a 20 kW three-phase inverter, so the
-                DC/AC ratio is 0.99.
+                rooftop in Islamabad&apos;s F-11/2: 36 LONGi 550 W modules, 19.8 kWp, on single-tilt frames at 20°,
+                wired as two strings of 18 into one Growatt MID 20KTL3-X, a 20 kW three-phase inverter, so the DC/AC
+                ratio is 0.99. The rows are turned to 148° to line up with the house rather than set due south, which
+                lets six rows of six fit the roof with proper spacing and clear walkways.
               </p>
               <p>
-                OpenSolar runs the layout through NREL&apos;s System Advisor Model and gives 27,930 kWh a year, or 1,410
-                kWh per kWp, at 13.8% system losses. Against a household using 24,000 kWh a year that covers 116%. It
+                OpenSolar runs the layout through NREL&apos;s System Advisor Model and gives 27,283 kWh a year, or 1,378
+                kWh per kWp, at 13.8% system losses, about 2% less than the same array facing due south would give.
+                Against a household using 24,000 kWh a year that covers 114%. It
                 then writes the customer proposal: the system, the monthly production and the local NEPRA tariff. It is
                 a sample design on flat satellite imagery, so shading is not modelled, and the pricing pages are left
                 out.
@@ -510,13 +512,13 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           }
           notes={{
             "Roof layout":
-              "36 modules on the flat roof, 6 rows of 6 on single-tilt frames at 20° facing 180°, covering 6.8 m by 11.84 m",
+              "36 modules on the flat roof in 6 rows of 6, on single-tilt frames at 20° turned to 148° to follow the house. The rows sit 2.8 m apart so they do not shade each other at midday in December, the array keeps about 0.9 m from the parapets at each end and at least 0.6 m along the south west side, and the north east strip stays clear for the stair room, shown in red, and a walkway",
             "Inverter and strings":
-              "One Growatt MID 20KTL3-X and its two MPPT inputs, with OpenSolar's automatic stringing: 18 modules per string, drawn across the array",
+              "One Growatt MID 20KTL3-X and its two MPPT inputs. The three north west rows make one string of 18 and the three south east rows the other, so each string stays on its own block of the roof",
             "Customer proposal":
-              "What the client sees: 36 x 550 W LONGi modules, 19.8 kW, one 20 kW Growatt inverter, 27,930 kWh a year, with the panel and inverter warranties",
+              "What the client sees: 36 x 550 W LONGi modules, 19.8 kW, one 20 kW Growatt inverter, 27,283 kWh a year, with the panel and inverter warranties",
             "System performance":
-              "Production month by month against the household's use, 116% of a 24,000 kWh year, modelled with the System Advisor Model at 13.8% losses",
+              "Production month by month against the household's use, 114% of a 24,000 kWh year, modelled with the System Advisor Model at 13.8% losses",
           }}
         />
       ),
