@@ -28,7 +28,6 @@ const P6_XER = "/tools/p6/20-kW-residential-pv-p6.xer";
 const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
-const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
 /** The three BESS sheets as drawn in AutoCAD: the plotted A1 PDF and the DWG behind it. */
 const BESS_SHEETS: [string, string][] = [
   ["PV-01 mechanical", "/tools/autocad/80-kW-bess-PV-01-mechanical"],
@@ -512,7 +511,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           }
           notes={{
             "Roof layout":
-              "36 modules on the flat roof in 6 rows of 6, on single-tilt frames at 20° turned to 148° to follow the house. The rows sit 2.8 m apart so they do not shade each other at midday in December, the array keeps about 0.9 m from the parapets at each end and at least 0.6 m along the south west side, and the north east strip stays clear for the stair room, shown in red, and a walkway",
+              "36 modules on the flat roof in 6 rows of 6, on single-tilt frames at 20° turned to 148° to follow the house. The rows sit 2.8 m apart so they do not shade each other at midday in December, the array keeps about 0.9 m in from the roof edge at each end and at least 0.6 m along the south west side, and the north east strip stays clear for the stair room, shown in red, and a walkway",
             "Inverter and strings":
               "One Growatt MID 20KTL3-X and its two MPPT inputs. The three north west rows make one string of 18 and the three south east rows the other, so each string stays on its own block of the roof",
             "Customer proposal":
@@ -528,7 +527,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const sku = shots["SketchUp"] ?? [];
   if (sku.length > 0) {
     artifacts["SketchUp"] = {
-      title: "SketchUp: 3D model of the house and a ray traced shading study of the array",
+      title: "SketchUp: 3D model of the house and a shading check of the array",
       icon: "model",
       render: () => (
         <ScreenshotSet
@@ -536,50 +535,43 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                The 20 kW house system from the Primavera P6 and MS Project programmes, modelled on its building: a two
-                storey brick house 16 m by 14 m, with the stair block and the water tank that sit on almost every
-                Islamabad roof. On top are 36 LONGi 550 W modules, 19.8 kWp, in six rows of six on single-tilt steel
-                frames at 20° facing south, 6.80 m by 11.78 m of array with 2.0 m between rows.
+                The 20 kW house system from the Primavera P6, MS Project and OpenSolar work, modelled on its building in
+                SketchUp Free: a two storey brick house on the 11.7 m by 17.7 m roof measured in OpenSolar, with a 0.9 m
+                parapet, the stair room on the north east side, windows, the entrance porch and the boundary wall. On the
+                roof are 36 LONGi 550 W modules, 19.8 kWp, in six rows of six on single-tilt frames at 20°, turned to 148°
+                to follow the house, the same layout as the OpenSolar design.
               </p>
               <p>
-                The model is geo-located on the real roof in F-11/2, so the sun is the site&apos;s own. A script fires a
-                ray from 432 points across the array towards the sun at every daylight hour on the solstices and the
-                equinoxes, 19,008 tests in all, and records what blocks each one. The array averages{" "}
-                <strong>90.8% solar access</strong>. The worst module, beside the stair block, gets 70.5%; the best gets
-                94.9%. On 21 December only 47% of the array is in sun at 08:00 and 79% at midday, while in March, June
-                and September it is fully lit from mid morning to mid afternoon.
+                Every part is placed to the millimetre: 6.90 m by 15.87 m of array, 2.80 m from row to row, 0.92 m in
+                from the roof edge at each end and 0.80 m on the south west side, which leaves 0.72 m and 0.60 m clear of
+                the parapet, and a 0.75 m walkway past the stair room. Each row stands on four frames, a rafter and two
+                purlins on a short front post and a tall rear post, set on concrete pads. The model is geo-located on the
+                site with true north set, so SketchUp&apos;s sun is the site&apos;s own.
               </p>
               <p>
-                The map colours every module by its own result, and the two winter views show where the losses come
-                from: the stair block across the back row, the water tank across the front corner, and the rows across
-                each other around midday. Solar access counts sun hours equally, so it is a geometry check, not an
-                energy figure.
-              </p>
-              <p>
-                <a
-                  href={SKP_MODEL}
-                  download
-                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
-                  style={{ color: "var(--amber)" }}
-                >
-                  <Download size={14} aria-hidden="true" /> Download the model (.skp, 37 MB)
-                </a>
+                OpenSolar&apos;s 27,283 kWh leaves shading out, so a short Python script traces rays from 30 points on
+                every module to the sun over the model&apos;s dimensions, every 7th day of the year. About{" "}
+                <strong>3.8% of the clear-sky direct sun</strong> is lost: 1.6 points to the rows in front, mostly on
+                winter mornings, 1.4 to the stair room and 0.85 to the parapet. The module beside the stair room loses 17.5%.
+                On 21 December the rows clear each other from 11:55 until sunset; at 09:00 each row&apos;s shadow climbs
+                0.58 m up the next. A strip of shade along the bottom edge costs more than its area, because in portrait
+                it falls across every cell string of the module, so the electrical loss will be somewhat higher.
               </p>
             </>
           }
           notes={{
             "House and array":
-              "The house as modelled: brick, plaster bands, stone plinth, windows and porch, with the stair block, the water tank and the 19.8 kWp array on the roof",
-            "Roof plan and dimensions":
-              "The setting out for site: 6.80 m by 11.78 m of array, 2.0 m from row to row, on a 16 m by 14 m roof",
+              "21 March at 11:00, seen from the street: the two storey house, the 36 modules and the stair room on the roof, the boundary wall and the gate",
             "December morning shadows":
-              "21 December at 09:00, with the sun 17.8° up: the stair block and the water tank throw shadows across the array",
+              "21 December at 09:00, sun 17.8° up: each row's shadow climbs 0.58 m up the row behind, the front parapet shades the bottom of the front row, and the stair room's shadow reaches the end modules of the fourth and fifth rows",
             "December noon shadows":
-              "21 December at 12:00, sun 32.9° up: the rows now clip the bottom of the row behind them",
-            "Solar access map":
-              "Every module coloured by its ray traced result: 90.8% across the array, 70.5% at the worst module beside the stair block",
-            "Frame and row spacing":
-              "The frames: modules at 20° on rails 0.30 m high at the front and 0.95 m at the back, with room to walk between rows",
+              "21 December at 12:00, sun 32.9° up: each row's shadow stops 2 cm short of the row behind, and only the front parapet clips the bottom of the front row",
+            "December afternoon shadows":
+              "21 December at 15:00, sun 19.5° up: the shadows swing to the north east, away from the rows, and the south west parapet catches the end module of each row",
+            "Frames and row spacing":
+              "Looking along the rows from the walkway: modules at 20° on a rafter and two purlins, a 0.16 m front post and a 0.72 m rear post on 300 mm concrete pads, and 0.93 m of open roof between one row's top edge and the next row's low edge",
+            "Direct sun lost to shading":
+              "Every module coloured by the share of its clear-sky direct sun lost over a year: 3.8% across the array, 17.5% beside the stair room, 1.3% at the least shaded",
           }}
         />
       ),
