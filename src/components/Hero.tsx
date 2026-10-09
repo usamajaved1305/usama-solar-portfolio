@@ -5,7 +5,7 @@ import { ArrowRight, Download, Phone, Mail } from "lucide-react";
 import { LocationLink } from "./LocationLink";
 import { profile } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
-import { HeroArt } from "./HeroArt";
+import { HeroPortrait } from "./HeroPortrait";
 
 const [headlineFirst, ...headlineParts] = profile.headline.split(", ");
 const headlineRest = headlineParts.join(", ");
@@ -18,6 +18,15 @@ export function Hero() {
 
       <div className="container-x relative grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-12 items-center">
         <motion.div variants={staggerContainer} initial="hidden" animate="show">
+          {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+          <img
+            src="/me/usama-avatar.webp"
+            alt=""
+            width={88}
+            height={88}
+            className="lg:hidden mb-6 h-22 w-22 rounded-full object-cover"
+            style={{ boxShadow: "0 0 0 4px var(--bg), 0 0 0 6px var(--btn-bg)" }}
+          />
           <motion.div variants={fadeUp} className="chip">
             <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--emerald)" }} aria-hidden="true" />
             {profile.availability}
@@ -83,7 +92,7 @@ export function Hero() {
         </motion.div>
 
         <div className="hidden lg:block">
-          <HeroArt />
+          <HeroPortrait />
         </div>
       </div>
     </section>

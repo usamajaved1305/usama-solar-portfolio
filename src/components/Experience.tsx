@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { experience } from "@/lib/data";
 import { fadeUp, viewportOnce } from "@/lib/motion";
 import { SectionHeading } from "./SectionHeading";
@@ -72,22 +74,7 @@ export function Experience() {
                     </div>
                   )}
 
-                  <ul className="mt-5 space-y-2.5">
-                    {job.highlights.map((h) => (
-                      <li
-                        key={h}
-                        className="text-[14.5px] leading-relaxed pl-4 relative"
-                        style={{ color: "var(--text-dim)" }}
-                      >
-                        <span
-                          className="absolute left-0 top-[9px] h-1 w-1 rounded-full"
-                          style={{ background: "var(--text-faint)" }}
-                          aria-hidden="true"
-                        />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
+                  <Highlights items={job.highlights} />
                 </div>
               </motion.div>
             ))}
@@ -95,5 +82,39 @@ export function Experience() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** The first point stays visible; the rest open on request so the section reads at a glance. */
+function Highlights({ items }: { items: string[] }) {
+  const [open, setOpen] = useState(false);
+  const shown = open ? items : items.slice(0, 1);
+  return (
+    <div className="mt-5">
+      <ul className="space-y-2.5">
+        {shown.map((h) => (
+          <li key={h} className="text-[14.5px] leading-relaxed pl-4 relative" style={{ color: "var(--text-dim)" }}>
+            <span
+              className="absolute left-0 top-[9px] h-1 w-1 rounded-full"
+              style={{ background: "var(--text-faint)" }}
+              aria-hidden="true"
+            />
+            {h}
+          </li>
+        ))}
+      </ul>
+      {items.length > 1 && (
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          aria-expanded={open}
+          className="mt-3 inline-flex items-center gap-1.5 text-[13.5px] font-semibold"
+          style={{ color: "var(--amber)" }}
+        >
+          {open ? "Show less" : `Show all ${items.length} points`}
+          <ChevronDown size={15} aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`} />
+        </button>
+      )}
+    </div>
   );
 }

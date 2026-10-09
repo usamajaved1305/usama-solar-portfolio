@@ -7,6 +7,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { profile } from "@/lib/data";
 
 const LINKS = [
+  { href: "#work", label: "Work" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
@@ -42,7 +43,7 @@ export function Nav({ hasPhotos = false }: { hasPhotos?: boolean }) {
   }, [open]);
 
   const links = hasPhotos
-    ? [...LINKS.slice(0, 2), { href: "#site-photos", label: "Site photos" }, ...LINKS.slice(2)]
+    ? [...LINKS.slice(0, 2), { href: "#site-photos", label: "Photos" }, ...LINKS.slice(2)]
     : LINKS;
   const solid = scrolled || open;
 
@@ -69,37 +70,37 @@ export function Nav({ hasPhotos = false }: { hasPhotos?: boolean }) {
               <span className="block font-bold text-[15px]" style={{ color: "var(--text)", fontFamily: "var(--font-display)" }}>
                 {profile.name}
               </span>
-              <span className="hidden lg:block text-[11.5px]" style={{ color: "var(--text-faint)" }}>
+              <span className="hidden xl:block text-[11.5px]" style={{ color: "var(--text-faint)" }}>
                 {profile.headline}
               </span>
             </span>
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-7">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="text-[14.5px] font-medium text-[var(--text-dim)] transition-colors hover:text-[var(--text)]"
+                className="whitespace-nowrap text-[14.5px] font-medium text-[var(--text-dim)] transition-colors hover:text-[var(--text)]"
               >
                 {l.label}
               </a>
             ))}
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
             <a
               href="/Usama-Javed-CV.pdf"
               download
-              className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[14px] font-semibold transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2.5 text-[14px] font-semibold transition-transform hover:-translate-y-0.5"
               style={{ background: "var(--text)", color: "var(--bg)" }}
             >
               <Download size={15} aria-hidden="true" /> Download CV
             </a>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
             <button
               type="button"
@@ -119,7 +120,7 @@ export function Nav({ hasPhotos = false }: { hasPhotos?: boolean }) {
           id="mobile-menu"
           aria-label="Mobile"
           hidden={!open}
-          className="md:hidden border-t"
+          className="lg:hidden border-t"
           style={{ borderColor: "var(--line)", background: "var(--bg)" }}
         >
           <div className="container-x flex flex-col py-4 gap-1">

@@ -26,9 +26,19 @@ export function Contact() {
           viewport={viewportOnce}
           className="max-w-2xl mx-auto text-center"
         >
+          {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+          <motion.img
+            variants={fadeUp}
+            src="/me/usama-avatar.webp"
+            alt="Usama Javed"
+            width={96}
+            height={96}
+            className="mx-auto mb-5 h-24 w-24 rounded-full object-cover"
+            style={{ boxShadow: "0 0 0 4px var(--bg), 0 0 0 6px var(--btn-bg)" }}
+          />
           <motion.span
             variants={fadeUp}
-            className="text-[12.5px] font-bold uppercase tracking-[0.14em]"
+            className="block text-[12.5px] font-bold uppercase tracking-[0.14em]"
             style={{ color: "var(--amber)" }}
           >
             Get in touch
