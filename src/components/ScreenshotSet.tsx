@@ -5,10 +5,12 @@ type Props = {
   shots: MediaItem[];
   /** Short text under each screenshot, keyed by the caption made from its filename. */
   notes?: Record<string, string>;
+  /** Optional text after the screenshots, for the detail behind them. */
+  outro?: React.ReactNode;
 };
 
 // Real screenshots from the software, shown in order. Each opens full size in a new tab.
-export function ScreenshotSet({ intro, shots, notes = {} }: Props) {
+export function ScreenshotSet({ intro, shots, notes = {}, outro }: Props) {
   return (
     <div>
       <div className="text-[13.5px] leading-relaxed space-y-2" style={{ color: "var(--text-dim)" }}>
@@ -37,6 +39,11 @@ export function ScreenshotSet({ intro, shots, notes = {} }: Props) {
           </figure>
         ))}
       </div>
+      {outro ? (
+        <div className="mt-6 text-[13.5px] leading-relaxed space-y-2" style={{ color: "var(--text-dim)" }}>
+          {outro}
+        </div>
+      ) : null}
     </div>
   );
 }

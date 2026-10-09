@@ -22,7 +22,6 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
   OpenSolar: "tools/opensolar",
   SketchUp: "tools/sketchup",
   AutoCAD: "tools/autocad",
-  BESS: "tools/bess",
 };
 
 const P6_XER = "/tools/p6/20-kW-residential-pv-p6.xer";
@@ -588,7 +587,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const cad = shots["AutoCAD"] ?? [];
   if (cad.length > 0) {
     artifacts["AutoCAD"] = {
-      title: "AutoCAD: drawings for an 80 kW rooftop with a 63 kWh battery",
+      title: "AutoCAD: an 80 kW rooftop with a 63 kWh battery",
       icon: "draft",
       render: () => (
         <ScreenshotSet
@@ -596,102 +595,40 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                The drawing set for an 80 kW rooftop PV system with battery storage on a commercial unit in Islamabad:
-                136 Jinko 580&nbsp;W modules at <strong>78.88&nbsp;kWp</strong> on a <strong>FoxESS P3-80-Plus</strong>{" "}
-                hybrid inverter, with <strong>nine FoxESS CQ7 modules</strong> in series giving 63.18&nbsp;kWh at
-                518.4&nbsp;V. Three A1 sheets, drawn in AutoCAD 2027: the single line diagram, the mechanical layout and
-                the battery control sheet.
+                An 80 kW rooftop PV system with battery storage for a commercial unit in Islamabad: 136 Jinko 580&nbsp;W
+                modules at <strong>78.88&nbsp;kWp</strong> on a <strong>FoxESS P3-80-Plus</strong> hybrid inverter, with{" "}
+                <strong>nine FoxESS CQ7 modules</strong> in series giving 63.18&nbsp;kWh at 518.4&nbsp;V.
               </p>
               <p>
-                <strong>PV-04, the single line diagram, is drawn the way it would be issued.</strong> Frame and title
-                block, revision history, legend, a tag on every device and every conductor, surge arresters on the DC
-                and AC sides, current transformers and metering, interface protection with its trip and settings, the
-                existing LV board and the point of supply, and the earthing. Figures 1 to 8 open that one sheet up block
-                by block, because a whole A1 sheet reduced to the width of this panel puts its lettering under 3&nbsp;px.
-                Figure 1 is the key diagram, the whole system on one line before any of the detail.
-              </p>
-              <p>
-                Figures 9 to 11 come from PV-01, the mechanical layout: the roof plan and how the array is set out on it,
-                the mounting section that fixes the row spacing, and the plant room.
-              </p>
-              <p>
-                The cable schedule and the interface protection settings as they appear on PV-04. Lengths are design
-                figures for this building. Cable sizes and volt drop are to be confirmed on the actual route, and the
-                relay settings with IESCO, so the sheet stays at revision P3, issued for comment, until they are.
-              </p>
-              {BESS_TABLE_CABLE}
-              {BESS_TABLE_PROT}
-              <p>
-                The full sheets as AutoCAD plotted them at A1, and the drawing files. The battery sizing and the hourly
-                model behind them are under BESS.
-              </p>
-              <p className="flex flex-wrap gap-x-4 gap-y-1.5">
-                {BESS_SHEETS.flatMap(([label, base]) =>
-                  (["pdf", "dwg"] as const).map((ext) => (
-                    <a
-                      key={`${base}.${ext}`}
-                      href={`${base}.${ext}`}
-                      download
-                      className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
-                      style={{ color: "var(--amber)" }}
-                    >
-                      <Download size={14} aria-hidden="true" /> {label} (.{ext})
-                    </a>
-                  )),
-                )}
+                Three A1 sheets drawn in AutoCAD 2027: the single line diagram, the mechanical layout and the battery
+                control sheet. Each is shown whole, with a closer view of the parts worth reading. Click any sheet to open
+                it full size, or download the PDF and DWG at the end.
               </p>
             </>
           }
           notes={{
+            "The single line diagram":
+              "PV-04, the whole A1 sheet as AutoCAD plotted it, at revision P3, issued for comment. The eight string circuits, the battery and its DC protection, the hybrid inverter, metering and interface protection, the existing LV board and the point of supply, and the earthing, with the key diagram, legend, schedules, revisions and title block along the bottom",
             "The key diagram":
-              "The bottom left corner of the sheet. Array and battery into the hybrid inverter, out to the grid on one side and the essential board on the other, with the device tags that every other view uses. A key diagram is there so somebody can take in the shape of the system before reading any of the detail",
-            "The array and its DC protection":
-              "Eight strings of seventeen, each run to its own MPP tracker as a separate circuit, so nothing is paralleled on the DC side and no string fuse is needed. A Type 2 surge arrester per tracker sits at the array end, and the DC switch is the one built into the P3-80-Plus. 956 V at minus 5 degrees, under the inverter's 1,000 V limit",
-            "The battery and its protection":
-              "Nine CQ7 modules in series, 63.18 kWh at 518.4 V. The 125 A two pole DC breaker, rated 1,000 V DC, is above the 110 A sixty second peak so it does not nuisance trip and below the rating of the 35 mm² cable so the cable stays protected. The isolator is for safe isolation, not for clearing faults. The BMS sets the charge limits and the inverter follows them over CAN, and the emergency stop is in that same loop",
-            "The inverter":
-              "The functions that live inside the unit rather than on the wall beside it: eight MPP trackers, the integral DC switch, Type 2 surge protection on the DC and AC sides, a Type B residual current monitor, anti islanding to IEC 62116, and three battery ports of which one is in use. Knowing what is already inside the box is what stops you specifying it twice",
-            "The metering and interface protection":
-              "A current transformer on the generation cable feeding the generation meter, and an interface protection relay watching voltage, frequency and rate of change of frequency. Its trip output opens the new 160 A way through a shunt trip, which takes the whole system off the board. This is the block a network operator asks about first on any grid connected generator",
-            "The essential board and earthing":
-              "The essential board is fed only from the inverter's EPS port. In normal running the inverter passes grid power through to it, and when the grid fails it changes over inside the unit in under 10 ms, so the board never sees the grid go. Below it the main earth bar, with the array frame, the battery enclosure, the inverter and the main board all bonded to it and an electrode under 10 ohms",
+              "The bottom left corner of PV-04. Array and battery into the hybrid inverter, out to the grid on one side and the essential board on the other, with the device tags the rest of the sheet uses. It is there so somebody can take in the shape of the system before reading any of the detail",
             "The point of connection":
-              "Where the system actually joins the building. A new 160 A way on the existing busbar, the existing 630 A incomer, the utility transformer outside the board with the point of supply marked, the import export meter, and the current transformer whose signal limits export. Drawing the existing installation is what turns a schematic into something a contractor can work from",
-            "The title block and revisions":
-              "Client, project, drawing title, number, scale and revision, with the history above it: issued for comment, surge protection and metering added, then issued for comment again after a full drawing review. It stays at P status until the cable sizes and protection settings are confirmed. Without this a drawing cannot be referenced, superseded or checked",
-            "The roof plan and array setting out":
-              "The south west part of the roof plan on PV-01, at 1:100. Eight rows of seventeen modules in landscape at a 1,800 mm pitch, set 3,000 mm clear of the south parapet and 3,477 mm in from the west edge of a 46 by 24 m roof. The string cables run in DC trunking along the north side to a single sealed cable entry, so the ballasted frame itself needs no roof penetration",
+              "Where the system joins the building. A new 160 A way on the existing busbar, opened by the interface relay through a shunt trip, the existing 630 A incomer, the utility transformer outside the board with the point of supply marked, the import export meter, and the current transformer whose signal limits export",
+            "The mechanical layout":
+              "PV-01, the whole sheet. The roof plan with eight rows of seventeen modules set out 3,000 mm clear of the south parapet at a 1,800 mm pitch, the mounting section, the plant room, the notes, the equipment schedule and the design summary",
             "The mounting section and row spacing":
               "Detail A at 1:20, south on the left. Ballasted frames at 15 degrees, with the front rail 300 mm and the rear rail 594 mm above the membrane. The dashed line is the shading ray on 21 December at 09:00: at its 24.8 degree profile angle the shadow ends 69 mm short of the next row, which is what sets the 1,800 mm pitch",
-            "The plant room":
-              "Detail B at 1:50. The inverter, the AC panel and the EPS board on the north wall, the nine module CQ7 stack 200 mm off it, a 1,000 mm clear working zone in front of all four, and a 900 mm door opening in at the south east corner",
+            "The battery control and performance sheet":
+              "PV-03, the whole sheet. The control strategy, a typical April day and the December day that sets the annual peak, the annual performance with and without the battery, and how the overnight charge target trades the battery's jobs against each other",
+            "A year of dispatch in two days":
+              "The same two days from the model, redrawn to read on a screen. In April grid import stays at or below the 55 kW target all day. In December there is no PV left by the afternoon and the state of charge is pinned at the floor, so the import climbs to the 75.2 kW that sets the annual peak",
           }}
-        />
-      ),
-    };
-  }
-
-  const bess = shots["BESS"] ?? [];
-  if (bess.length > 0) {
-    artifacts["BESS"] = {
-      title: "Battery storage: an 80 kW rooftop with a 63 kWh FoxESS battery",
-      icon: "battery",
-      render: () => (
-        <ScreenshotSet
-          shots={bess}
-          intro={
+          outro={
             <>
               <p>
-                A design for a commercial unit in Islamabad: 136 Jinko 580&nbsp;W modules at{" "}
-                <strong>78.88&nbsp;kWp</strong> on a <strong>FoxESS P3-80-Plus</strong> hybrid inverter, with{" "}
-                <strong>nine FoxESS CQ7 modules</strong> in series giving 63.18&nbsp;kWh at 518.4&nbsp;V. The drawings
-                for it, the single line diagram, the mechanical layout and the control sheet, are under AutoCAD.
-              </p>
-              <p>
-                The first thing the model said was that the battery was not worth fitting. Charged only from surplus PV
-                it cycled about 13 times a year, because the site load is <strong>3.3 times</strong> the generation
-                and there is almost no surplus to store. That result is what shaped everything after it: the battery
-                only earns its place if it is charged off peak and given the job of carrying the site through the daily
+                <strong>How the battery was sized.</strong> The first thing the model said was that the battery was not
+                worth fitting. Charged only from surplus PV it cycled about 13 times a year, because the site load is{" "}
+                <strong>3.3 times</strong> the generation and there is almost no surplus to store. The battery only
+                earns its place if it is charged off peak and given the job of carrying the site through the daily
                 outage.
               </p>
               <p>
@@ -723,16 +660,34 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               </p>
               {BESS_TABLE_SENS}
               <p>
+                The cable schedule and the interface protection settings as they appear on PV-04. Lengths are design
+                figures for this building. Cable sizes and volt drop are to be confirmed on the actual route, and the
+                relay settings with IESCO, so the sheet stays at revision P3 until they are.
+              </p>
+              {BESS_TABLE_CABLE}
+              {BESS_TABLE_PROT}
+              <p>
                 Equipment figures come from the FoxESS P3 Plus and CQ7 datasheets and the Jinko 72HL4-V datasheet. The
                 load profile, the outage window and the tariff periods are design assumptions, declared at the top of
                 the model, and would be replaced with half hourly meter data before anything was ordered.
               </p>
+              <p className="flex flex-wrap gap-x-4 gap-y-1.5">
+                {BESS_SHEETS.flatMap(([label, base]) =>
+                  (["pdf", "dwg"] as const).map((ext) => (
+                    <a
+                      key={`${base}.${ext}`}
+                      href={`${base}.${ext}`}
+                      download
+                      className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                      style={{ color: "var(--amber)" }}
+                    >
+                      <Download size={14} aria-hidden="true" /> {label} (.{ext})
+                    </a>
+                  )),
+                )}
+              </p>
             </>
           }
-          notes={{
-            "A year of dispatch in two days":
-              "The same control on the two days that matter. In April grid import stays at or below the 55 kW target all day. In December there is no PV left by the afternoon and the state of charge is pinned at the floor, so the import climbs to the 75.2 kW that sets the annual peak",
-          }}
         />
       ),
     };
