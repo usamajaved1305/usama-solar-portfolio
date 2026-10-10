@@ -11,11 +11,22 @@ import { SectionHeading } from "./SectionHeading";
 const FILTERS: ("All" | SiteGroup)[] = ["All", ...SITE_GROUPS];
 
 // "All" deals the groups out in turn, so every column of the masonry mixes arrays, inverters and models.
+// Small preview-only photos are spread one in every four, so no column is made of soft pictures.
 const MIXED = (() => {
-  const lists = SITE_GROUPS.map((g) => sitePhotos.filter((p) => p.group === g));
-  const out = [];
-  for (let i = 0; out.length < sitePhotos.length; i++) for (const l of lists) if (l[i]) out.push(l[i]);
-  return out;
+  const deal = (photos: typeof sitePhotos) => {
+    const lists = SITE_GROUPS.map((g) => photos.filter((p) => p.group === g));
+    const out: typeof sitePhotos = [];
+    for (let i = 0; out.length < photos.length; i++) for (const l of lists) if (l[i]) out.push(l[i]);
+    return out;
+  };
+  const sharp = deal(sitePhotos.filter((p) => !p.small));
+  const small = deal(sitePhotos.filter((p) => p.small));
+  const out: typeof sitePhotos = [];
+  sharp.forEach((p, i) => {
+    out.push(p);
+    if (i % 3 === 2 && small.length) out.push(small.shift()!);
+  });
+  return [...out, ...small];
 })();
 
 export function SiteGallery() {
@@ -117,7 +128,12 @@ export function SiteGallery() {
             <div>
               <div className="relative rounded-xl overflow-hidden" style={{ background: "#0b0f12" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
-                <img src={sitePhotoSrc(current.slug)} alt={current.caption} className="mx-auto max-h-[70vh] w-auto object-contain" />
+                <img
+                  src={sitePhotoSrc(current.slug)}
+                  alt={current.caption}
+                  className="mx-auto max-h-[70vh] w-auto object-contain"
+                  style={current.small ? { width: Math.round(current.w * 2.5), height: "auto" } : undefined}
+                />
                 <button
                   type="button"
                   aria-label="Previous photo"

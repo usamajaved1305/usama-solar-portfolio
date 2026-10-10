@@ -1,6 +1,7 @@
 // Content for the visual demo: real site photos, project thumbnails and the portrait.
 
-export type SitePhoto = { slug: string; caption: string; group: SiteGroup; w: number; h: number };
+/** `small` marks a photo only available as a small preview; the lightbox will not blow it up. */
+export type SitePhoto = { slug: string; caption: string; group: SiteGroup; w: number; h: number; small?: boolean };
 export type SiteGroup = "Arrays and structures" | "Inverters and wiring" | "3D structure design";
 
 export const SITE_GROUPS: SiteGroup[] = ["Arrays and structures", "Inverters and wiring", "3D structure design"];
@@ -15,6 +16,9 @@ export const sitePhotos: SitePhoto[] = [
   { slug: "tilted-rooftop-arrays", caption: "Tilted rooftop arrays on a flat concrete roof", group: "Arrays and structures", w: 1040, h: 468 },
   { slug: "rooftop-install-in-progress", caption: "Rooftop arrays during installation", group: "Arrays and structures", w: 1040, h: 468 },
   { slug: "flat-rooftop-array", caption: "Flat rooftop array among neighbouring buildings", group: "Arrays and structures", w: 916, h: 468 },
+  { slug: "raised-rooftop-arrays-trees", caption: "Raised rooftop arrays with trees behind", group: "Arrays and structures", w: 160, h: 120, small: true },
+  { slug: "tilted-array-flat-rooftop", caption: "Tilted array on a flat rooftop", group: "Arrays and structures", w: 160, h: 120, small: true },
+  { slug: "tilted-rooftop-array-side", caption: "Tilted rooftop array, side view", group: "Arrays and structures", w: 160, h: 120, small: true },
   { slug: "fox-string-inverter", caption: "FOX ESS string inverter with the DC strings connected", group: "Inverters and wiring", w: 1496, h: 1496 },
   { slug: "ac-cabling-breaker-meter", caption: "AC cabling dressed into a CHINT breaker and energy meter", group: "Inverters and wiring", w: 1496, h: 1496 },
   { slug: "fox-inverter-ac-box", caption: "FOX ESS inverter beside the AC distribution box", group: "Inverters and wiring", w: 1496, h: 1496 },
@@ -22,12 +26,16 @@ export const sitePhotos: SitePhoto[] = [
   { slug: "fox-inverter-patterned-wall", caption: "FOX ESS inverter with trunking and an AC breaker box", group: "Inverters and wiring", w: 1600, h: 1600 },
   { slug: "inverter-tiled-wall", caption: "Inverter and distribution boards on a tiled wall", group: "Inverters and wiring", w: 900, h: 1600 },
   { slug: "inverex-inverter-indoor", caption: "Inverex Veyron II inverter installed on an indoor wall", group: "Inverters and wiring", w: 1200, h: 1600 },
+  { slug: "growatt-inverter-ac-box", caption: "Growatt inverter beside an AC distribution box", group: "Inverters and wiring", w: 160, h: 120, small: true },
   { slug: "model-canopy-pedestal-footings", caption: "3D model of an elevated canopy on pedestal footings", group: "3D structure design", w: 1215, h: 561 },
   { slug: "model-24-module-canopy", caption: "3D model of an elevated rooftop canopy", group: "3D structure design", w: 1568, h: 844 },
   { slug: "model-three-tier-canopy", caption: "3D model of a three tier elevated canopy", group: "3D structure design", w: 812, h: 587 },
   { slug: "model-canopy-dimensions", caption: "Canopy model with leg heights and spacing", group: "3D structure design", w: 1600, h: 734 },
   { slug: "model-canopy-frame-bracing", caption: "Canopy frame and bracing modelled before the modules", group: "3D structure design", w: 1600, h: 734 },
   { slug: "model-canopy-leg-plan", caption: "Plan of the canopy leg positions and base pads", group: "3D structure design", w: 1600, h: 734 },
+  { slug: "design-frame-height-dimensions", caption: "3D design with frame height dimensions", group: "3D structure design", w: 160, h: 141, small: true },
+  { slug: "design-house-array-views", caption: "3D design views of a house and its rooftop array", group: "3D structure design", w: 150, h: 160, small: true },
+  { slug: "design-front-and-top-views", caption: "Front and top views of the house and array design", group: "3D structure design", w: 147, h: 160, small: true },
 ];
 
 export const sitePhotoSrc = (slug: string) => `/site/${slug}.webp`;
