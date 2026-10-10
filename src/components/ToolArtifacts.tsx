@@ -28,6 +28,7 @@ const P6_XER = "/tools/p6/20-kW-residential-pv-p6.xer";
 const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
 const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
 const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
+const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
 /** The three BESS sheets as drawn in AutoCAD: the plotted A1 PDF and the DWG behind it. */
 const BESS_SHEETS: [string, string][] = [
   ["PV-01 mechanical", "/tools/autocad/80-kW-bess-PV-01-mechanical"],
@@ -542,9 +543,9 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 to follow the house, the same layout as the OpenSolar design.
               </p>
               <p>
-                Every part is placed to the millimetre: 6.90 m by 15.87 m of array, 2.80 m from row to row, 0.92 m in
-                from the roof edge at each end and 0.80 m on the south west side, which leaves 0.72 m and 0.60 m clear of
-                the parapet, and a 0.75 m walkway past the stair room. Each row stands on four frames, a rafter and two
+                Every part is placed to the millimetre: 6.90 m by 15.87 m of array, 2.80 m from row to row, about 0.9 m in
+                from the roof edge at each end and 0.80 m on the south west side, which leaves about 0.7 m and 0.6 m clear
+                of the parapet, and a 0.75 m walkway past the stair room. Each row stands on four frames, a rafter and two
                 purlins on a short front post and a tall rear post, set on concrete pads. The model is geo-located on the
                 site with true north set, so SketchUp&apos;s sun is the site&apos;s own.
               </p>
@@ -557,11 +558,23 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 0.58 m up the next. A strip of shade along the bottom edge costs more than its area, because in portrait
                 it falls across every cell string of the module, so the electrical loss will be somewhat higher.
               </p>
+              <p>
+                <a
+                  href={SKP_MODEL}
+                  download
+                  className="inline-flex items-center gap-1.5 font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  <Download size={14} aria-hidden="true" /> Download the model (.skp, 0.4 MB)
+                </a>
+              </p>
             </>
           }
           notes={{
             "House and array":
               "21 March at 11:00, seen from the street: the two storey house, the 36 modules and the stair room on the roof, the boundary wall and the gate",
+            "Roof plan and dimensions":
+              "Straight down on the roof with SketchUp's own dimensions: 17.70 m by 11.70 m of roof, 6.90 m across each row, 2.80 m from row to row and the 2.50 m stair room. North is up and to the left, and the front of the house is on the right",
             "December morning shadows":
               "21 December at 09:00, sun 17.8° up: each row's shadow climbs 0.58 m up the row behind, the front parapet shades the bottom of the front row, and the stair room's shadow reaches the end modules of the fourth and fifth rows",
             "December noon shadows":
