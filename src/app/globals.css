@@ -375,3 +375,19 @@ html.lenis body {
   .img-zoom img { transition: none; }
   .img-zoom:hover img, .img-zoom:focus-visible img { transform: none; }
 }
+
+/* Dark and bold: the hero photo drifts slowly; software tiles light up on hover */
+.hero-drift {
+  animation: hero-drift 24s ease-in-out infinite alternate;
+  transform-origin: 60% 40%;
+}
+@keyframes hero-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+.tool-tile:hover {
+  border-color: var(--amber);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-drift { animation: none; }
+}

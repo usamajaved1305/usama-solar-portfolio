@@ -57,3 +57,106 @@ export const workCards: WorkCard[] = [
 ];
 
 export const workThumbSrc = (key: string) => `/thumbs/work/${key}.webp`;
+
+// ---- Dark and bold version ----
+
+/** The eight sharpest, most varied site photos, in the order they sit in the grid. */
+export const bestPhotos = [
+  "tilted-array-flat-rooftop",
+  "fox-string-inverter",
+  "raised-rooftop-arrays-trees",
+  "tilted-row-galvanised-legs",
+  "ac-cabling-breaker-meter",
+  "tilted-rooftop-array-side",
+  "growatt-inverter-ac-box",
+  "pole-mounted-array-front",
+];
+
+export type Feature = {
+  key: string;
+  tag: string;
+  title: string;
+  text: string;
+  figures?: { value: string; label: string }[];
+  chips: string[];
+  image: { src: string; alt: string; light?: boolean };
+  inset?: { src: string; alt: string; label: string };
+  tool?: string;
+  toolLabel?: string;
+};
+
+export const features: Feature[] = [
+  {
+    key: "elevated",
+    tag: "Structures",
+    title: "Elevated rooftop frames",
+    text: "Raised steel frames that carry the array clear of rooftop rooms, so the roof underneath stays in use. The 3D models set out the leg heights, spacing and base pads.",
+    chips: ["Steel frames", "SketchUp models", "Site supervision"],
+    image: { src: "/feature/elevated-canopy.webp", alt: "Elevated steel canopy carrying modules over a flat rooftop" },
+    inset: { src: "/feature/elevated-canopy-model.webp", alt: "3D model of an elevated rooftop canopy", label: "3D model" },
+  },
+  {
+    key: "ground",
+    tag: "Ground mount",
+    title: "Pole mounted arrays",
+    text: "Arrays on open ground, each on a single steel pole with a cross beam carrying the purlins and modules at a tilt.",
+    chips: ["Pole mount", "Steel frame", "Installation"],
+    image: { src: "/feature/pole-mount.webp", alt: "Pole mounted solar array on open ground" },
+    inset: { src: "/feature/pole-mount-frame.webp", alt: "Steel frame and pole supporting the array, rear view", label: "The frame from behind" },
+  },
+  {
+    key: "rooftop",
+    tag: "Design under constraint",
+    title: "115 kWp commercial rooftop",
+    text: "The roof runs south east. Facing the array due south fits only 163 modules, so the rows follow the building at 146 degrees instead.",
+    figures: [
+      { value: "198", label: "modules" },
+      { value: "114.84 kWp", label: "DC capacity" },
+      { value: "Under 2%", label: "yield given up for 35 more modules" },
+    ],
+    chips: ["String sizing", "Array setting out", "Protection design"],
+    image: { src: "/feature/helioscope-layout.webp", alt: "HelioScope layout of 198 modules on the rooftop" },
+    tool: "Helioscope",
+    toolLabel: "Open the HelioScope project",
+  },
+  {
+    key: "battery",
+    tag: "Drawing set",
+    title: "80 kW rooftop with a 63 kWh battery",
+    text: "136 modules on a FoxESS hybrid inverter, with nine battery modules in series. Drawn in AutoCAD as three A1 sheets: the single line diagram, the mechanical layout and the battery control sheet.",
+    figures: [
+      { value: "78.88 kWp", label: "PV array" },
+      { value: "63.18 kWh", label: "battery" },
+      { value: "3", label: "A1 sheets" },
+    ],
+    chips: ["AutoCAD", "Single line diagram", "Battery sizing"],
+    image: { src: "/feature/autocad-key-diagram.webp", alt: "Key diagram of the 80 kW system with battery", light: true },
+    inset: { src: "/feature/autocad-dispatch.webp", alt: "Battery dispatch over two typical days", label: "Battery dispatch" },
+    tool: "AutoCAD",
+    toolLabel: "Open the drawing set",
+  },
+];
+
+/** One line per tool tile; the tile opens the full project. */
+export const toolTiles: { group: string; tools: { tool: string; line: string }[] }[] = [
+  {
+    group: "Planning and data",
+    tools: [
+      { tool: "Primavera P6", line: "Installation programme, 20 kW house" },
+      { tool: "MS Project", line: "Programme with a tracking baseline" },
+      { tool: "Advanced Excel", line: "BOM, procurement and cost tracker" },
+      { tool: "Power BI", line: "Cost and procurement report" },
+      { tool: "SQL", line: "BOM and procurement database" },
+      { tool: "Python", line: "Energy yield estimate, 115 kWp" },
+    ],
+  },
+  {
+    group: "Design",
+    tools: [
+      { tool: "Helioscope", line: "Roof layout and energy simulation" },
+      { tool: "OpenSolar", line: "Rooftop design and customer proposal" },
+      { tool: "SketchUp", line: "3D house model and shading study" },
+      { tool: "AutoCAD", line: "Drawing set, 80 kW with a battery" },
+    ],
+  },
+];

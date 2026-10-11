@@ -16,8 +16,13 @@ function LinkedInGlyph({ size = 16 }: { size?: number }) {
 
 export function Contact() {
   return (
-    <section id="contact" className="section-pad relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(circle_at_center,black,transparent_75%)] opacity-70" />
+    <section id="contact" className="section-pad relative isolate overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+      <img src="/site/tilted-array-flat-rooftop.webp" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ background: "linear-gradient(to bottom, var(--bg) 0%, rgba(5,9,12,0.86) 30%, rgba(5,9,12,0.9) 100%)" }}
+      />
       <div className="container-x relative">
         <motion.div
           variants={staggerContainer}

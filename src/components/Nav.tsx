@@ -3,13 +3,11 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Download } from "lucide-react";
 import { SunMark } from "./SunMark";
-import { ThemeToggle } from "./ThemeToggle";
 import { profile } from "@/lib/data";
 
 const LINKS = [
-  { href: "#work", label: "Work" },
-  { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
+  { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
   { href: "#credentials", label: "Credentials" },
   { href: "#contact", label: "Contact" },
@@ -89,7 +87,6 @@ export function Nav({ hasPhotos = false }: { hasPhotos?: boolean }) {
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle />
             <a
               href="/Usama-Javed-CV.pdf"
               download
@@ -101,7 +98,6 @@ export function Nav({ hasPhotos = false }: { hasPhotos?: boolean }) {
           </div>
 
           <div className="flex items-center gap-2 lg:hidden">
-            <ThemeToggle />
             <button
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}

@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
-import { Hero } from "@/components/Hero";
-import { Stats } from "@/components/Stats";
 import { Experience } from "@/components/Experience";
-import { Projects } from "@/components/Projects";
-import { Skills } from "@/components/Skills";
 import { Credentials } from "@/components/Credentials";
 import { Contact } from "@/components/Contact";
-import { WorkShowcase } from "@/components/WorkShowcase";
-import { SiteGallery } from "@/components/SiteGallery";
+import { HeroBold } from "@/components/HeroBold";
+import { FeaturedProjects } from "@/components/FeaturedProjects";
+import { PhotoGrid } from "@/components/PhotoGrid";
+import { SkillsBold } from "@/components/SkillsBold";
 import { DemoBadge } from "@/components/DemoBadge";
 import { SiteFooter } from "@/components/SiteFooter";
 import { openGraphBase, personJsonLd } from "@/lib/seo";
@@ -31,13 +29,11 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       <Nav hasPhotos />
       <main id="main" tabIndex={-1} className="outline-none">
-        <Hero />
-        <Stats />
-        <WorkShowcase toolShots={toolShots} />
+        <HeroBold />
+        <FeaturedProjects toolShots={toolShots} />
         <Experience />
-        <SiteGallery />
-        <Projects />
-        <Skills toolShots={toolShots} />
+        <PhotoGrid />
+        <SkillsBold toolShots={toolShots} />
         <Credentials certificates={certificates} />
         <Contact />
       </main>
