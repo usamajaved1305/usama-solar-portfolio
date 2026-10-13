@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Cpu } from "lucide-react";
+import { ArrowUpRight, Cpu, LayoutGrid } from "lucide-react";
 import { builds } from "@/lib/data";
 import type { MediaItem } from "@/lib/media";
-import { features, type Feature } from "@/lib/demo";
+import { features, type Feature, type ProjectGallery } from "@/lib/demo";
 import { fadeUp, viewportOnce } from "@/lib/motion";
 import { Popover } from "./Popover";
 import { SectionHeading } from "./SectionHeading";
@@ -14,6 +14,7 @@ import { buildToolArtifacts } from "./ToolArtifacts";
 // Four projects told with one big picture each, alternating sides.
 export function FeaturedProjects({ toolShots = {} }: { toolShots?: Record<string, MediaItem[]> }) {
   const [open, setOpen] = useState<string | null>(null);
+  const [project, setProject] = useState<string | null>(null);
   const artifacts = buildToolArtifacts(toolShots);
 
   return (
@@ -23,7 +24,13 @@ export function FeaturedProjects({ toolShots = {} }: { toolShots?: Record<string
 
         <div className="flex flex-col gap-24 lg:gap-32">
           {features.map((f, i) => (
-            <FeatureBlock key={f.key} f={f} index={i} onOpen={f.tool && artifacts[f.tool] ? () => setOpen(f.tool!) : undefined} />
+            <FeatureBlock
+              key={f.key}
+              f={f}
+              index={i}
+              onOpen={f.tool && artifacts[f.tool] ? () => setOpen(f.tool!) : undefined}
+              onProject={f.project ? () => setProject(f.key) : undefined}
+            />
           ))}
         </div>
 
@@ -49,6 +56,14 @@ export function FeaturedProjects({ toolShots = {} }: { toolShots?: Record<string
         </motion.div>
 
         {features
+          .filter((f) => f.project)
+          .map((f) => (
+            <Popover key={'p-' + f.key} open={project === f.key} onClose={() => setProject(null)} title={f.project!.title} xwide>
+              {project === f.key && <ProjectView p={f.project!} />}
+            </Popover>
+          ))}
+
+        {features
           .filter((f) => f.tool && artifacts[f.tool])
           .map((f) => (
             <Popover key={f.key} open={open === f.tool} onClose={() => setOpen(null)} title={artifacts[f.tool!].title} xwide>
@@ -60,7 +75,7 @@ export function FeaturedProjects({ toolShots = {} }: { toolShots?: Record<string
   );
 }
 
-function FeatureBlock({ f, index, onOpen }: { f: Feature; index: number; onOpen?: () => void }) {
+function FeatureBlock({ f, index, onOpen, onProject }: { f: Feature; index: number; onOpen?: () => void; onProject?: () => void }) {
   const flip = index % 2 === 1;
   return (
     <motion.article
@@ -141,6 +156,18 @@ function FeatureBlock({ f, index, onOpen }: { f: Feature; index: number; onOpen?
           ))}
         </div>
 
+        {onProject && (
+          <button
+            type="button"
+            onClick={onProject}
+            aria-haspopup="dialog"
+            className="mt-8 inline-flex items-center gap-2 rounded-full px-5 py-3 text-[14.5px] font-semibold transition-transform hover:-translate-y-0.5"
+            style={{ background: "var(--btn-bg)", color: "var(--btn-fg)" }}
+          >
+            <LayoutGrid size={16} aria-hidden="true" /> View the full project
+          </button>
+        )}
+
         {onOpen && (
           <button
             type="button"
@@ -154,5 +181,60 @@ function FeatureBlock({ f, index, onOpen }: { f: Feature; index: number; onOpen?
         )}
       </div>
     </motion.article>
+  );
+}
+
+function Pic({ shot, className = "" }: { shot: { src: string; caption: string }; className?: string }) {
+  return (
+    <figure className={className}>
+      <a href={shot.src} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-xl" style={{ background: "#05080a" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+        <img src={shot.src} alt={shot.caption} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03]" />
+      </a>
+      <figcaption className="mt-2 text-[13px] leading-snug" style={{ color: "var(--text-dim)" }}>
+        {shot.caption}
+      </figcaption>
+    </figure>
+  );
+}
+
+/** One job in full: the story, the design beside the build, the model views and the site photos. */
+function ProjectView({ p }: { p: ProjectGallery }) {
+  const head = "mt-8 mb-3 text-[12.5px] font-bold uppercase tracking-[0.12em]";
+  return (
+    <div className="max-h-[78vh] overflow-y-auto pr-1">
+      <div className="space-y-3 text-[15px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
+        {p.intro.map((t) => (
+          <p key={t}>{t}</p>
+        ))}
+      </div>
+
+      <h3 className={head} style={{ color: "var(--amber)" }}>Design and build, from the same spot</h3>
+      <div className="space-y-5">
+        {p.pairs.map((pair) => (
+          <div key={pair.built.src} className="grid gap-3 sm:grid-cols-2">
+            <Pic shot={pair.design} />
+            <Pic shot={pair.built} />
+          </div>
+        ))}
+      </div>
+
+      <h3 className={head} style={{ color: "var(--amber)" }}>The SketchUp model</h3>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {p.model.map((s) => (
+          <Pic key={s.src} shot={s} />
+        ))}
+      </div>
+
+      <h3 className={head} style={{ color: "var(--amber)" }}>On site</h3>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {p.site.map((s) => (
+          <Pic key={s.src} shot={s} />
+        ))}
+      </div>
+      <p className="mt-6 text-[12.5px]" style={{ color: "var(--text-faint)" }}>
+        Click any picture to open it full size.
+      </p>
+    </div>
   );
 }

@@ -83,6 +83,17 @@ export type Feature = {
   inset?: { src: string; alt: string; label: string };
   tool?: string;
   toolLabel?: string;
+  project?: ProjectGallery;
+};
+
+export type Shot = { src: string; caption: string };
+/** A whole job in one window: the design beside the built frame, then the model and the site photos. */
+export type ProjectGallery = {
+  title: string;
+  intro: string[];
+  pairs: { design: Shot; built: Shot }[];
+  model: Shot[];
+  site: Shot[];
 };
 
 export const features: Feature[] = [
@@ -90,10 +101,32 @@ export const features: Feature[] = [
     key: "elevated",
     tag: "Structures",
     title: "Elevated rooftop frames",
-    text: "Raised steel frames that carry the array clear of rooftop rooms, so the roof underneath stays in use. The 3D models set out the leg heights, spacing and base pads.",
-    chips: ["Steel frames", "SketchUp models", "Site supervision"],
-    image: { src: "/feature/elevated-canopy.webp", alt: "Elevated steel canopy carrying modules over a flat rooftop" },
-    inset: { src: "/feature/elevated-canopy-model.webp", alt: "3D model of an elevated rooftop canopy", label: "3D model" },
+    text: "A raised steel frame that carries the array over a rooftop stair room and the open roof in front of it. Designed in SketchUp, then built on site to the same layout.",
+    chips: ["Steel frame", "SketchUp model", "Site supervision"],
+    image: { src: "/projects/elevated-canopy/site-finished-right.webp", alt: "The finished elevated frame and modules over the stair room" },
+    inset: { src: "/projects/elevated-canopy/model-front-right.webp", alt: "The same view in the SketchUp model", label: "SketchUp model" },
+    project: {
+      title: "Elevated rooftop canopy over a stair room",
+      intro: [
+        "The array sits on a raised steel canopy over the rooftop stair room and the open roof in front of it. Front columns about 11 ft tall stand on concrete pads on the open roof, shorter legs about 4 ft 8 in stand on the stair room slab, and knee braces tie the front columns to the beam.",
+        "The SketchUp model follows my original design and the photos of the built frame: 22 modules in three rows, with two left out over the stair room, on a frame tilted about 10 degrees.",
+      ],
+      pairs: [
+        { design: { src: "/projects/elevated-canopy/model-front-left.webp", caption: "SketchUp model" }, built: { src: "/projects/elevated-canopy/site-finished-front.webp", caption: "Built on site" } },
+        { design: { src: "/projects/elevated-canopy/model-front-right.webp", caption: "SketchUp model" }, built: { src: "/projects/elevated-canopy/site-finished-right.webp", caption: "Built on site" } },
+      ],
+      model: [
+        { src: "/projects/elevated-canopy/model-overview.webp", caption: "The whole roof: stair room, water tank, frame and array" },
+        { src: "/projects/elevated-canopy/model-side.webp", caption: "Side view: low edge at the front, high edge over the stair room" },
+        { src: "/projects/elevated-canopy/model-plan.webp", caption: "Plan: three rows of eight, with two openings" },
+      ],
+      site: [
+        { src: "/projects/elevated-canopy/site-frame-during-build.webp", caption: "The frame going up, before the modules" },
+        { src: "/projects/elevated-canopy/site-underside.webp", caption: "The array running past the parapet, seen from below" },
+        { src: "/projects/elevated-canopy/site-inverter-porch.webp", caption: "Inverter and AC trunking on the porch wall" },
+        { src: "/projects/elevated-canopy/site-inverter-wall.webp", caption: "Inverter and distribution boards" },
+      ],
+    },
   },
   {
     key: "ground",
