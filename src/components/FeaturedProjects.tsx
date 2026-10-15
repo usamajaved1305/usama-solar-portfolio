@@ -209,6 +209,20 @@ function ProjectView({ p }: { p: ProjectGallery }) {
         ))}
       </div>
 
+      {p.scope && (
+        <>
+          <h3 className={head} style={{ color: "var(--amber)" }}>What went in</h3>
+          <dl className="grid gap-x-6 gap-y-2 sm:grid-cols-2 rounded-xl p-4" style={{ background: "var(--bg-elev)", border: "1px solid var(--line)" }}>
+            {p.scope.map(([k, v]) => (
+              <div key={k} className="flex gap-3 text-[14px] leading-snug">
+                <dt className="w-24 shrink-0 font-semibold" style={{ color: "var(--text)" }}>{k}</dt>
+                <dd style={{ color: "var(--text-dim)" }}>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </>
+      )}
+
       <h3 className={head} style={{ color: "var(--amber)" }}>Design and build, from the same spot</h3>
       <div className="space-y-5">
         {p.pairs.map((pair) => (

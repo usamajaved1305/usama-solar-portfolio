@@ -94,6 +94,8 @@ export type ProjectGallery = {
   pairs: { design: Shot; built: Shot }[];
   model: Shot[];
   site: Shot[];
+  /** What went into the job, from the quotation (no prices). */
+  scope?: [string, string][];
 };
 
 export const features: Feature[] = [
@@ -101,15 +103,21 @@ export const features: Feature[] = [
     key: "elevated",
     tag: "Structures",
     title: "Elevated rooftop frames",
-    text: "A raised steel frame that carries the array over a rooftop stair room and the open roof in front of it. Designed in SketchUp, then built on site to the same layout.",
+    text: "A 15.375 kWp on-grid system on a raised steel shed over a rooftop stair room and the open roof in front of it. Designed in SketchUp, then built on site to the same layout.",
+    figures: [
+      { value: "15.375 kWp", label: "on-grid system" },
+      { value: "25", label: "615 W bifacial panels" },
+      { value: "15 kW", label: "Fox inverter" },
+    ],
     chips: ["Steel frame", "SketchUp model", "Site supervision"],
     image: { src: "/projects/elevated-canopy/site-finished-right.webp", alt: "The finished elevated frame and modules over the stair room" },
     inset: { src: "/projects/elevated-canopy/model-front-right.webp", alt: "The same view in the SketchUp model", label: "SketchUp model" },
     project: {
       title: "Elevated rooftop canopy over a stair room",
       intro: [
-        "The array sits on a raised steel canopy over the rooftop stair room and the open roof in front of it. Front columns about 11 ft tall stand on concrete pads on the open roof, shorter legs about 4 ft 8 in stand on the stair room slab, and knee braces tie the front columns to the beam.",
-        "The SketchUp model follows my original design and the photos of the built frame: 22 modules in three rows, with two left out over the stair room, on a frame tilted about 10 degrees.",
+        "A 15.375 kWp on-grid system on a house roof: 25 Canadian Solar 615 W N-type bifacial panels on a Fox 15 kW on-grid inverter, carried on a raised mild steel shed over the rooftop stair room and the open roof in front of it.",
+        "The shed is built from 2.5 x 5 in I-beam columns and girders with U-channel rafters and purlins, anchored to concrete bases on block pads. The front columns are about 11 ft tall, the legs on the stair room slab about 4 ft 8 in, and knee braces tie the front columns to the girder.",
+        "The SketchUp model follows my original design, the bill of materials and the photos of the built frame: three rows of nine panels with two left out over the stair room, on a frame tilted about 10 degrees.",
       ],
       pairs: [
         { design: { src: "/projects/elevated-canopy/model-front-left.webp", caption: "SketchUp model" }, built: { src: "/projects/elevated-canopy/site-finished-front.webp", caption: "Built on site" } },
@@ -118,13 +126,22 @@ export const features: Feature[] = [
       model: [
         { src: "/projects/elevated-canopy/model-overview.webp", caption: "The whole roof: stair room, water tank, frame and array" },
         { src: "/projects/elevated-canopy/model-side.webp", caption: "Side view: low edge at the front, high edge over the stair room" },
-        { src: "/projects/elevated-canopy/model-plan.webp", caption: "Plan: three rows of eight, with two openings" },
+        { src: "/projects/elevated-canopy/model-plan.webp", caption: "Plan: three rows of nine, with two openings" },
       ],
       site: [
         { src: "/projects/elevated-canopy/site-frame-during-build.webp", caption: "The frame going up, before the modules" },
         { src: "/projects/elevated-canopy/site-underside.webp", caption: "The array running past the parapet, seen from below" },
         { src: "/projects/elevated-canopy/site-inverter-porch.webp", caption: "Inverter and AC trunking on the porch wall" },
         { src: "/projects/elevated-canopy/site-inverter-wall.webp", caption: "Inverter and distribution boards" },
+      ],
+      scope: [
+        ["Panels", "25 x Canadian Solar 615 W N-type bifacial, 15.375 kWp"],
+        ["Inverter", "Fox 15 kW on-grid, IP65, with WiFi monitoring"],
+        ["Structure", "Mild steel elevated shed: 2.5 x 5 in I-beams, U channels, anchors"],
+        ["Civil", "Concrete bases, block pads, epoxy waterproofing"],
+        ["Protection", "Indoor AC and DC distribution boxes (CHINT, TOMZN), TOMZN surge protection"],
+        ["Cabling", "Double tin-coated AC and DC cables, MC4 connectors, piping and ducting"],
+        ["Earthing", "Two GI earthing pits: DC and lightning arrester"],
       ],
     },
   },
