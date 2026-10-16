@@ -126,7 +126,7 @@ export const features: Feature[] = [
       model: [
         { src: "/projects/elevated-canopy/model-overview.webp", caption: "The whole roof: stair room, water tank, frame and array" },
         { src: "/projects/elevated-canopy/model-side.webp", caption: "Side view: low edge at the front, high edge over the stair room" },
-        { src: "/projects/elevated-canopy/model-plan.webp", caption: "Plan: three rows of nine, with two openings" },
+        { src: "/projects/elevated-canopy/model-plan.webp", caption: "Plan, front of the roof on the left: three rows of nine panels with two openings" },
       ],
       site: [
         { src: "/projects/elevated-canopy/site-frame-during-build.webp", caption: "The frame going up, before the modules" },

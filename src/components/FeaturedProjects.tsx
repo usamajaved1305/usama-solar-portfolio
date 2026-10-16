@@ -184,12 +184,12 @@ function FeatureBlock({ f, index, onOpen, onProject }: { f: Feature; index: numb
   );
 }
 
-function Pic({ shot, className = "" }: { shot: { src: string; caption: string }; className?: string }) {
+function Pic({ shot, className = "", whole = false }: { shot: { src: string; caption: string }; className?: string; whole?: boolean }) {
   return (
     <figure className={className}>
-      <a href={shot.src} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-xl" style={{ background: "#05080a" }}>
+      <a href={shot.src} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-xl" style={{ background: whole ? "#cfd3d6" : "#05080a" }}>
         {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
-        <img src={shot.src} alt={shot.caption} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03]" />
+        <img src={shot.src} alt={shot.caption} loading="lazy" decoding="async" className={`aspect-[4/3] w-full ${whole ? "object-contain" : "object-cover"} transition-transform duration-500 hover:scale-[1.03]`} />
       </a>
       <figcaption className="mt-2 text-[13px] leading-snug" style={{ color: "var(--text-dim)" }}>
         {shot.caption}
@@ -236,7 +236,7 @@ function ProjectView({ p }: { p: ProjectGallery }) {
       <h3 className={head} style={{ color: "var(--amber)" }}>The SketchUp model</h3>
       <div className="grid gap-3 sm:grid-cols-3">
         {p.model.map((s) => (
-          <Pic key={s.src} shot={s} />
+          <Pic key={s.src} shot={s} whole />
         ))}
       </div>
 
