@@ -134,10 +134,10 @@ function FeatureBlock({ f, index, onOpen, onProject }: { f: Feature; index: numb
         </p>
 
         {f.figures && (
-          <dl className="mt-7 grid grid-cols-3 gap-4 border-t pt-6" style={{ borderColor: "var(--line)" }}>
+          <dl className="mt-7 grid gap-x-5 gap-y-4 border-t pt-6" style={{ borderColor: "var(--line)", gridTemplateColumns: "repeat(3, auto)" }}>
             {f.figures.map((x) => (
               <div key={x.label}>
-                <dd className="font-extrabold text-[20px] sm:text-[22px] leading-tight num" style={{ fontFamily: "var(--font-display)" }}>
+                <dd className="whitespace-nowrap font-extrabold text-[19px] sm:text-[22px] leading-tight num" style={{ fontFamily: "var(--font-display)" }}>
                   {x.value}
                 </dd>
                 <dt className="mt-1 text-[12.5px] leading-snug" style={{ color: "var(--text-faint)" }}>
