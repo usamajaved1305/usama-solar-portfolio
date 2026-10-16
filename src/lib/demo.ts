@@ -115,7 +115,7 @@ export const features: Feature[] = [
     project: {
       title: "Elevated rooftop canopy over a stair room",
       intro: [
-        "A 15.375 kWp on-grid system on a house roof: 25 Canadian Solar 615 W N-type bifacial panels on a Fox 15 kW on-grid inverter, carried on a raised mild steel shed over the rooftop stair room and the open roof in front of it.",
+        "A 15.375 kWp on-grid system on the roof of a 10 marla house: 25 Canadian Solar 615 W N-type bifacial panels on a Fox 15 kW on-grid inverter, carried on a raised mild steel shed over the rooftop stair room and the open roof in front of it.",
         "The shed is built from 2.5 x 5 in I-beam columns and girders with U-channel rafters and purlins, anchored to concrete bases on block pads. The front columns are about 11 ft tall, the legs on the stair room slab about 4 ft 8 in, and knee braces tie the front columns to the girder.",
         "The SketchUp model follows my original design, the bill of materials and the photos of the built frame: three rows of nine panels with two left out over the stair room, on a frame tilted about 10 degrees.",
       ],
