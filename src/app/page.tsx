@@ -8,6 +8,7 @@ import { Skills } from "@/components/Skills";
 import { Credentials } from "@/components/Credentials";
 import { Contact } from "@/components/Contact";
 import { Gallery } from "@/components/Gallery";
+import { Roles } from "@/components/Roles";
 import { SiteFooter } from "@/components/SiteFooter";
 import { openGraphBase, personJsonLd } from "@/lib/seo";
 import { readMedia } from "@/lib/media";
@@ -32,6 +33,7 @@ export default function Home() {
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         <Stats />
+        <Roles toolShots={toolShots} />
         <Experience />
         <Projects />
         <Gallery photos={photos} />

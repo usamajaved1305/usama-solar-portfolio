@@ -7,6 +7,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { profile } from "@/lib/data";
 
 const LINKS = [
+  { href: "#roles", label: "Roles" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
@@ -42,7 +43,7 @@ export function Nav({ hasPhotos = false }: { hasPhotos?: boolean }) {
   }, [open]);
 
   const links = hasPhotos
-    ? [...LINKS.slice(0, 2), { href: "#site-photos", label: "Site photos" }, ...LINKS.slice(2)]
+    ? [...LINKS.slice(0, 3), { href: "#site-photos", label: "Site photos" }, ...LINKS.slice(3)]
     : LINKS;
   const solid = scrolled || open;
 
