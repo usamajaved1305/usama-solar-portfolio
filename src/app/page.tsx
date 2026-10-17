@@ -5,9 +5,9 @@ import { Credentials } from "@/components/Credentials";
 import { Contact } from "@/components/Contact";
 import { HeroBold } from "@/components/HeroBold";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
-import { PhotoGrid } from "@/components/PhotoGrid";
 import { SkillsBold } from "@/components/SkillsBold";
 import { DemoBadge } from "@/components/DemoBadge";
+import { Roles } from "@/components/Roles";
 import { SiteFooter } from "@/components/SiteFooter";
 import { openGraphBase, personJsonLd } from "@/lib/seo";
 import { readMedia } from "@/lib/media";
@@ -27,12 +27,12 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
-      <Nav hasPhotos />
+      <Nav />
       <main id="main" tabIndex={-1} className="outline-none">
         <HeroBold />
+        <Roles toolShots={toolShots} />
         <FeaturedProjects toolShots={toolShots} />
         <Experience />
-        <PhotoGrid />
         <SkillsBold toolShots={toolShots} />
         <Credentials certificates={certificates} />
         <Contact />
