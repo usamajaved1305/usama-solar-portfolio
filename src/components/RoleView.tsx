@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Download, Mail, Phone } from "lucide-react";
 import { profile, experience } from "@/lib/data";
-import { roles, type Role } from "@/lib/roles";
+import { roles, PROOF_LABELS, type Role } from "@/lib/roles";
 import type { MediaItem } from "@/lib/media";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { SunMark } from "./SunMark";
@@ -135,9 +135,9 @@ export function RoleView({ role, toolShots = {} }: { role: Role; toolShots?: Rec
                 Portfolio projects
               </h2>
               <p className="mt-2 mb-4 text-[14px]" style={{ color: "var(--text-dim)" }}>
-                Each button opens a project I built with that tool: the files, the screenshots and what they show.
+                Each button opens a project I built with that tool: the screenshots, what they show and, where there is one, the file to download.
               </p>
-              <ToolProof tools={role.proof} toolShots={toolShots} />
+              <ToolProof tools={role.proof} toolShots={toolShots} labels={PROOF_LABELS} list />
             </div>
 
             <div className="card p-6 md:col-span-2">

@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CalendarClock, Ruler, HardHat, ChartColumn, Check, ArrowRight, type LucideIcon } from "lucide-react";
-import { roles, type Role } from "@/lib/roles";
+import { CalendarClock, Ruler, HardHat, ChartColumn, ArrowRight, type LucideIcon } from "lucide-react";
+import { roles, PROOF_LABELS, type Role } from "@/lib/roles";
 import type { MediaItem } from "@/lib/media";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
-import { SectionHeading } from "./SectionHeading";
 import { ToolProof } from "./ToolProof";
 
 export const ROLE_ICONS: Record<Role["icon"], LucideIcon> = {
@@ -16,85 +15,77 @@ export const ROLE_ICONS: Record<Role["icon"], LucideIcon> = {
   chart: ChartColumn,
 };
 
+function Line({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <p className="text-[14.5px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
+      <span className="font-bold" style={{ color: "var(--text)" }}>
+        {label}:
+      </span>{" "}
+      {children}
+    </p>
+  );
+}
+
 export function Roles({ toolShots = {} }: { toolShots?: Record<string, MediaItem[]> }) {
   return (
     <section id="roles" className="section-pad">
       <div className="container-x">
-        <SectionHeading
-          kicker="Roles I'm targeting"
-          title="Where I fit"
-          desc="Four kinds of solar job. For each one: what Irish employers ask for, what I bring from my work, and portfolio projects I built in the tools those jobs use."
-        />
+        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce} className="max-w-3xl mb-12">
+          <span className="text-[12.5px] font-bold uppercase tracking-[0.14em]" style={{ color: "var(--amber)" }}>
+            Roles I&apos;m targeting
+          </span>
+          <h2 className="mt-3 font-extrabold leading-[1.08]" style={{ fontSize: "clamp(30px, 4.2vw, 46px)" }}>
+            Grounded in solar delivery. Useful from the planning desk to the roof.
+          </h2>
+          <p className="mt-4 text-[16.5px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
+            Main targets: project planning and solar project engineering. Site delivery and energy analytics draw on the
+            same experience, and every card opens work you can check.
+          </p>
+        </motion.div>
 
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="grid lg:grid-cols-2 gap-6"
+          className="grid lg:grid-cols-2 gap-5"
         >
           {roles.map((r) => {
             const Icon = ROLE_ICONS[r.icon];
             return (
-              <motion.article key={r.slug} variants={fadeUp} className="card p-6 sm:p-7 flex flex-col">
-                <div className="flex items-start gap-4">
-                  <div
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-xl"
-                    style={{ background: "var(--amber-soft)", color: "var(--amber)" }}
-                  >
-                    <Icon size={20} aria-hidden="true" />
-                  </div>
+              <motion.article
+                key={r.slug}
+                variants={fadeUp}
+                className="card relative overflow-hidden p-6 sm:p-7 pl-7 sm:pl-8 flex flex-col"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-0 bottom-0 w-[3px]"
+                  style={{ background: "linear-gradient(180deg, var(--amber), var(--emerald))" }}
+                />
+                <h3 className="flex items-center gap-2.5 font-bold text-[19px] leading-snug">
+                  <Icon size={20} aria-hidden="true" style={{ color: "var(--amber)" }} className="shrink-0" />
+                  {r.title}
+                </h3>
+
+                <div className="mt-4 space-y-3 flex-1">
+                  <Line label="Where I fit">{r.fit}</Line>
+                  <Line label="Track record">{r.record}</Line>
+                  <Line label="Tools">{r.tools.map((t) => (t === "Helioscope" ? "HelioScope" : t)).join(", ")}</Line>
                   <div>
-                    <h3 className="font-bold text-[19px] leading-snug">{r.family}</h3>
-                    <p className="mt-1 text-[13.5px]" style={{ color: "var(--text-faint)" }}>
-                      {r.targets.join(", ")}
-                    </p>
+                    <p className="text-[14.5px] font-bold">Proof:</p>
+                    <div className="mt-2">
+                      <ToolProof tools={r.proof} toolShots={toolShots} labels={PROOF_LABELS} list />
+                    </div>
                   </div>
                 </div>
 
-                <div className="mt-5 grid sm:grid-cols-2 gap-5 flex-1">
-                  <div>
-                    <div className="text-[11.5px] font-bold uppercase tracking-wide" style={{ color: "var(--text-faint)" }}>
-                      What the role asks
-                    </div>
-                    <ul className="mt-2 space-y-1.5">
-                      {r.asks.map((a) => (
-                        <li key={a} className="text-[13.5px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
-                          {a}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <div className="text-[11.5px] font-bold uppercase tracking-wide" style={{ color: "var(--amber)" }}>
-                      What I bring
-                    </div>
-                    <ul className="mt-2 space-y-1.5">
-                      {r.highlights.map((b) => (
-                        <li key={b} className="flex gap-2 text-[13.5px] leading-relaxed" style={{ color: "var(--text)" }}>
-                          <Check size={15} aria-hidden="true" className="mt-[3px] shrink-0" style={{ color: "var(--emerald)" }} />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-5 border-t flex flex-col gap-4" style={{ borderColor: "var(--line)" }}>
-                  <div>
-                    <div className="mb-2 text-[11.5px] font-bold uppercase tracking-wide" style={{ color: "var(--text-faint)" }}>
-                      Portfolio projects
-                    </div>
-                    <ToolProof tools={r.proof} toolShots={toolShots} />
-                  </div>
-                  <Link
-                    href={`/roles/${r.slug}`}
-                    className="inline-flex w-fit items-center gap-1.5 text-[14px] font-semibold underline underline-offset-4 hover:no-underline"
-                    style={{ color: "var(--text)" }}
-                  >
-                    Open the {r.family.toLowerCase()} page <ArrowRight size={15} aria-hidden="true" />
-                  </Link>
-                </div>
+                <Link
+                  href={`/roles/${r.slug}`}
+                  className="mt-5 inline-flex w-fit items-center gap-1.5 text-[14px] font-semibold underline underline-offset-4 hover:no-underline"
+                >
+                  More on this role <ArrowRight size={15} aria-hidden="true" />
+                </Link>
               </motion.article>
             );
           })}
