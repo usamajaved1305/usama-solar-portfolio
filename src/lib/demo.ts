@@ -116,17 +116,17 @@ export const features: Feature[] = [
       title: "Elevated rooftop canopy over a stair room",
       intro: [
         "A 15.375 kWp on-grid system on the roof of a 10 marla house: 25 Canadian Solar 615 W N-type bifacial panels on a Fox 15 kW on-grid inverter, carried on a raised mild steel shed over the rooftop stair room and the open roof in front of it.",
-        "The shed is built from 2.5 x 5 in I-beam columns and girders with U-channel rafters and purlins, anchored to concrete bases on block pads. The front columns are about 11 ft tall, the legs on the stair room slab about 4 ft 8 in, and knee braces tie the front columns to the girder.",
-        "The SketchUp model follows my original design, the bill of materials and the photos of the built frame: three rows of nine panels with two left out over the stair room, on a frame tilted about 10 degrees.",
+        "The shed is built from 2.5 x 5 in I-beam columns and girders with U-channel rails up the slope, anchored to concrete bases on block pads. Three columns stand on the open roof in front of the stair room, each braced back to its own base, and short legs stand on the stair room slab.",
+        "The SketchUp model follows my original design, the bill of materials and the photos of the built frame: three lines of landscape panels running up the slope over the stair room, on a frame tilted about 10 degrees.",
       ],
       pairs: [
         { design: { src: "/projects/elevated-canopy/model-front-left.webp", caption: "SketchUp model" }, built: { src: "/projects/elevated-canopy/site-finished-front.webp", caption: "Built on site" } },
         { design: { src: "/projects/elevated-canopy/model-front-right.webp", caption: "SketchUp model" }, built: { src: "/projects/elevated-canopy/site-finished-right.webp", caption: "Built on site" } },
       ],
       model: [
-        { src: "/projects/elevated-canopy/model-overview.webp", caption: "The whole roof: stair room, water tank, frame and array" },
+        { src: "/projects/elevated-canopy/model-overview.webp", caption: "The whole roof: stair room, frame and array" },
         { src: "/projects/elevated-canopy/model-side.webp", caption: "Side view: low edge at the front, high edge over the stair room" },
-        { src: "/projects/elevated-canopy/model-plan.webp", caption: "Plan, front of the roof on the left: three rows of nine panels with two openings" },
+        { src: "/projects/elevated-canopy/model-plan.webp", caption: "Plan, front of the roof on the left: three lines of panels running up the slope" },
       ],
       site: [
         { src: "/projects/elevated-canopy/site-frame-during-build.webp", caption: "The frame going up, before the modules" },
