@@ -1,6 +1,6 @@
 export const profile = {
   name: "Usama Javed",
-  headline: "Solar PV Delivery, Site Supervision & Planning",
+  headline: "Solar PV Project Engineer, Planning and Site Delivery",
   location: "Dublin, Ireland",
   city: "Dublin, Ireland",
   phone: "+353 85 773 5337",

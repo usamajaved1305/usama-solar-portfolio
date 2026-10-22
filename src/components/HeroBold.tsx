@@ -8,6 +8,10 @@ import { fadeUp, staggerContainer } from "@/lib/motion";
 // The first sentence of the lede: the second one repeats what the sections below show.
 const intro = profile.lede.split(". ")[0] + ".";
 
+// Two lines, so the end of the headline stays on the dark side of the photo instead of the bright sky.
+const [headlineFirst, ...headlineParts] = profile.headline.split(", ");
+const headlineRest = headlineParts.join(", ");
+
 // Full-width site photo behind the name, with the four headline figures on a glass strip at the bottom.
 export function HeroBold() {
   return (
@@ -62,7 +66,13 @@ export function HeroBold() {
           className="mt-4 font-bold leading-tight"
           style={{ fontSize: "clamp(22px, 2.6vw, 34px)", color: "#f2a93b", fontFamily: "var(--font-display)" }}
         >
-          {profile.headline}
+          {headlineFirst}
+          {headlineRest && (
+            <>
+              ,<br />
+              {headlineRest}
+            </>
+          )}
         </motion.p>
         <motion.p variants={fadeUp} className="mt-5 max-w-[54ch] text-[17px] sm:text-[18px] leading-relaxed text-white/80">
           {intro}
