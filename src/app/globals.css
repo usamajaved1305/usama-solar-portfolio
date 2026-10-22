@@ -362,3 +362,32 @@ html.lenis body {
     break-inside: avoid;
   }
 }
+
+/* Demo: pictures ease in a little when pointed at */
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-zoom:hover img,
+.img-zoom:focus-visible img {
+  transform: scale(1.045);
+}
+@media (prefers-reduced-motion: reduce) {
+  .img-zoom img { transition: none; }
+  .img-zoom:hover img, .img-zoom:focus-visible img { transform: none; }
+}
+
+/* Dark and bold: the hero photo drifts slowly; software tiles light up on hover */
+.hero-drift {
+  animation: hero-drift 24s ease-in-out infinite alternate;
+  transform-origin: 60% 40%;
+}
+@keyframes hero-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+.tool-tile:hover {
+  border-color: var(--amber);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-drift { animation: none; }
+}

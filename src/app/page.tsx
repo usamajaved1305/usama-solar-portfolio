@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
-import { Hero } from "@/components/Hero";
-import { Stats } from "@/components/Stats";
 import { Experience } from "@/components/Experience";
-import { Projects } from "@/components/Projects";
-import { Skills } from "@/components/Skills";
 import { Credentials } from "@/components/Credentials";
 import { Contact } from "@/components/Contact";
-import { Gallery } from "@/components/Gallery";
+import { HeroBold } from "@/components/HeroBold";
+import { FeaturedProjects } from "@/components/FeaturedProjects";
+import { SkillsBold } from "@/components/SkillsBold";
 import { Roles } from "@/components/Roles";
 import { SiteFooter } from "@/components/SiteFooter";
 import { openGraphBase, personJsonLd } from "@/lib/seo";
@@ -20,7 +18,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const photos = readMedia("photos");
   const certificates = readMedia("certificates");
   const toolShots = Object.fromEntries(
     Object.entries(TOOL_SHOT_FOLDERS).map(([tool, folder]) => [tool, readMedia(folder)])
@@ -29,15 +26,13 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
-      <Nav hasPhotos={photos.length > 0} />
+      <Nav />
       <main id="main" tabIndex={-1} className="outline-none">
-        <Hero />
-        <Stats />
+        <HeroBold />
         <Roles toolShots={toolShots} />
+        <FeaturedProjects toolShots={toolShots} />
         <Experience />
-        <Projects />
-        <Gallery photos={photos} />
-        <Skills toolShots={toolShots} />
+        <SkillsBold toolShots={toolShots} />
         <Credentials certificates={certificates} />
         <Contact />
       </main>

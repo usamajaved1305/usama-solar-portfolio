@@ -38,14 +38,14 @@ export const viewport: Viewport = {
 
 // Runs before first paint. Falls back to the OS preference when storage is blocked.
 // First-time visitors get the light theme; the toggle choice is remembered after that.
-const THEME_INIT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');d.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){d.setAttribute('data-theme','light');}})();`
+const THEME_INIT = `document.documentElement.setAttribute('data-theme','dark');`
 
 // Framer Motion server-renders hidden elements with opacity:0; without JS they would never appear.
 const NOSCRIPT_REVEAL = `[style*="opacity:0"]{opacity:1!important;transform:none!important}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IE" data-theme="light" suppressHydrationWarning>
+    <html lang="en-IE" data-theme="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
         <noscript>

@@ -16,8 +16,13 @@ function LinkedInGlyph({ size = 16 }: { size?: number }) {
 
 export function Contact() {
   return (
-    <section id="contact" className="section-pad relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(circle_at_center,black,transparent_75%)] opacity-70" />
+    <section id="contact" className="section-pad relative isolate overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+      <img src="/site/tilted-array-flat-rooftop.webp" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ background: "linear-gradient(to bottom, var(--bg) 0%, rgba(5,9,12,0.86) 30%, rgba(5,9,12,0.9) 100%)" }}
+      />
       <div className="container-x relative">
         <motion.div
           variants={staggerContainer}
@@ -26,9 +31,19 @@ export function Contact() {
           viewport={viewportOnce}
           className="max-w-2xl mx-auto text-center"
         >
+          {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+          <motion.img
+            variants={fadeUp}
+            src="/me/usama-avatar.webp"
+            alt="Usama Javed"
+            width={96}
+            height={96}
+            className="mx-auto mb-5 h-24 w-24 rounded-full object-cover"
+            style={{ boxShadow: "0 0 0 4px var(--bg), 0 0 0 6px var(--btn-bg)" }}
+          />
           <motion.span
             variants={fadeUp}
-            className="text-[12.5px] font-bold uppercase tracking-[0.14em]"
+            className="block text-[12.5px] font-bold uppercase tracking-[0.14em]"
             style={{ color: "var(--amber)" }}
           >
             Get in touch
@@ -88,12 +103,6 @@ export function Contact() {
             <LocationLink className="inline-flex items-center gap-2 min-h-11 hover:underline cursor-pointer" />
           </motion.div>
 
-          <motion.p variants={fadeUp} className="mt-4 text-[13.5px]" style={{ color: "var(--text-faint)" }}>
-            Need an editable copy?{" "}
-            <a href="/Usama-Javed-CV.docx" download className="underline underline-offset-4 hover:no-underline">
-              Download the Word version
-            </a>
-          </motion.p>
         </motion.div>
       </div>
     </section>

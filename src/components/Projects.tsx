@@ -1,10 +1,55 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Cpu } from "lucide-react";
+import { Cpu, CalendarClock, Users } from "lucide-react";
 import { projects, builds } from "@/lib/data";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import { SectionHeading } from "./SectionHeading";
+import { workThumbSrc } from "@/lib/demo";
+
+/** A picture or a headline figure on top of each story, so the card reads before the text does. */
+function CardVisual({ tag }: { tag: string }) {
+  if (tag === "Design under constraint") {
+    return (
+      <figure className="relative -mx-6 -mt-6 sm:-mx-7 sm:-mt-7 mb-5 overflow-hidden rounded-t-[inherit]">
+        {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+        <img src={workThumbSrc("helioscope")} alt="HelioScope layout of the 198 modules on this roof" className="aspect-[16/9] w-full object-cover" loading="lazy" />
+        <figcaption className="absolute left-3 bottom-3 rounded-full px-2.5 py-1 text-[11.5px] font-semibold text-white" style={{ background: "rgba(10,15,18,0.72)" }}>
+          The layout on this roof, in HelioScope
+        </figcaption>
+      </figure>
+    );
+  }
+  const figure = tag === "Programme recovery"
+    ? { Icon: CalendarClock, value: "2 months", label: "of inverter supply delay re-planned", dots: 0 }
+    : { Icon: Users, value: "5 sites", label: "running at once, with crews of up to 40", dots: 5 };
+  const { Icon } = figure;
+  return (
+    <div
+      className="-mx-6 -mt-6 sm:-mx-7 sm:-mt-7 mb-5 rounded-t-[inherit] px-6 sm:px-7 flex items-center gap-4 aspect-[16/9]"
+      style={{ background: "linear-gradient(135deg, var(--amber-soft), var(--emerald-soft))" }}
+    >
+      <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl" style={{ background: "var(--bg-card)", color: "var(--amber)" }}>
+        <Icon size={26} aria-hidden="true" />
+      </span>
+      <div>
+        <div className="font-extrabold leading-none num" style={{ fontSize: "clamp(30px, 3vw, 40px)", fontFamily: "var(--font-display)" }}>
+          {figure.value}
+        </div>
+        <div className="mt-2 text-[13.5px]" style={{ color: "var(--text-dim)" }}>
+          {figure.label}
+        </div>
+        {figure.dots > 0 && (
+          <div className="mt-3 flex gap-1.5" aria-hidden="true">
+            {Array.from({ length: figure.dots }, (_, i) => (
+              <span key={i} className="h-2.5 w-6 rounded-full" style={{ background: "var(--btn-bg)", opacity: 1 - i * 0.12 }} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 const STEPS = [
   { key: "challenge", label: "Challenge" },
@@ -30,7 +75,8 @@ export function Projects() {
           className="grid md:grid-cols-3 gap-6"
         >
           {projects.map((p) => (
-            <motion.article key={p.title} variants={fadeUp} className="card p-6 sm:p-7 flex flex-col">
+            <motion.article key={p.title} variants={fadeUp} className="card p-6 sm:p-7 flex flex-col overflow-hidden">
+              <CardVisual tag={p.tag} />
               <span
                 className="text-[11.5px] font-bold uppercase tracking-[0.1em] w-fit rounded-full px-3 py-1"
                 style={{ background: "var(--emerald-soft)", color: "var(--emerald)" }}
