@@ -146,15 +146,6 @@ export const features: Feature[] = [
     },
   },
   {
-    key: "ground",
-    tag: "Ground mount",
-    title: "Pole mounted arrays",
-    text: "Arrays on open ground, each on a single steel pole with a cross beam carrying the purlins and modules at a tilt.",
-    chips: ["Pole mount", "Steel frame", "Installation"],
-    image: { src: "/feature/pole-mount.webp", alt: "Pole mounted solar array on open ground" },
-    inset: { src: "/feature/pole-mount-frame.webp", alt: "Steel frame and pole supporting the array, rear view", label: "The frame from behind" },
-  },
-  {
     key: "rooftop",
     tag: "Design under constraint",
     title: "115 kWp commercial rooftop",

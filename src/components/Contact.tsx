@@ -103,12 +103,6 @@ export function Contact() {
             <LocationLink className="inline-flex items-center gap-2 min-h-11 hover:underline cursor-pointer" />
           </motion.div>
 
-          <motion.p variants={fadeUp} className="mt-4 text-[13.5px]" style={{ color: "var(--text-faint)" }}>
-            Need an editable copy?{" "}
-            <a href="/Usama-Javed-CV.docx" download className="underline underline-offset-4 hover:no-underline">
-              Download the Word version
-            </a>
-          </motion.p>
         </motion.div>
       </div>
     </section>
