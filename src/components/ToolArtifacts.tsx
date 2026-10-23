@@ -100,7 +100,7 @@ const BESS_TABLE_CONTROL = (
   <MiniTable
     head={["Period", "Action", "Limit"]}
     rows={[
-      ["00:00 to 05:00", "Charge from the grid at the off peak rate", "Stop at 75% SoC"],
+      ["00:00 to 05:00", "Charge from the grid at the off-peak rate", "Stop at 75% SoC"],
       ["06:00 to 18:00", "Charge from PV surplus", "Up to 100%"],
       ["06:00 to 18:00", "Discharge only to hold grid import down", "Not below 55%"],
       ["18:00 to 20:00", "Grid off, EPS board runs on PV and battery", "Down to 10%"],
@@ -116,19 +116,19 @@ const BESS_TABLE_RESULT = (
       ["PV generated", "116,742 kWh", "116,742 kWh"],
       ["Site load", "383,139 kWh", "383,139 kWh"],
       ["Grid import, total", "240,188 kWh", "250,546 kWh"],
-      ["of which off peak charging", "none", "12,649 kWh"],
+      ["of which off-peak charging", "none", "12,649 kWh"],
       ["Annual grid peak", "75.2 kW", "75.2 kW"],
       ["Hours over the 55 kW target", "1,078", "695, down 35.5%"],
       ["Outage demand met", "0%", "96.8%"],
       ["Battery throughput", "none", "12,729 kWh, 223.9 full cycles"],
-      ["Round trip loss, battery only", "none", "641 kWh"],
+      ["Round-trip loss, battery only", "none", "641 kWh"],
     ]}
   />
 );
 
 const BESS_TABLE_SENS = (
   <MiniTable
-    head={["Off peak charge target", "Outage met", "Hours over 55 kW", "PV stored", "Cycles a year"]}
+    head={["Off-peak charge target", "Outage met", "Hours over 55 kW", "PV stored", "Cycles a year"]}
     rows={[
       ["60%", "95.5%", "965", "1,106 kWh", "193.5"],
       ["75%, the one drawn", "96.8%", "695", "720 kWh", "223.9"],
@@ -296,7 +296,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 uses Excel Tables, XLOOKUP, SUMIFS, COUNTIF, nested IF and WORKDAY.INTL, with conditional formatting and
                 a PivotTable with a slicer. Module and inverter data come from the manufacturers&apos; datasheets. The
                 tracker was rebuilt in 2026, so its order and delivery dates are examples, and the PKR rates are
-                indicative.
+                indicative: the PKR 7.11M budget works out at about PKR 62 per Wp.
               </p>
               <p>
                 <a
@@ -686,7 +686,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 <strong>How the battery was sized.</strong> The first thing the model said was that the battery was not
                 worth fitting. Charged only from surplus PV it cycled about 13 times a year, because the site load is{" "}
                 <strong>3.3 times</strong> the generation and there is almost no surplus to store. The battery only
-                earns its place if it is charged off peak and given the job of carrying the site through the daily
+                earns its place if it is charged off-peak and given the job of carrying the site through the daily
                 outage.
               </p>
               <p>
@@ -698,7 +698,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               {BESS_TABLE_CONTROL}
               {BESS_TABLE_RESULT}
               <p>
-                Total import rises because off peak charging is itself an import. Of the 12,729&nbsp;kWh the battery
+                Total import rises because off-peak charging is itself an import. Of the 12,729&nbsp;kWh the battery
                 delivers in a year, 10,438&nbsp;kWh carries the essential board through the evening outage and
                 2,291&nbsp;kWh cuts daytime import above the target. The 55% floor holds 1.9 hours of reserve against a
                 2 hour outage, so 96.8% of outage demand is met. A higher floor would cover more of the outage and
@@ -712,7 +712,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 That is a commercial decision, not an electrical one.
               </p>
               <p>
-                How full to charge off peak is the one setting that trades the three jobs against each other. Charging
+                How full to charge off-peak is the one setting that trades the three jobs against each other. Charging
                 fuller shaves better and covers the outage better, but leaves no room for the midday PV surplus. At 100%
                 the battery takes no PV at all.
               </p>
@@ -728,7 +728,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               <p>
                 Equipment figures come from the FoxESS P3 Plus and CQ7 datasheets and the Jinko 72HL4-V datasheet. The
                 load profile, the outage window and the tariff periods are design assumptions, declared at the top of
-                the model, and would be replaced with half hourly meter data before anything was ordered.
+                the model, and would be replaced with half-hourly meter data before anything was ordered.
               </p>
               <p className="flex flex-wrap gap-x-4 gap-y-1.5">
                 {BESS_SHEETS.flatMap(([label, base]) =>

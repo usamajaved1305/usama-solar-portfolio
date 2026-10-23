@@ -18,11 +18,11 @@ export const sitePhotos: SitePhoto[] = [
   { slug: "raised-rooftop-arrays-trees", caption: "Raised rooftop arrays with trees behind", group: "Arrays and structures", w: 1280, h: 960 },
   { slug: "tilted-array-flat-rooftop", caption: "Tilted array on a flat rooftop", group: "Arrays and structures", w: 1280, h: 960 },
   { slug: "tilted-rooftop-array-side", caption: "Tilted rooftop array, side view", group: "Arrays and structures", w: 1280, h: 960 },
-  { slug: "fox-string-inverter", caption: "FOX ESS string inverter with the DC strings connected", group: "Inverters and wiring", w: 1496, h: 1496 },
+  { slug: "fox-string-inverter", caption: "FoxESS string inverter with the DC strings connected", group: "Inverters and wiring", w: 1496, h: 1496 },
   { slug: "ac-cabling-breaker-meter", caption: "AC cabling dressed into a CHINT breaker and energy meter", group: "Inverters and wiring", w: 1496, h: 1496 },
-  { slug: "fox-inverter-ac-box", caption: "FOX ESS inverter beside the AC distribution box", group: "Inverters and wiring", w: 1496, h: 1496 },
+  { slug: "fox-inverter-ac-box", caption: "FoxESS inverter beside the AC distribution box", group: "Inverters and wiring", w: 1496, h: 1496 },
   { slug: "growatt-inverter-trunking", caption: "Growatt inverter and breaker enclosures on cable trunking", group: "Inverters and wiring", w: 1600, h: 1600 },
-  { slug: "fox-inverter-patterned-wall", caption: "FOX ESS inverter with trunking and an AC breaker box", group: "Inverters and wiring", w: 1600, h: 1600 },
+  { slug: "fox-inverter-patterned-wall", caption: "FoxESS inverter with trunking and an AC breaker box", group: "Inverters and wiring", w: 1600, h: 1600 },
   { slug: "inverter-tiled-wall", caption: "Inverter and distribution boards on a tiled wall", group: "Inverters and wiring", w: 900, h: 1600 },
   { slug: "inverex-inverter-indoor", caption: "Inverex Veyron II inverter installed on an indoor wall", group: "Inverters and wiring", w: 1200, h: 1600 },
   { slug: "growatt-inverter-ac-box", caption: "Growatt inverter beside an AC distribution box", group: "Inverters and wiring", w: 1280, h: 960 },
@@ -108,7 +108,7 @@ export const features: Feature[] = [
     figures: [
       { value: "15.375 kWp", label: "on-grid system" },
       { value: "25", label: "615 W bifacial panels" },
-      { value: "15 kW", label: "Fox inverter" },
+      { value: "15 kW", label: "FoxESS inverter" },
     ],
     chips: ["Steel frame", "SketchUp model", "Site supervision"],
     image: { src: "/projects/elevated-canopy/site-finished-right.webp", alt: "The finished elevated frame and modules over the stair room", w: 1280, h: 960, small: { src: "/projects/elevated-canopy/site-finished-right-800.webp", w: 800 } },
@@ -116,7 +116,7 @@ export const features: Feature[] = [
     project: {
       title: "Elevated rooftop canopy over a stair room",
       intro: [
-        "A 15.375 kWp on-grid system on the roof of a 10 marla house: 25 Canadian Solar 615 W N-type bifacial panels on a Fox 15 kW on-grid inverter, carried on a raised mild steel shed over the rooftop stair room and the open roof in front of it.",
+        "A 15.375 kWp on-grid system on the roof of a 10 marla house: 25 Canadian Solar 615 W N-type bifacial panels on a FoxESS 15 kW on-grid inverter, carried on a raised mild steel shed over the rooftop stair room and the open roof in front of it.",
         "The shed is built from 2.5 x 5 in I-beam columns and girders with U-channel rails up the slope, anchored to concrete bases on block pads. Three columns stand on the open roof in front of the stair room, each braced back to its own base, and short legs stand on the stair room slab.",
         "I redrew the job in SketchUp from my original design, the bill of materials and the photos of the built frame: three lines of landscape panels running up the slope over the stair room, on a frame tilted about 10 degrees.",
       ],
@@ -137,7 +137,7 @@ export const features: Feature[] = [
       ],
       scope: [
         ["Panels", "25 x Canadian Solar 615 W N-type bifacial, 15.375 kWp"],
-        ["Inverter", "Fox 15 kW on-grid, IP65, with WiFi monitoring"],
+        ["Inverter", "FoxESS 15 kW on-grid, IP65, with WiFi monitoring"],
         ["Structure", "Mild steel elevated shed: 2.5 x 5 in I-beams, U channels, anchors"],
         ["Civil", "Concrete bases, block pads, epoxy waterproofing"],
         ["Protection", "Indoor AC and DC distribution boxes (CHINT, TOMZN), TOMZN surge protection"],

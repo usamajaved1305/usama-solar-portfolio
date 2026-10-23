@@ -185,7 +185,7 @@ export const builds = [
   {
     title: "Solar UPS System",
     detail:
-      "PV array, charge controller and 12V DC storage with inverter output, delivering uninterrupted backup power for household electrical loads.",
+      "PV array, charge controller and 12 V DC storage with inverter output, delivering uninterrupted backup power for household electrical loads.",
   },
   {
     title: "Single and Dual Axis Solar Trackers",

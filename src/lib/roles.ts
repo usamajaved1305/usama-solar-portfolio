@@ -24,6 +24,10 @@ export type Role = {
   proof: string[];
   /** The two proofs shown on the home card; the role page shows them all. */
   homeProof: string[];
+  /** Button text that differs from PROOF_LABELS on this page only. */
+  proofLabels?: Record<string, string>;
+  /** One picture under the hero, so the page is not text only. small: a narrower copy for srcset. */
+  picture?: { src: string; alt: string; caption: string; w: number; h: number; small?: { src: string; w: number } };
 };
 
 export const roles: Role[] = [
@@ -89,6 +93,14 @@ export const roles: Role[] = [
     ],
     proof: ["Elevated canopy", "Helioscope", "AutoCAD", "SketchUp", "OpenSolar"],
     homeProof: ["Helioscope", "AutoCAD"],
+    picture: {
+      src: "/feature/helioscope-layout.webp",
+      alt: "HelioScope layout of 198 modules on a 115 kWp commercial rooftop",
+      caption: "115 kWp commercial rooftop: 198 modules set out along the building at 146 degrees, which fits 35 more modules than facing due south.",
+      w: 1090,
+      h: 772,
+      small: { src: "/feature/helioscope-layout-720.webp", w: 720 },
+    },
   },
   {
     slug: "site-delivery",
@@ -121,6 +133,13 @@ export const roles: Role[] = [
     ],
     proof: ["Elevated canopy", "MS Project", "AutoCAD"],
     homeProof: ["Elevated canopy", "MS Project"],
+    picture: {
+      src: "/feature/canopy-model-and-built.webp",
+      alt: "SketchUp model of an elevated rooftop solar frame beside the same frame as built",
+      caption: "Elevated rooftop frame, 15.375 kWp: the SketchUp model beside the frame as built on site.",
+      w: 1200,
+      h: 630,
+    },
   },
   {
     slug: "energy-analytics",
@@ -150,8 +169,17 @@ export const roles: Role[] = [
       "Three and a half years delivering solar PV, including shading checks, load calculations and system sizing.",
       "Portfolio work: a Power BI report, a SQL database and a Python energy model for a 115 kWp commercial rooftop, and an hourly battery model in Python.",
     ],
-    proof: ["Python", "Power BI", "SQL", "Advanced Excel"],
+    proof: ["Python", "AutoCAD", "Power BI", "SQL", "Advanced Excel"],
     homeProof: ["Python", "SQL"],
+    proofLabels: { AutoCAD: "Hourly battery dispatch model, 79 kWp PV and 63 kWh battery" },
+    picture: {
+      src: "/feature/autocad-dispatch.webp",
+      alt: "Hourly PV generation, site demand, grid import and battery state of charge over two typical days",
+      caption: "Battery dispatch on two typical days, from an hour-by-hour Python model of a year for a 79 kWp PV and 63 kWh battery system.",
+      w: 900,
+      h: 581,
+      small: { src: "/feature/autocad-dispatch-480.webp", w: 480 },
+    },
   },
 ];
 

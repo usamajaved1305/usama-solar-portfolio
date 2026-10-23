@@ -126,6 +126,30 @@ export function RoleView({ role, toolShots = {} }: { role: Role; toolShots?: Rec
           </motion.div>
         </section>
 
+        {role.picture && (
+          <section className="pb-10">
+            <figure className="container-x max-w-4xl">
+              <div className="overflow-hidden rounded-2xl" style={{ background: "var(--bg-card)", border: "1px solid var(--line)" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+                <img
+                  src={role.picture.src}
+                  srcSet={role.picture.small ? `${role.picture.small.src} ${role.picture.small.w}w, ${role.picture.src} ${role.picture.w}w` : undefined}
+                  sizes="(min-width: 960px) 896px, 100vw"
+                  alt={role.picture.alt}
+                  width={role.picture.w}
+                  height={role.picture.h}
+                  loading="lazy"
+                  decoding="async"
+                  className="block h-auto w-full"
+                />
+              </div>
+              <figcaption className="mt-2.5 text-[13.5px] leading-snug" style={{ color: "var(--text-dim)" }}>
+                {role.picture.caption}
+              </figcaption>
+            </figure>
+          </section>
+        )}
+
         <section className="pb-14">
           <div className="container-x max-w-4xl grid md:grid-cols-2 gap-6">
             <div className="card p-6">
@@ -162,7 +186,7 @@ export function RoleView({ role, toolShots = {} }: { role: Role; toolShots?: Rec
                 Each one opens the work itself: the photos or screenshots, what they show and, where there is one, the
                 file to download.
               </p>
-              <ToolProof tools={role.proof} toolShots={toolShots} labels={PROOF_LABELS} list />
+              <ToolProof tools={role.proof} toolShots={toolShots} labels={{ ...PROOF_LABELS, ...role.proofLabels }} list />
             </div>
 
             <div className="card p-6 md:col-span-2">
