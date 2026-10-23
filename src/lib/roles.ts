@@ -103,7 +103,7 @@ export const roles: Role[] = [
     record:
       "Up to 40 crew members across five concurrent sites; site escalation point for mounting, DC and AC works.",
     tools: ["MS Project", "AutoCAD", "Advanced Excel"],
-    targets: ["Site Supervisor", "Installation Supervisor"],
+    targets: ["Installation Supervisor", "Assistant Site Manager"],
     pitch:
       "As a project manager I led three engineers and installation crews of up to 40 people across five concurrent solar sites, and was the escalation point when mounting, DC string routing and AC connection works clashed.",
     asks: [
