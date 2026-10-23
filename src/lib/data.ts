@@ -201,7 +201,7 @@ export const education = [
     org: "Dublin Business School",
     orgUrl: "https://www.dbs.ie/",
     href: "https://www.dbs.ie/course/postgraduate/master-of-science-(msc)-in-business-analytics",
-    period: "2026 to Present",
+    period: "Apr 2026 to Apr 2027 (expected)",
     detail:
       "Coursework: data modelling and visualisation in Power BI, SQL and Python analytics, forecasting, project and operations decision analysis.",
   },
