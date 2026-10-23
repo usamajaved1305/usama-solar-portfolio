@@ -21,6 +21,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const fullTitle = `${title} | ${profile.name}`;
   const toolsText = role.tools.map((t) => (t === "Helioscope" ? "HelioScope" : t)).join(", ");
   const description = `${role.pitch} Tools: ${toolsText}. Dublin, Ireland.`;
+  const roleOgImage = {
+    url: `/og/${role.slug}.jpg`,
+    width: 1200,
+    height: 630,
+    alt: `${role.title} - ${profile.name}`,
+    type: "image/jpeg",
+  };
   return {
     title,
     description,
@@ -30,13 +37,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: fullTitle,
       description,
       url: `/roles/${role.slug}`,
-      images: [OG_IMAGE],
+      images: [roleOgImage],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [TWITTER_IMAGE],
+      images: [roleOgImage.url],
     },
   };
 }
