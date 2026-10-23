@@ -165,7 +165,7 @@ export const features: Feature[] = [
     key: "battery",
     tag: "Design study",
     title: "79 kWp rooftop with a 63 kWh battery",
-    text: "A 2026 design: 136 modules on an 80 kW FoxESS hybrid inverter, with nine battery modules in series. Drawn in AutoCAD as three A1 sheets: the single line diagram, the mechanical layout and the battery control sheet.",
+    text: "136 modules on an 80 kW FoxESS hybrid inverter, with nine battery modules in series. Drawn in AutoCAD as three A1 sheets: the single line diagram, the mechanical layout and the battery control sheet.",
     figures: [
       { value: "78.88 kWp", label: "PV array" },
       { value: "63.18 kWh", label: "battery" },

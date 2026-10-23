@@ -295,7 +295,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 A dashboard sums up the job: cost position, late and overdue orders, and spend by supplier. The workbook
                 uses Excel Tables, XLOOKUP, SUMIFS, COUNTIF, nested IF and WORKDAY.INTL, with conditional formatting and
                 a PivotTable with a slicer. Module and inverter data come from the manufacturers&apos; datasheets. The
-                tracker was rebuilt in 2026, so its order and delivery dates are examples, and the PKR rates are
+                order and delivery dates in the tracker are examples, and the PKR rates are
                 indicative: the PKR 7.11M budget works out at about PKR 62 per Wp.
               </p>
               <p>
@@ -651,7 +651,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                A rooftop PV and battery design I drew in September and October 2026 for a commercial unit in
+                A rooftop PV and battery design study for a commercial unit in
                 Islamabad: 136 Jinko 580&nbsp;W modules at <strong>78.88&nbsp;kWp</strong> on an 80&nbsp;kW{" "}
                 <strong>FoxESS P3-80-Plus</strong> hybrid inverter, with{" "}
                 <strong>nine FoxESS CQ7 modules</strong> in series giving 63.18&nbsp;kWh at 518.4&nbsp;V.

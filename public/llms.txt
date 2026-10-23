@@ -36,7 +36,7 @@
 - 115 kWp roof layout and simulation in HelioScope (198 modules at 114.84 kWp)
 - 20 kW house design and proposal in OpenSolar
 - 3D model and shading check in SketchUp
-- 79 kWp PV, 80 kW hybrid inverter and 63 kWh battery drawings in AutoCAD (a 2026 design)
+- 79 kWp PV, 80 kW hybrid inverter and 63 kWh battery drawings in AutoCAD (design study)
 - 15.375 kWp elevated rooftop canopy: designed in SketchUp and built on site
 
 ## Education
