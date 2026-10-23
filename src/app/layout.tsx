@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   authors: [{ name: profile.name, url: SITE_URL }],
   creator: profile.name,
   publisher: profile.name,
+  verification: {
+    google: "twYLCifkti1wPibkqHkm43muIEtXr4uBV6NImPs1LHA",
+  },
   robots: {
     index: true,
     follow: true,

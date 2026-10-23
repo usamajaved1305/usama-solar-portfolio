@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { certifications, education, profile } from "./data";
-import type { Role } from "./roles";
+import { roles, type Role } from "./roles";
 import { SITE_URL } from "./site";
 
 export const TITLE = `${profile.name} | ${profile.headline}`;
 
 export const DESCRIPTION =
-  "Usama Javed: Solar PV Project Engineer in Dublin, Ireland. Over 100 PV installations (5 to 115 kWp) and 790 kWp in one year. Primavera P6, MS Project, AutoCAD, HelioScope, Power BI.";
+  "Usama Javed (usamajaved.ie): Solar PV Project Engineer in Dublin, Ireland. Over 100 PV installations (5 to 115 kWp) and 790 kWp in one year. Primavera P6, MS Project, AutoCAD, HelioScope, Power BI.";
 
 export const SHORT_DESCRIPTION =
   "Solar PV Project Engineer in Dublin, Ireland. Over 100 solar PV installations delivered. Planning (Primavera P6, MS Project), PV design (AutoCAD, HelioScope) and site supervision.";
 
 export const KEYWORDS = [
   "Usama Javed",
+  "usamajaved.ie",
   "Solar PV Project Engineer",
   "Project Planning Engineer",
   "Project Planner",
@@ -123,6 +124,7 @@ export const personJsonLd = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       name: TITLE,
+      alternateName: ["Usama Javed", "usamajaved.ie", "Usama Javed Solar Portfolio"],
       url: SITE_URL,
       inLanguage: "en-IE",
       publisher: { "@id": `${SITE_URL}/#person` },
@@ -136,6 +138,18 @@ export const personJsonLd = {
       inLanguage: "en-IE",
       isPartOf: { "@id": `${SITE_URL}/#website` },
       mainEntity: { "@id": `${SITE_URL}/#person` },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${SITE_URL}/#roles`,
+      name: "Solar PV Engineering Roles",
+      itemListElement: roles.map((r, idx) => ({
+        "@type": "SiteNavigationElement",
+        position: idx + 1,
+        name: r.title,
+        description: r.fit,
+        url: `${SITE_URL}/roles/${r.slug}`,
+      })),
     },
     personEntity,
   ],

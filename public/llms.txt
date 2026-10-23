@@ -1,0 +1,43 @@
+# Usama Javed | Solar PV Project Engineer, Planning and Site Delivery
+
+> Official portfolio website of Usama Javed (https://usamajaved.ie). Mechatronics engineer based in Dublin, Ireland, with three and a half years delivering solar PV projects from site survey through installation, commissioning and client handover.
+
+## Contact
+- Website: https://usamajaved.ie
+- Location: Dublin, Ireland
+- Email: usamajaved1305@gmail.com
+- Phone: +353 85 773 5337
+- LinkedIn: https://www.linkedin.com/in/usama-javed-553b8624b
+- GitHub: https://github.com/usamajaved1305
+- CV (PDF): https://usamajaved.ie/Usama-Javed-CV.pdf
+- Open to project engineering, site supervision and planning roles
+
+## Key numbers
+- 100+ PV installations delivered, from 5 kWp domestic systems to a 115 kWp commercial rooftop
+- 790 kWp delivered across 36 projects, 85 to 90% completed on time
+- Up to 40 crew members supervised across five concurrent sites
+- 3.5 years of solar PV experience
+
+## Experience
+- Project Manager, Solar Neon Engineering Pvt Ltd (May 2025 to Mar 2026): 36 residential and commercial solar PV projects, 790 kWp, up to 40 crew across five concurrent sites.
+- Senior Project Engineer, Islamabad Solar House Pvt Ltd (Feb 2023 to Apr 2025): full lifecycle on 59 PV installations from 5 kWp to 115 kWp.
+- Project Engineer, Safeway Renewable Energy Pvt Ltd (Sep 2022 to Jan 2023): seven solar projects and 12 site inspections.
+- Mechatronics Engineer Intern, National Institute of Electronics (Jul 2022 to Aug 2022).
+
+## Role pages
+- [Project Planner / Scheduler](https://usamajaved.ie/roles/planning): Primavera P6, MS Project, Advanced Excel, Power BI.
+- [Solar Project / Technical Engineer](https://usamajaved.ie/roles/project-engineering): HelioScope, OpenSolar, AutoCAD, SketchUp.
+- [Site Supervisor / Field Delivery](https://usamajaved.ie/roles/site-delivery): crew leadership, workmanship inspection, commissioning.
+- [Energy / Reporting Analyst](https://usamajaved.ie/roles/energy-analytics): Power BI, Advanced Excel, SQL, Python.
+
+## Portfolio projects
+- 20 kW installation programme in Primavera P6 and MS Project
+- 115 kWp BOM and cost tracker in Excel, cost and procurement report in Power BI, procurement database in SQL, energy yield estimate in Python
+- 115 kWp roof layout and simulation in HelioScope (198 modules at 114.84 kWp)
+- 20 kW house design and proposal in OpenSolar
+- 3D model and shading check in SketchUp
+- 80 kW PV and 63 kWh battery drawings in AutoCAD
+
+## Education
+- MSc Business Analytics, Dublin Business School, Ireland (2026 to present)
+- BE Mechatronics Engineering, Air University, Islamabad (2018 to 2022)
