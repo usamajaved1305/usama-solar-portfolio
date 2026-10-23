@@ -113,7 +113,7 @@ const personEntity = {
       recognizedBy: { "@type": "Organization", name: c.issuer },
       ...(c.verify ? { url: c.verify } : {}),
     })),
-  ...(profile.linkedin ? { sameAs: [profile.linkedin] } : {}),
+  sameAs: [profile.linkedin, profile.github].filter(Boolean),
 };
 
 export const personJsonLd = {

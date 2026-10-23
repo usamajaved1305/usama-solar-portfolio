@@ -1,4 +1,4 @@
-export const profile = {
+﻿export const profile = {
   name: "Usama Javed",
   headline: "Solar PV Project Engineer, Planning and Site Delivery",
   location: "Dublin, Ireland",
@@ -7,6 +7,7 @@ export const profile = {
   whatsapp: "https://wa.me/353857735337",
   email: "usamajaved1305@gmail.com",
   linkedin: "https://www.linkedin.com/in/usama-javed-553b8624b",
+  github: "https://github.com/usamajaved1305",
   lede:
     "Mechatronics engineer with three and a half years delivering solar PV projects from site survey through installation, commissioning and client handover. Experienced leading installation crews on live sites, and equally strong on the planning side: programmes, bills of material, budgets and milestone tracking.",
   availability: "Open to project engineering, site supervision and planning roles",
