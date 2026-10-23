@@ -21,7 +21,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title,
     description: role.pitch,
     alternates: { canonical: `/roles/${role.slug}` },
-    openGraph: { ...openGraphBase, title, description: role.pitch, url: `/roles/${role.slug}` },
+    openGraph: { ...openGraphBase, title, description: role.pitch, url: `/roles/${role.slug}`, images: ["/opengraph-image.png"] },
+    // Setting openGraph here replaces the root one, so the share image has to be named again for LinkedIn previews.
+    twitter: { card: "summary_large_image", title, description: role.pitch, images: ["/twitter-image.png"] },
   };
 }
 
