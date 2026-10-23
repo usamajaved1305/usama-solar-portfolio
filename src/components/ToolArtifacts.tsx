@@ -28,8 +28,8 @@ export const TOOL_SHOT_FOLDERS: Record<string, string> = {
 
 const P6_XER = "/tools/p6/20-kW-residential-pv-p6.xer";
 const MSP_FILE = "/tools/ms-project/20-kW-residential-pv-ms-project.mpp";
-const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx";
-const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql";
+const EXCEL_WORKBOOK = "/tools/advanced-excel/115-kWp-commercial-rooftop-bom-and-cost-tracker.xlsx";
+const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-procurement-database.sql";
 const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
 /** The three BESS sheets as drawn in AutoCAD: the plotted A1 PDF and the DWG behind it. */
 const BESS_SHEETS: [string, string][] = [
@@ -294,8 +294,9 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               <p>
                 A dashboard sums up the job: cost position, late and overdue orders, and spend by supplier. The workbook
                 uses Excel Tables, XLOOKUP, SUMIFS, COUNTIF, nested IF and WORKDAY.INTL, with conditional formatting and
-                a PivotTable with a slicer. This is a sample project: module and inverter data come from the
-                manufacturers&apos; datasheets, and the PKR rates are indicative.
+                a PivotTable with a slicer. Module and inverter data come from the manufacturers&apos; datasheets. The
+                tracker was rebuilt in 2026, so its order and delivery dates are examples, and the PKR rates are
+                indicative.
               </p>
               <p>
                 <a
@@ -497,7 +498,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             <>
               <p>
                 The same 115 kWp system as the Excel, Power BI, SQL and Python projects, designed in HelioScope on a
-                typical industrial roof in Islamabad&apos;s I-9 area: 198 Jinko 580 W modules on fixed-tilt racking at
+                an industrial roof in Islamabad&apos;s I-9 area: 198 Jinko 580 W modules on fixed-tilt racking at
                 20°, wired in 11 strings of 18 into one Huawei SUN2000-100KTL-M2 inverter (DC/AC ratio 1.15).
                 HelioScope checked the strings at its own Islamabad design low of 0.3 °C and got 998 V; the Excel check
                 uses a harsher -5 °C and gets 1,012 V. Both sit inside the inverter&apos;s 1,100 V limit.
@@ -507,7 +508,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 costs about 2% of yield against due south. The simulation, on Meteonorm weather data, gives 158.8 MWh a
                 year, or 1,383 kWh per kWp at a performance ratio of 81%. That is about 9% below the PVGIS figure for the
                 same orientation, mainly because Meteonorm has 14% less sunshine for Islamabad than PVGIS&apos;s ERA5
-                data. It is a sample design, using HelioScope&apos;s default loss settings. Shading here is row to row
+                data. It uses HelioScope&apos;s default loss settings. Shading here is row to row
                 only: the parapets and the trees on the east side are not modelled, so a site survey would come before
                 any yield promise.
               </p>

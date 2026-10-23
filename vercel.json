@@ -23,6 +23,16 @@
       ],
       "destination": "https://usamajaved.ie/$1",
       "permanent": true
+    },
+    {
+      "source": "/tools/advanced-excel/115-kWp-commercial-rooftop-excel-demo.xlsx",
+      "destination": "/tools/advanced-excel/115-kWp-commercial-rooftop-bom-and-cost-tracker.xlsx",
+      "permanent": true
+    },
+    {
+      "source": "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql",
+      "destination": "/tools/sql/115-kWp-commercial-rooftop-procurement-database.sql",
+      "permanent": true
     }
   ],
   "headers": [
