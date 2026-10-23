@@ -3,15 +3,15 @@
   "framework": "nextjs",
   "redirects": [
     {
-      "source": "/",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.usamajaved.ie" }],
-      "destination": "https://usamajaved.ie/",
+      "destination": "https://usamajaved.ie/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.usamajaved.ie" }],
-      "destination": "https://usamajaved.ie/:path*",
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "usamajaved-solar.vercel.app" }],
+      "destination": "https://usamajaved.ie/$1",
       "permanent": true
     }
   ],
@@ -21,18 +21,21 @@
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
-        { "key": "Content-Security-Policy", "value": "frame-ancestors 'self'" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
+        { "key": "Content-Security-Policy", "value": "frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" }
       ]
     },
     {
-      "source": "/(feature|projects|site|me|og|tools|certificates)/(.*)",
+      "source": "/(feature|projects|site|me|tools|certificates|photos|og)/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }]
     },
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "usamajaved-solar.vercel.app" }],
+      "source": "/(.*)(__next\\.|index\\.txt|_not-found)(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/roles/(planning|project-engineering|site-delivery|energy-analytics)\\.txt",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     }
   ]
