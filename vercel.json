@@ -3,15 +3,37 @@
   "framework": "nextjs",
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.usamajaved.ie" }],
+      "destination": "https://usamajaved.ie/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.usamajaved.ie"
-        }
-      ],
+      "has": [{ "type": "host", "value": "www.usamajaved.ie" }],
       "destination": "https://usamajaved.ie/:path*",
       "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+        { "key": "Content-Security-Policy", "value": "frame-ancestors 'self'" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+      ]
+    },
+    {
+      "source": "/(feature|projects|site|me|og|tools|certificates)/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }]
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "usamajaved-solar.vercel.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     }
   ]
 }

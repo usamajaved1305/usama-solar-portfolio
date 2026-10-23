@@ -47,7 +47,7 @@ export function RoleView({ role, toolShots = {} }: { role: Role; toolShots?: Rec
       <main id="main" tabIndex={-1} className="outline-none">
         <section className="relative pt-12 pb-10 sm:pt-16">
           <div className="absolute inset-0 bg-grid [mask-image:linear-gradient(to_bottom,black,transparent)]" />
-          <motion.div variants={staggerContainer} initial="hidden" animate="show" className="container-x relative max-w-4xl">
+          <motion.div variants={staggerContainer} initial={false} animate="show" className="container-x relative max-w-4xl">
             <motion.div variants={fadeUp}>
               <Link
                 href="/#roles"
@@ -88,9 +88,7 @@ export function RoleView({ role, toolShots = {} }: { role: Role; toolShots?: Rec
                 <Mail size={16} aria-hidden="true" /> Email me
               </a>
               <a
-                href={profile.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={profile.tel}
                 className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold border"
                 style={{ borderColor: "var(--line-strong)", color: "var(--text)" }}
               >

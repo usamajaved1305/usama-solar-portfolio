@@ -98,14 +98,11 @@ export function Contact() {
             className="mt-8 flex flex-wrap items-center justify-center gap-x-8 text-[14.5px]"
             style={{ color: "var(--text-faint)" }}
           >
-            <a
-              href={profile.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 min-h-11 hover:underline"
-              title="Message on WhatsApp"
-            >
+            <a href={profile.tel} className="inline-flex items-center gap-2 min-h-11 hover:underline">
               <Phone size={15} aria-hidden="true" /> {profile.phone}
+            </a>
+            <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 min-h-11 hover:underline">
+              WhatsApp
             </a>
             <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 min-h-11 hover:underline">
               <Mail size={15} aria-hidden="true" /> {profile.email}

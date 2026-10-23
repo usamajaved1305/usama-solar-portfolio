@@ -4,6 +4,7 @@
   location: "Dublin, Ireland",
   city: "Dublin, Ireland",
   phone: "+353 85 773 5337",
+  tel: "tel:+353857735337",
   whatsapp: "https://wa.me/353857735337",
   email: "usamajaved1305@gmail.com",
   linkedin: "https://www.linkedin.com/in/usama-javed-553b8624b",
@@ -15,7 +16,7 @@
 
 export const stats = [
   { value: "100+", label: "PV installations delivered", sub: "5 kWp domestic systems to a 115 kWp commercial rooftop" },
-  { value: "790 kWp", label: "Capacity delivered", sub: "36 projects, 85 to 90% completed on time" },
+  { value: "790 kWp", label: "Delivered in one year", sub: "36 projects, 85 to 90% completed on time" },
   { value: "Up to 40", label: "Crew members supervised", sub: "across five concurrent sites" },
   { value: "3.5 years", label: "Solar PV experience", sub: "from site survey through commissioning" },
 ];

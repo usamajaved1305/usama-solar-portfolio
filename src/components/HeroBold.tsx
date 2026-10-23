@@ -44,7 +44,8 @@ export function HeroBold() {
         style={{ background: "linear-gradient(to top, var(--bg) 8%, transparent)" }}
       />
 
-      <motion.div variants={staggerContainer} initial="hidden" animate="show" className="container-x pt-32 pb-12 text-white">
+      {/* initial={false}: the hero paints at full opacity from the static HTML instead of waiting for hydration (LCP). */}
+      <motion.div variants={staggerContainer} initial={false} animate="show" className="container-x pt-32 pb-12 text-white">
         <motion.div variants={fadeUp} className="flex items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
           <img
@@ -108,7 +109,7 @@ export function HeroBold() {
           <span className="inline-flex items-center gap-2 min-h-10">
             <MapPin size={15} aria-hidden="true" /> {profile.city}
           </span>
-          <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 min-h-10 hover:text-white">
+          <a href={profile.tel} className="inline-flex items-center gap-2 min-h-10 hover:text-white">
             <Phone size={15} aria-hidden="true" /> {profile.phone}
           </a>
           <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 min-h-10 hover:text-white">
@@ -137,7 +138,7 @@ export function HeroBold() {
               <dd className="order-1 font-extrabold leading-none num" style={{ fontSize: "clamp(26px, 3vw, 38px)", fontFamily: "var(--font-display)" }}>
                 {s.value}
               </dd>
-              <dd className="order-3 mt-1 text-[12.5px] text-white/55 hidden sm:block">{s.sub}</dd>
+              <dd className="order-3 mt-1 text-[12.5px] leading-snug text-white/65">{s.sub}</dd>
             </div>
           ))}
         </motion.dl>
