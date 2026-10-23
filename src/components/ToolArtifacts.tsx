@@ -550,7 +550,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               <p>
                 OpenSolar runs the layout through NREL&apos;s System Advisor Model and gives 27,283 kWh a year, or 1,378
                 kWh per kWp, at 13.8% system losses, about 2% less than the same array facing due south would give.
-                Against a household using 24,000 kWh a year that covers 114%. It
+                Against an assumed household use of 24,000 kWh a year, that covers 114%. It
                 then writes the customer proposal: the system, the monthly production and the local NEPRA tariff. The roof
                 is drawn on flat satellite imagery, so OpenSolar leaves shading out (the SketchUp model checks it), and
                 the pricing pages are left out.
@@ -566,7 +566,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             "Customer proposal":
               "What the client sees: 36 x 550 W LONGi modules, 19.8 kWp, one 20 kW Growatt inverter, 27,283 kWh a year, with the panel and inverter warranties",
             "System performance":
-              "Production month by month against the household's use, 114% of a 24,000 kWh year, modelled with the System Advisor Model at 13.8% losses",
+              "Production month by month against an assumed household use, 114% of a 24,000 kWh year, modelled with the System Advisor Model at 13.8% losses",
           }}
         />
       ),
