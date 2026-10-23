@@ -21,12 +21,15 @@ export function SiteFooter() {
         </div>
         <nav aria-label="Role pages and resources" className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12.5px]" style={{ color: "var(--text-faint)" }}>
           {roles.map((r) => (
-            <Link key={r.slug} href={`/roles/${r.slug}`} className="hover:underline">
+            <Link key={r.slug} href={`/roles/${r.slug}`} className="inline-flex min-h-9 items-center hover:underline">
               {r.title}
             </Link>
           ))}
-          <a href="/Usama-Javed-CV.pdf" className="hover:underline">
+          <a href="/Usama-Javed-CV.pdf" className="inline-flex min-h-9 items-center hover:underline">
             CV (PDF)
+          </a>
+          <a href="/Usama-Javed-CV.docx" className="inline-flex min-h-9 items-center hover:underline">
+            CV (Word)
           </a>
         </nav>
       </div>

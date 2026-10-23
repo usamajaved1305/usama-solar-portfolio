@@ -85,7 +85,9 @@ export function Experience() {
   );
 }
 
-/** The first point stays visible; the rest stay in the DOM for search engines and open on request. */
+/** The first three points stay visible; the rest stay in the DOM for search engines and open on request. */
+const SHOWN = 3;
+
 function Highlights({ items }: { items: string[] }) {
   const [open, setOpen] = useState(false);
   return (
@@ -94,7 +96,7 @@ function Highlights({ items }: { items: string[] }) {
         {items.map((h, i) => (
           <li
             key={h}
-            className={`text-[14.5px] leading-relaxed pl-4 relative ${!open && i > 0 ? "hidden" : ""}`}
+            className={`text-[14.5px] leading-relaxed pl-4 relative ${!open && i >= SHOWN ? "hidden" : ""}`}
             style={{ color: "var(--text-dim)" }}
           >
             <span
@@ -106,15 +108,15 @@ function Highlights({ items }: { items: string[] }) {
           </li>
         ))}
       </ul>
-      {items.length > 1 && (
+      {items.length > SHOWN && (
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
-          className="mt-3 inline-flex items-center gap-1.5 text-[13.5px] font-semibold"
+          className="mt-2 inline-flex min-h-10 items-center gap-1.5 text-[13.5px] font-semibold"
           style={{ color: "var(--amber)" }}
         >
-          {open ? "Show less" : `Show all ${items.length} points`}
+          {open ? "Show less" : `Show ${items.length - SHOWN} more`}
           <ChevronDown size={15} aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`} />
         </button>
       )}

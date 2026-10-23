@@ -10,7 +10,7 @@
 - LinkedIn: https://www.linkedin.com/in/usama-javed-553b8624b
 - GitHub: https://github.com/usamajaved1305
 - CV (PDF): https://usamajaved.ie/Usama-Javed-CV.pdf
-- Open to project engineering, site supervision and planning roles
+- Open to solar PV project engineering, project planning and site supervision roles in Ireland, and to energy or reporting analyst roles
 
 ## Key numbers
 - 100+ PV installations delivered, from 5 kWp domestic systems to a 115 kWp commercial rooftop
@@ -25,10 +25,10 @@
 - Mechatronics Engineer Intern, National Institute of Electronics (Jul 2022 to Aug 2022).
 
 ## Role pages
-- [Project Planner / Scheduler](https://usamajaved.ie/roles/planning): Primavera P6, MS Project, Advanced Excel, Power BI.
-- [Solar Project / Technical Engineer](https://usamajaved.ie/roles/project-engineering): HelioScope, OpenSolar, AutoCAD, SketchUp.
-- [Site Supervisor / Field Delivery](https://usamajaved.ie/roles/site-delivery): crew leadership, workmanship inspection, commissioning.
-- [Energy / Reporting Analyst](https://usamajaved.ie/roles/energy-analytics): Power BI, Advanced Excel, SQL, Python.
+- [Project Planning Engineer](https://usamajaved.ie/roles/planning): Primavera P6, MS Project, Advanced Excel, Power BI.
+- [Solar PV Project Engineer](https://usamajaved.ie/roles/project-engineering): HelioScope, OpenSolar, AutoCAD, SketchUp.
+- [Solar Site Supervisor](https://usamajaved.ie/roles/site-delivery): crew leadership, workmanship inspection, commissioning.
+- [Energy and Reporting Analyst](https://usamajaved.ie/roles/energy-analytics): Power BI, Advanced Excel, SQL, Python.
 
 ## Portfolio projects
 - 20 kW installation programme in Primavera P6 and MS Project
@@ -36,8 +36,19 @@
 - 115 kWp roof layout and simulation in HelioScope (198 modules at 114.84 kWp)
 - 20 kW house design and proposal in OpenSolar
 - 3D model and shading check in SketchUp
-- 80 kW PV and 63 kWh battery drawings in AutoCAD
+- 79 kWp PV, 80 kW hybrid inverter and 63 kWh battery drawings in AutoCAD (a 2026 design)
+- 15.375 kWp elevated rooftop canopy: designed in SketchUp and built on site
 
 ## Education
 - MSc Business Analytics, Dublin Business School, Ireland (2026 to present)
 - BE Mechatronics Engineering, Air University, Islamabad (2018 to 2022)
+
+## Certifications
+- Foundations of Project Management, Google, on Coursera, Sep 2026
+- Photovoltaic Systems, Technical University of Denmark (DTU), on Coursera, Sep 2024
+- Solar Energy and Electrical System Design, University at Buffalo, on Coursera, Sep 2024
+- Solar Energy Basics, State University of New York (SUNY), on Coursera, Sep 2024
+- Introduction to Solar PV Design, Installation and Code, HeatSpring, approved for NABCEP hours, Jul 2024
+
+## Languages
+- English (professional), Urdu (native), Punjabi (fluent)

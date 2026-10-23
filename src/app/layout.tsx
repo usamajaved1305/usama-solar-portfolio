@@ -3,7 +3,7 @@ import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
-import { DESCRIPTION, KEYWORDS, SHORT_DESCRIPTION, TITLE, TWITTER_IMAGE, openGraphBase } from "@/lib/seo";
+import { DESCRIPTION, SHORT_DESCRIPTION, TITLE, TWITTER_IMAGE, openGraphBase } from "@/lib/seo";
 import { Providers } from "@/components/Providers";
 
 const manrope = Manrope({ variable: "--font-display", subsets: ["latin"], display: "swap" });
@@ -17,7 +17,6 @@ export const metadata: Metadata = {
     template: `%s | ${profile.name}`,
   },
   description: DESCRIPTION,
-  keywords: KEYWORDS,
   authors: [{ name: profile.name, url: SITE_URL }],
   creator: profile.name,
   publisher: profile.name,
@@ -47,10 +46,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0f12" },
-    { media: "(prefers-color-scheme: light)", color: "#fbfbf9" },
-  ],
+  // Every visitor gets the dark theme, so the browser bar matches it whatever the OS setting.
+  themeColor: "#0a0f12",
 };
 
 // Runs before first paint. Falls back to the OS preference when storage is blocked.

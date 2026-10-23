@@ -6,6 +6,7 @@ import { SunMark } from "@/components/SunMark";
 
 export const metadata: Metadata = {
   title: "Page not found",
+  robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
 };
 
 export default function NotFound() {

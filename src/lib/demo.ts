@@ -46,7 +46,7 @@ export type WorkCard = { tool: string; thumb: string; title: string; kind: "Desi
 export const workCards: WorkCard[] = [
   { tool: "SketchUp", thumb: "sketchup", title: "3D model of a house and a shading study of the array", kind: "Design", big: true },
   { tool: "Helioscope", thumb: "helioscope", title: "Roof layout and energy simulation for a 115 kWp commercial rooftop", kind: "Design" },
-  { tool: "AutoCAD", thumb: "autocad", title: "Drawing set for an 80 kW rooftop with a 63 kWh battery", kind: "Design" },
+  { tool: "AutoCAD", thumb: "autocad", title: "Drawing set for a 79 kWp rooftop with a 63 kWh battery", kind: "Design" },
   { tool: "OpenSolar", thumb: "opensolar", title: "Rooftop design and customer proposal for a 20 kW house", kind: "Design" },
   { tool: "Primavera P6", thumb: "p6", title: "Installation programme for a 20 kW residential system", kind: "Planning" },
   { tool: "Power BI", thumb: "power-bi", title: "Cost and procurement report for a 115 kWp rooftop", kind: "Data", big: true },
@@ -103,7 +103,7 @@ export const features: Feature[] = [
     key: "elevated",
     tag: "Structures",
     title: "Elevated rooftop frames",
-    text: "A 15.375 kWp on-grid system on a raised steel shed over a rooftop stair room and the open roof in front of it. Designed in SketchUp, then built on site to the same layout.",
+    text: "A 15.375 kWp on-grid system on a raised steel shed over a rooftop stair room and the open roof in front of it. Designed in SketchUp and built on site; the model shown is redrawn from that design, the bill of materials and the site photos.",
     figures: [
       { value: "15.375 kWp", label: "on-grid system" },
       { value: "25", label: "615 W bifacial panels" },
@@ -117,7 +117,7 @@ export const features: Feature[] = [
       intro: [
         "A 15.375 kWp on-grid system on the roof of a 10 marla house: 25 Canadian Solar 615 W N-type bifacial panels on a Fox 15 kW on-grid inverter, carried on a raised mild steel shed over the rooftop stair room and the open roof in front of it.",
         "The shed is built from 2.5 x 5 in I-beam columns and girders with U-channel rails up the slope, anchored to concrete bases on block pads. Three columns stand on the open roof in front of the stair room, each braced back to its own base, and short legs stand on the stair room slab.",
-        "The SketchUp model follows my original design, the bill of materials and the photos of the built frame: three lines of landscape panels running up the slope over the stair room, on a frame tilted about 10 degrees.",
+        "I redrew the job in SketchUp from my original design, the bill of materials and the photos of the built frame: three lines of landscape panels running up the slope over the stair room, on a frame tilted about 10 degrees.",
       ],
       pairs: [
         { design: { src: "/projects/elevated-canopy/model-front-left.webp", caption: "SketchUp model" }, built: { src: "/projects/elevated-canopy/site-finished-front.webp", caption: "Built on site" } },
@@ -153,7 +153,7 @@ export const features: Feature[] = [
     figures: [
       { value: "198", label: "modules" },
       { value: "114.84 kWp", label: "DC capacity" },
-      { value: "Under 2%", label: "yield given up for 35 more modules" },
+      { value: "Under 2%", label: "less yield per kWp, for 35 more modules" },
     ],
     chips: ["String sizing", "Array setting out", "Protection design"],
     image: { src: "/feature/helioscope-layout.webp", alt: "HelioScope layout of 198 modules on the rooftop", w: 1090, h: 772 },
@@ -162,16 +162,16 @@ export const features: Feature[] = [
   },
   {
     key: "battery",
-    tag: "Drawing set",
-    title: "80 kW rooftop with a 63 kWh battery",
-    text: "136 modules on a FoxESS hybrid inverter, with nine battery modules in series. Drawn in AutoCAD as three A1 sheets: the single line diagram, the mechanical layout and the battery control sheet.",
+    tag: "Design study",
+    title: "79 kWp rooftop with a 63 kWh battery",
+    text: "A 2026 design: 136 modules on an 80 kW FoxESS hybrid inverter, with nine battery modules in series. Drawn in AutoCAD as three A1 sheets: the single line diagram, the mechanical layout and the battery control sheet.",
     figures: [
       { value: "78.88 kWp", label: "PV array" },
       { value: "63.18 kWh", label: "battery" },
       { value: "3", label: "A1 sheets" },
     ],
     chips: ["AutoCAD", "Single line diagram", "Battery sizing"],
-    image: { src: "/feature/autocad-key-diagram.webp", alt: "Key diagram of the 80 kW system with battery", w: 1400, h: 975, light: true },
+    image: { src: "/feature/autocad-key-diagram.webp", alt: "Key diagram of the 79 kWp PV and 63 kWh battery system", w: 1400, h: 975, light: true },
     inset: { src: "/feature/autocad-dispatch.webp", alt: "Battery dispatch over two typical days", label: "Battery dispatch", w: 900, h: 581 },
     tool: "AutoCAD",
     toolLabel: "Open the drawing set",
@@ -197,7 +197,7 @@ export const toolTiles: { group: string; tools: { tool: string; line: string }[]
       { tool: "Helioscope", line: "Roof layout and energy simulation" },
       { tool: "OpenSolar", line: "Rooftop design and customer proposal" },
       { tool: "SketchUp", line: "3D house model and shading study" },
-      { tool: "AutoCAD", line: "Drawing set, 80 kW with a battery" },
+      { tool: "AutoCAD", line: "Drawing set, 79 kWp with a battery" },
     ],
   },
 ];

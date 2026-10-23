@@ -10,6 +10,14 @@ import { roles, roleBySlug } from "@/lib/roles";
 
 export const dynamicParams = false;
 
+/** What each share image shows, for its alt text. */
+const OG_ALT: Record<string, string> = {
+  planning: "Primavera P6 programme for a 20 kW residential solar installation",
+  "project-engineering": "HelioScope layout of 198 modules on a 115 kWp commercial rooftop",
+  "site-delivery": "SketchUp model of an elevated rooftop solar frame beside the frame as built",
+  "energy-analytics": "Hourly battery dispatch chart for a 79 kWp PV and 63 kWh battery system",
+};
+
 export function generateStaticParams() {
   return roles.map((r) => ({ slug: r.slug }));
 }
@@ -17,15 +25,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const role = roleBySlug((await params).slug);
   if (!role) return {};
-  const title = `${role.title} (${role.family})`;
+  const title = role.seoTitle;
   const fullTitle = `${title} | ${profile.name}`;
-  const toolsText = role.tools.map((t) => (t === "Helioscope" ? "HelioScope" : t)).join(", ");
-  const description = `${role.pitch} Tools: ${toolsText}. Dublin, Ireland.`;
+  const description = role.metaDescription;
   const roleOgImage = {
     url: `/og/${role.slug}.jpg`,
     width: 1200,
     height: 630,
-    alt: `${role.title} - ${profile.name}`,
+    alt: `${OG_ALT[role.slug]}, by ${profile.name}`,
     type: "image/jpeg",
   };
   return {
@@ -43,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [roleOgImage.url],
+      images: [{ url: roleOgImage.url, alt: roleOgImage.alt }],
     },
   };
 }

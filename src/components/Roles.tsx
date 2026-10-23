@@ -35,11 +35,11 @@ export function Roles({ toolShots = {} }: { toolShots?: Record<string, MediaItem
             Roles I&apos;m targeting
           </span>
           <h2 className="mt-3 font-extrabold leading-[1.08]" style={{ fontSize: "clamp(30px, 4.2vw, 46px)" }}>
-            Grounded in solar delivery. Useful from the planning desk to the roof.
+            The roles I&apos;m applying for
           </h2>
           <p className="mt-4 text-[16.5px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
-            Main targets: project planning and solar project engineering. Site delivery and energy analytics draw on the
-            same experience, and every card opens work you can check.
+            Each card shows where I fit, the record behind it and two projects you can open. The role pages have the
+            full detail, ready to send with an application.
           </p>
         </motion.div>
 
@@ -71,20 +71,20 @@ export function Roles({ toolShots = {} }: { toolShots?: Record<string, MediaItem
                 <div className="mt-4 space-y-3 flex-1">
                   <Line label="Where I fit">{r.fit}</Line>
                   <Line label="Track record">{r.record}</Line>
-                  <Line label="Tools">{r.tools.map((t) => (t === "Helioscope" ? "HelioScope" : t)).join(", ")}</Line>
+                  <Line label="Tools">{r.tools.join(", ")}</Line>
                   <div>
-                    <p className="text-[14.5px] font-bold">Proof:</p>
+                    <p className="text-[14.5px] font-bold">Portfolio projects:</p>
                     <div className="mt-2">
-                      <ToolProof tools={r.proof} toolShots={toolShots} labels={PROOF_LABELS} list />
+                      <ToolProof tools={r.homeProof} toolShots={toolShots} labels={PROOF_LABELS} list />
                     </div>
                   </div>
                 </div>
 
                 <Link
                   href={`/roles/${r.slug}`}
-                  className="mt-5 inline-flex w-fit items-center gap-1.5 text-[14px] font-semibold underline underline-offset-4 hover:no-underline"
+                  className="mt-5 inline-flex min-h-10 w-fit items-center gap-1.5 text-[14px] font-semibold underline underline-offset-4 hover:no-underline"
                 >
-                  More on this role <ArrowRight size={15} aria-hidden="true" />
+                  The {r.title} page <ArrowRight size={15} aria-hidden="true" />
                 </Link>
               </motion.article>
             );

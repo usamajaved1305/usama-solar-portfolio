@@ -1,43 +1,15 @@
 import type { Metadata } from "next";
 import { certifications, education, profile } from "./data";
 import { roles, type Role } from "./roles";
-import { SITE_URL } from "./site";
+import { CONTENT_UPDATED, SITE_URL } from "./site";
 
 export const TITLE = `${profile.name} | ${profile.headline}`;
 
 export const DESCRIPTION =
-  "Usama Javed (usamajaved.ie): Solar PV Project Engineer in Dublin, Ireland. Over 100 PV installations (5 to 115 kWp) and 790 kWp in one year. Primavera P6, MS Project, AutoCAD, HelioScope, Power BI.";
+  "Usama Javed, solar PV project engineer in Dublin. Over 100 installations from 5 to 115 kWp, 790 kWp in one year and crews of up to 40 supervised.";
 
 export const SHORT_DESCRIPTION =
-  "Solar PV Project Engineer in Dublin, Ireland. Over 100 solar PV installations delivered. Planning (Primavera P6, MS Project), PV design (AutoCAD, HelioScope) and site supervision.";
-
-export const KEYWORDS = [
-  "Usama Javed",
-  "usamajaved.ie",
-  "Solar PV Project Engineer",
-  "Project Planning Engineer",
-  "Project Planner",
-  "Project Scheduler",
-  "Solar Site Supervisor",
-  "Solar Technical Engineer",
-  "PV Design Engineer",
-  "Energy Analyst",
-  "Solar PV Dublin",
-  "Solar Engineer Ireland",
-  "Primavera P6",
-  "MS Project",
-  "AutoCAD Solar",
-  "HelioScope",
-  "OpenSolar",
-  "SketchUp Solar",
-  "Power BI",
-  "SQL",
-  "Python",
-  "Battery Energy Storage System",
-  "BESS",
-  "Mechatronics Engineer",
-  "Dublin Business School",
-];
+  "Solar PV project engineer in Dublin. Over 100 installations delivered, with planning in Primavera P6 and MS Project, PV design and site supervision.";
 
 export const OG_IMAGE = {
   url: "/opengraph-image.png",
@@ -62,6 +34,8 @@ export const openGraphBase: NonNullable<Metadata["openGraph"]> = {
   description: SHORT_DESCRIPTION,
   locale: "en_IE",
   images: [OG_IMAGE],
+  firstName: "Usama",
+  lastName: "Javed",
 };
 
 const personEntity = {
@@ -103,15 +77,14 @@ const personEntity = {
   ],
   alumniOf: education.map((e) => ({
     "@type": "CollegeOrUniversity",
-    name: e.school,
-    url: e.href,
+    name: e.org,
+    url: e.orgUrl,
   })),
-  hasCredential: certifications
-    .filter((c) => c.name !== "ASME Student Member")
-    .map((c) => ({
+  hasCredential: certifications.map((c) => ({
       "@type": "EducationalOccupationalCredential",
       name: c.name,
-      recognizedBy: { "@type": "Organization", name: c.issuer },
+      credentialCategory: "certificate",
+      recognizedBy: { "@type": "Organization", name: c.org },
       ...(c.verify ? { url: c.verify } : {}),
     })),
   sameAs: [profile.linkedin, profile.github].filter(Boolean),
@@ -123,9 +96,9 @@ export const personJsonLd = {
     {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
-      name: TITLE,
-      alternateName: ["Usama Javed", "usamajaved.ie", "Usama Javed Solar Portfolio"],
-      url: SITE_URL,
+      name: profile.name,
+      alternateName: ["usamajaved.ie", "Usama Javed Solar Portfolio"],
+      url: `${SITE_URL}/`,
       inLanguage: "en-IE",
       publisher: { "@id": `${SITE_URL}/#person` },
     },
@@ -136,6 +109,7 @@ export const personJsonLd = {
       description: DESCRIPTION,
       url: SITE_URL,
       inLanguage: "en-IE",
+      dateModified: CONTENT_UPDATED,
       isPartOf: { "@id": `${SITE_URL}/#website` },
       mainEntity: { "@id": `${SITE_URL}/#person` },
     },
@@ -157,19 +131,26 @@ export const personJsonLd = {
 
 export function rolePageJsonLd(role: Role) {
   const pageUrl = `${SITE_URL}/roles/${role.slug}`;
-  const pageTitle = `${role.title} (${role.family}) | ${profile.name}`;
+  const pageTitle = `${role.seoTitle} | ${profile.name}`;
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "ProfilePage",
-        "@id": `${pageUrl}#profilepage`,
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        name: profile.name,
+        url: `${SITE_URL}/`,
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
         name: pageTitle,
-        description: `${role.pitch} ${role.record}`,
+        description: role.metaDescription,
         url: pageUrl,
         inLanguage: "en-IE",
+        dateModified: CONTENT_UPDATED,
         isPartOf: { "@id": `${SITE_URL}/#website` },
-        mainEntity: { "@id": `${SITE_URL}/#person` },
+        about: { "@id": `${SITE_URL}/#person` },
       },
       {
         "@type": "BreadcrumbList",

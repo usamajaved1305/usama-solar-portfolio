@@ -28,15 +28,14 @@ export function ToolProof({
   return (
     <>
       {list ? (
-        <ul className="space-y-1.5">
+        <ul className="space-y-0.5">
           {available.map((t) => (
             <li key={t}>
               <button
                 type="button"
                 aria-haspopup="dialog"
-                title={`Open the ${t} project`}
                 onClick={() => setOpen(t)}
-                className="inline-flex items-start gap-1.5 text-left text-[14px] font-semibold underline-offset-4 hover:underline"
+                className="inline-flex min-h-9 items-start gap-1.5 py-1.5 text-left text-[14px] font-semibold underline-offset-4 hover:underline"
                 style={{ color: "var(--amber)" }}
               >
                 <ArrowUpRight size={15} aria-hidden="true" className="mt-[3px] shrink-0" />
@@ -53,7 +52,6 @@ export function ToolProof({
               type="button"
               className="chip chip-action"
               aria-haspopup="dialog"
-              title={`Open the ${t} project`}
               onClick={() => setOpen(t)}
             >
               {labels[t] ?? t}

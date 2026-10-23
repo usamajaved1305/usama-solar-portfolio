@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { Download } from "lucide-react";
 import type { MediaItem } from "@/lib/media";
+import { features } from "@/lib/demo";
+import { ProjectView } from "./ProjectView";
 import { ScheduleView } from "./ScheduleView";
 import { ScreenshotSet } from "./ScreenshotSet";
 
@@ -161,10 +163,10 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                     from the site survey to handover, joined by <strong>31 relationships</strong> on a Monday to
                     Saturday calendar. Starting Mon 5 Oct 2026, P6 schedules the job to finish on{" "}
                     <strong>Mon 2 Nov 2026</strong>, working day 25, with <strong>17 activities on the critical path</strong>{" "}
-                    and no date constraints anywhere in the logic.
+                    (13 work activities and 4 milestones) and no date constraints anywhere in the logic.
                   </p>
                   <p>
-                    The programme is worth more than its bar chart. Utility approval takes 14 days but carries 2 days of
+                    Utility approval takes 14 days but carries 2 days of
                     float, so it is not what drives the job; the mounting steel is. Cables have 9 days of float, the
                     modules 7 and the inverter 5, which is what tells you where a late delivery actually hurts. Stretch
                     the inverter from 6 days to 13 and the finish moves only <strong>2 days</strong>, because the float
@@ -223,7 +225,8 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 The same 20 kW on-grid residential programme as the Primavera P6 view, built in Microsoft Project: 25
                 activities under 4 summary tasks, from the site survey to handover, on a Monday to Saturday calendar,
                 with finish-to-start links and two start-to-start links with lags. Project&apos;s own schedule matches
-                the P6 view exactly: handover on working day 25, with 13 critical tasks shown in red.
+                the P6 view: handover on working day 25, with the same 13 critical work tasks in red (P6&apos;s count
+                of 17 also includes the four milestones).
               </p>
               <p>
                 The baseline is saved, so the Tracking Gantt shows a grey baseline bar under every task and 0 days of
@@ -405,7 +408,24 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 February the lowest. The simple estimate comes out 7% high: from May to August the modules run hot and
                 the performance ratio drops to about 0.71, so a flat 0.80 overstates the yield in Islamabad&apos;s
                 climate. Written in Python with pandas and matplotlib; the 20° south-facing tilt and 14% system losses
-                are assumptions.
+                are assumptions. At the 146° azimuth the roof actually takes, PVGIS gives 1,526 kWh per kWp, about
+                175,300 kWh a year, so following the building costs 1.7%. HelioScope, on Meteonorm weather, gives a
+                lower 1,383 kWh per kWp for the same layout; the gap is the weather data.
+              </p>
+              <p>
+                The hourly battery model for the 79 kWp PV and 63 kWh battery job is plain Python too: 8,760 hours of
+                PV, load, grid import and state of charge, with three control jobs in priority order. It is explained
+                in the AutoCAD project, and{" "}
+                <a
+                  href="https://github.com/usamajaved1305/80kw-pv-bess-autocad-dispatch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold underline underline-offset-4"
+                  style={{ color: "var(--amber)" }}
+                >
+                  the code is on GitHub
+                </a>
+                .
               </p>
               <p>
                 <a
@@ -456,15 +476,17 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 The same 115 kWp system as the Excel, Power BI, SQL and Python projects, designed in HelioScope on a
                 typical industrial roof in Islamabad&apos;s I-9 area: 198 Jinko 580 W modules on fixed-tilt racking at
                 20°, wired in 11 strings of 18 into one Huawei SUN2000-100KTL-M2 inverter (DC/AC ratio 1.15).
-                HelioScope checked the strings against Islamabad temperatures: 998 V on the coldest morning, inside the
-                inverter&apos;s 1,100 V limit.
+                HelioScope checked the strings at its own Islamabad design low of 0.3 °C and got 998 V; the Excel check
+                uses a harsher -5 °C and gets 1,012 V. Both sit inside the inverter&apos;s 1,100 V limit.
               </p>
               <p>
                 The rows follow the building, at an azimuth of 146° (34° east of south), to fit all 198 modules; that
                 costs about 2% of yield against due south. The simulation, on Meteonorm weather data, gives 158.8 MWh a
                 year, or 1,383 kWh per kWp at a performance ratio of 81%. That is about 9% below the PVGIS figure for the
                 same orientation, mainly because Meteonorm has 14% less sunshine for Islamabad than PVGIS&apos;s ERA5
-                data. It is a sample design, using HelioScope&apos;s default loss settings.
+                data. It is a sample design, using HelioScope&apos;s default loss settings. Shading here is row to row
+                only: the parapets and the trees on the east side are not modelled, so a site survey would come before
+                any yield promise.
               </p>
             </>
           }
@@ -516,7 +538,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             "Inverter and strings":
               "One Growatt MID 20KTL3-X and its two MPPT inputs. The three north west rows make one string of 18 and the three south east rows the other, so each string stays on its own block of the roof",
             "Customer proposal":
-              "What the client sees: 36 x 550 W LONGi modules, 19.8 kW, one 20 kW Growatt inverter, 27,283 kWh a year, with the panel and inverter warranties",
+              "What the client sees: 36 x 550 W LONGi modules, 19.8 kWp, one 20 kW Growatt inverter, 27,283 kWh a year, with the panel and inverter warranties",
             "System performance":
               "Production month by month against the household's use, 114% of a 24,000 kWh year, modelled with the System Advisor Model at 13.8% losses",
           }}
@@ -536,14 +558,14 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                The 20 kW house system from the Primavera P6, MS Project and OpenSolar work, modelled on its building in
-                SketchUp Free: a two storey brick house on the 11.7 m by 17.7 m roof measured in OpenSolar, with a 0.9 m
+                The 20 kW house system from the Primavera P6, MS Project and OpenSolar work, redrawn in SketchUp Free on
+                the roof measured in OpenSolar: a two-storey brick house, 11.7 m by 17.7 m, with a 0.9 m
                 parapet, the stair room on the north east side, windows, the entrance porch and the boundary wall. On the
                 roof are 36 LONGi 550 W modules, 19.8 kWp, in six rows of six on single-tilt frames at 20°, turned to 148°
                 to follow the house, the same layout as the OpenSolar design.
               </p>
               <p>
-                Every part is placed to the millimetre: 6.90 m by 15.87 m of array, 2.80 m from row to row, about 0.9 m in
+                The main dimensions: 6.90 m by 15.87 m of array, 2.80 m from row to row, about 0.9 m in
                 from the roof edge at each end and 0.80 m on the south west side, which leaves about 0.7 m and 0.6 m clear
                 of the parapet, and a 0.75 m walkway past the stair room. Each row stands on four frames, a rafter and two
                 purlins on a short front post and a tall rear post, set on concrete pads. The model is geo-located on the
@@ -594,7 +616,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
   const cad = shots["AutoCAD"] ?? [];
   if (cad.length > 0) {
     artifacts["AutoCAD"] = {
-      title: "AutoCAD: an 80 kW rooftop with a 63 kWh battery",
+      title: "AutoCAD: a 79 kWp rooftop on an 80 kW hybrid inverter, with a 63 kWh battery",
       icon: "draft",
       render: () => (
         <ScreenshotSet
@@ -602,8 +624,9 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                An 80 kW rooftop PV system with battery storage for a commercial unit in Islamabad: 136 Jinko 580&nbsp;W
-                modules at <strong>78.88&nbsp;kWp</strong> on a <strong>FoxESS P3-80-Plus</strong> hybrid inverter, with{" "}
+                A rooftop PV and battery design I drew in September and October 2026 for a commercial unit in
+                Islamabad: 136 Jinko 580&nbsp;W modules at <strong>78.88&nbsp;kWp</strong> on an 80&nbsp;kW{" "}
+                <strong>FoxESS P3-80-Plus</strong> hybrid inverter, with{" "}
                 <strong>nine FoxESS CQ7 modules</strong> in series giving 63.18&nbsp;kWh at 518.4&nbsp;V.
               </p>
               <p>
@@ -617,7 +640,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
             "The single line diagram":
               "PV-04, the whole A1 sheet as AutoCAD plotted it, at revision P3, issued for comment. The eight string circuits, the battery and its DC protection, the hybrid inverter, metering and interface protection, the existing LV board and the point of supply, and the earthing, with the key diagram, legend, schedules, revisions and title block along the bottom",
             "The key diagram":
-              "The bottom left corner of PV-04. Array and battery into the hybrid inverter, out to the grid on one side and the essential board on the other, with the device tags the rest of the sheet uses. It is there so somebody can take in the shape of the system before reading any of the detail",
+              "The bottom left corner of PV-04. Array and battery into the hybrid inverter, out to the grid on one side and the essential board on the other, with the device tags the rest of the sheet uses. It shows the shape of the system before the detail",
             "The point of connection":
               "Where the system joins the building. A new 160 A way on the existing busbar, opened by the interface relay through a shunt trip, the existing 630 A incomer, the utility transformer outside the board with the point of supply marked, the import export meter, and the current transformer whose signal limits export",
             "The mechanical layout":
@@ -654,7 +677,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 leave less for daytime shaving.
               </p>
               <p>
-                <strong>The annual peak does not move, and that is worth saying out loud.</strong> It falls on a
+                <strong>The annual peak does not move.</strong> It falls on a
                 December afternoon when there is no PV left and the state of charge is pinned at the 55% floor that
                 protects the 18:00 outage. Hours spent over the target do fall, by a third. Lowering the maximum as well
                 needs a second CQ7 stack on port two, or an agreement to accept a shorter backup through the winter.
@@ -669,7 +692,8 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               <p>
                 The cable schedule and the interface protection settings as they appear on PV-04. Lengths are design
                 figures for this building. Cable sizes and volt drop are to be confirmed on the actual route, and the
-                relay settings with IESCO, so the sheet stays at revision P3 until they are.
+                relay settings with IESCO, so the sheet stays at revision P3 until they are. Until then the relay
+                values below are working figures, not approved settings.
               </p>
               {BESS_TABLE_CABLE}
               {BESS_TABLE_PROT}
@@ -697,6 +721,16 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           }
         />
       ),
+    };
+  }
+
+  // The built canopy job, so role pages can point at site work and not only at desk tools.
+  const canopy = features.find((f) => f.key === "elevated")?.project;
+  if (canopy) {
+    artifacts["Elevated canopy"] = {
+      title: canopy.title,
+      icon: "home",
+      render: () => <ProjectView p={canopy} />,
     };
   }
 

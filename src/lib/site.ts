@@ -1,5 +1,6 @@
-// Vercel exposes the real production domain at build time. The fallback must match the project name in "Deploy Portfolio.cmd";
-// usamajaved.vercel.app belongs to a different person.
-export const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "https://usamajaved.ie";
+// The one production address. Hardcoded so canonicals, the sitemap and the JSON-LD never follow whatever Vercel
+// reports at build time. usamajaved.vercel.app belongs to a different person.
+export const SITE_URL = "https://usamajaved.ie";
+
+// When the page copy last changed. Bump by hand on a content edit; the sitemap and JSON-LD dateModified use it.
+export const CONTENT_UPDATED = "2026-10-23";

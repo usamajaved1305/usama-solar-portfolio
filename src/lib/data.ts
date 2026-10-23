@@ -11,7 +11,7 @@
   github: "https://github.com/usamajaved1305",
   lede:
     "Mechatronics engineer with three and a half years delivering solar PV projects from site survey through installation, commissioning and client handover. Experienced leading installation crews on live sites, and equally strong on the planning side: programmes, bills of material, budgets and milestone tracking.",
-  availability: "Open to project engineering, site supervision and planning roles",
+  availability: "Open to solar project engineering, planning and site supervision roles",
 };
 
 export const stats = [
@@ -198,6 +198,8 @@ export const education = [
   {
     degree: "MSc Business Analytics",
     school: "Dublin Business School, Ireland",
+    org: "Dublin Business School",
+    orgUrl: "https://www.dbs.ie/",
     href: "https://www.dbs.ie/course/postgraduate/master-of-science-(msc)-in-business-analytics",
     period: "2026 to Present",
     detail:
@@ -206,6 +208,8 @@ export const education = [
   {
     degree: "BE Mechatronics Engineering",
     school: "Air University, Islamabad",
+    org: "Air University",
+    orgUrl: "https://www.au.edu.pk/",
     href: "https://www.au.edu.pk/",
     period: "2018 to 2022",
     detail:
@@ -216,28 +220,32 @@ export const education = [
 export const certifications = [
   {
     name: "Foundations of Project Management",
-    issuer: "Google, through Coursera",
+    issuer: "Google, on Coursera",
+    org: "Google",
     issued: "Sep 2026",
     image: "foundations-of-project-management-google.jpg",
     verify: "https://coursera.org/verify/F6UCU42EFBAW",
   },
   {
     name: "Photovoltaic Systems",
-    issuer: "DTU, Technical University of Denmark",
+    issuer: "Technical University of Denmark (DTU), on Coursera",
+    org: "Technical University of Denmark",
     issued: "Sep 2024",
     image: "photovoltaic-systems-dtu.jpg",
     verify: "https://coursera.org/verify/LBS63M4AMRHV",
   },
   {
     name: "Solar Energy and Electrical System Design",
-    issuer: "University at Buffalo",
+    issuer: "University at Buffalo, on Coursera",
+    org: "University at Buffalo",
     issued: "Sep 2024",
     image: "solar-energy-and-electrical-system-design-university-at-buffalo.jpg",
     verify: "https://coursera.org/verify/MYX2THBS69EN",
   },
   {
     name: "Solar Energy Basics",
-    issuer: "The State University of New York",
+    issuer: "State University of New York (SUNY), on Coursera",
+    org: "State University of New York",
     issued: "Sep 2024",
     image: "solar-energy-basics-suny.jpg",
     verify: "https://coursera.org/verify/7DBD2B9RHGV1",
@@ -245,14 +253,9 @@ export const certifications = [
   {
     name: "Introduction to Solar PV Design, Installation and Code",
     issuer: "HeatSpring, taught by Sean White, approved for NABCEP hours",
+    org: "HeatSpring",
     issued: "Jul 2024",
     image: "introduction-to-solar-pv-design-heatspring.png",
-  },
-  {
-    name: "ASME Student Member",
-    issuer: "American Society of Mechanical Engineers",
-    issued: "2018 to 2019",
-    image: "asme-student-member.jpg",
   },
 ];
 

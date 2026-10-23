@@ -128,8 +128,8 @@ export function ScheduleView() {
         The same programme again, recalculated here in the browser from the activity list and the logic links, so the
         critical path and every float are computed rather than typed in. It is a check on the P6 schedule above and it
         agrees with it activity for activity: {finish} working days from the site survey to handover, the same
-        durations, the same total floats. The system is the 20 kW on-grid job featured on my LinkedIn (Longi 550 W
-        N-type modules, Growatt 20 kW inverter). Durations are my own planning estimates.
+        durations, the same total floats. The system is 19.8 kWp of LONGi 550 W N-type modules on a Growatt 20 kW
+        inverter. Durations are my own planning estimates.
       </p>
 
       <dl className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -460,9 +460,9 @@ export function ScheduleView() {
           <ul className="mt-3 space-y-2 text-[13.5px] leading-relaxed" style={{ color: "var(--text-dim)" }}>
             {structure && modules && inverter && (
               <li>
-                Mounting structure fabrication ({structure.duration} days) drives the programme, so its order goes out
-                first. Modules carry {modules.totalFloat} days of float and the inverter {inverter.totalFloat}, which
-                is why they can be ordered second.
+                Mounting structure fabrication ({structure.duration} days) drives the programme, so it is the order to
+                chase hardest. Modules carry {modules.totalFloat} days of float and the inverter {inverter.totalFloat},
+                so those deliveries can slip that far before handover moves.
               </li>
             )}
             {utility && (

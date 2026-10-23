@@ -108,6 +108,9 @@ export function Contact() {
               <Mail size={15} aria-hidden="true" /> {profile.email}
             </a>
             <LocationLink className="inline-flex items-center gap-2 min-h-11 hover:underline cursor-pointer" />
+            <a href="/Usama-Javed-CV.docx" download className="inline-flex items-center gap-2 min-h-11 hover:underline">
+              CV in Word
+            </a>
           </motion.div>
 
         </motion.div>
