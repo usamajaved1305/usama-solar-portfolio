@@ -141,6 +141,23 @@ const BESS_TABLE_SENS = (
 const PY_NOTEBOOK = "/tools/python/115-kWp-rooftop-energy-yield.ipynb";
 const PY_DATA = "/tools/python/pvgis_islamabad_monthly.csv";
 
+const GH = "https://github.com/usamajaved1305/";
+const REPO_20KW = GH + "20kw-rooftop-pv-schedule-and-shading";
+const REPO_115_COST = GH + "115kwp-solar-bom-cost-procurement";
+const REPO_115_YIELD = GH + "115kwp-solar-energy-yield-python";
+const REPO_BESS = GH + "80kw-pv-bess-autocad-dispatch";
+
+/** One line under a project's intro pointing at the GitHub repo that holds its files. */
+function RepoLink({ href }: { href: string }) {
+  return (
+    <p>
+      <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-4" style={{ color: "var(--amber)" }}>
+        All files for this project on GitHub
+      </a>
+    </p>
+  );
+}
+
 // A tool listed here becomes a clickable chip that opens the work behind it.
 export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<string, ToolArtifact> {
   const p6 = shots["Primavera P6"] ?? [];
@@ -190,6 +207,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                     </a>{" "}
                     to open it in any copy of P6.
                   </p>
+                  <RepoLink href={REPO_20KW} />
                 </>
               }
               notes={{
@@ -243,6 +261,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                   <Download size={14} aria-hidden="true" /> Download the project file (.mpp)
                 </a>
               </p>
+              <RepoLink href={REPO_20KW} />
             </>
           }
           notes={{
@@ -289,6 +308,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 </a>{" "}
                 to see the formulas.
               </p>
+              <RepoLink href={REPO_115_COST} />
             </>
           }
           notes={{
@@ -326,6 +346,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 Variance and Lines) drive the visuals. The totals agree with the Excel workbook, and as with the
                 workbook, the PKR rates are indicative.
               </p>
+              <RepoLink href={REPO_115_COST} />
             </>
           }
           notes={{
@@ -371,6 +392,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 </a>{" "}
                 to build the database and run the queries.
               </p>
+              <RepoLink href={REPO_115_COST} />
             </>
           }
           notes={{
@@ -447,6 +469,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 </a>{" "}
                 to run it yourself.
               </p>
+              <RepoLink href={REPO_115_YIELD} />
             </>
           }
           notes={{
@@ -488,6 +511,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 only: the parapets and the trees on the east side are not modelled, so a site survey would come before
                 any yield promise.
               </p>
+              <RepoLink href={REPO_115_YIELD} />
             </>
           }
           notes={{
@@ -530,6 +554,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 is drawn on flat satellite imagery, so OpenSolar leaves shading out (the SketchUp model checks it), and
                 the pricing pages are left out.
               </p>
+              <RepoLink href={REPO_20KW} />
             </>
           }
           notes={{
@@ -590,6 +615,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                   <Download size={14} aria-hidden="true" /> Download the model (.skp, 0.4 MB)
                 </a>
               </p>
+              <RepoLink href={REPO_20KW} />
             </>
           }
           notes={{
@@ -634,6 +660,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 control sheet. Each is shown whole, with a closer view of the parts worth reading. Click any sheet to open
                 it full size, or download the PDF and DWG at the end.
               </p>
+              <RepoLink href={REPO_BESS} />
             </>
           }
           notes={{

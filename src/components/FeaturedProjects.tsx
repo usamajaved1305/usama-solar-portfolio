@@ -94,6 +94,8 @@ function FeatureBlock({ f, index, onOpen, onProject }: { f: Feature; index: numb
           {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
           <img
             src={f.image.src}
+            srcSet={f.image.small ? `${f.image.small.src} ${f.image.small.w}w, ${f.image.src} ${f.image.w}w` : undefined}
+            sizes="(min-width: 1280px) 700px, (min-width: 1024px) 58vw, 100vw"
             alt={f.image.alt}
             width={f.image.w}
             height={f.image.h}
@@ -110,6 +112,8 @@ function FeatureBlock({ f, index, onOpen, onProject }: { f: Feature; index: numb
             {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
             <img
               src={f.inset.src}
+              srcSet={f.inset.small ? `${f.inset.small.src} ${f.inset.small.w}w, ${f.inset.src} ${f.inset.w}w` : undefined}
+              sizes="(min-width: 1280px) 310px, (min-width: 1024px) 26vw, 44vw"
               alt={f.inset.alt}
               width={f.inset.w}
               height={f.inset.h}

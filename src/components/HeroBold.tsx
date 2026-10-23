@@ -21,6 +21,8 @@ export function HeroBold() {
       {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
       <img
         src="/feature/hero-sunset-frame.webp"
+        srcSet="/feature/hero-sunset-frame-960.webp 960w, /feature/hero-sunset-frame.webp 1600w"
+        sizes="100vw"
         alt="Elevated rooftop solar PV array at sunset"
         width={1600}
         height={900}
@@ -49,7 +51,7 @@ export function HeroBold() {
         <motion.div variants={fadeUp} className="flex items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
           <img
-            src="/me/usama-avatar.webp"
+            src="/me/usama-avatar-192.webp"
             alt="Usama Javed, Solar PV Project Engineer in Dublin, Ireland"
             width={72}
             height={72}
@@ -123,6 +125,16 @@ export function HeroBold() {
               className="inline-flex items-center gap-2 min-h-10 hover:text-white"
             >
               LinkedIn
+            </a>
+          )}
+          {profile.github && (
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="me noopener noreferrer"
+              className="inline-flex items-center gap-2 min-h-10 hover:text-white"
+            >
+              GitHub
             </a>
           )}
         </motion.div>

@@ -20,6 +20,8 @@ export function Contact() {
       {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
       <img
         src="/site/tilted-array-flat-rooftop.webp"
+        srcSet="/site/tilted-array-flat-rooftop-960.webp 960w, /site/tilted-array-flat-rooftop.webp 1280w"
+        sizes="100vw"
         alt="Tilted solar PV array on a flat commercial rooftop"
         width={1280}
         height={960}
@@ -42,7 +44,7 @@ export function Contact() {
           {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
           <motion.img
             variants={fadeUp}
-            src="/me/usama-avatar.webp"
+            src="/me/usama-avatar-192.webp"
             alt="Usama Javed"
             width={96}
             height={96}
@@ -104,6 +106,11 @@ export function Contact() {
             <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 min-h-11 hover:underline">
               WhatsApp
             </a>
+            {profile.github && (
+              <a href={profile.github} target="_blank" rel="me noopener noreferrer" className="inline-flex items-center gap-2 min-h-11 hover:underline">
+                GitHub
+              </a>
+            )}
             <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 min-h-11 hover:underline">
               <Mail size={15} aria-hidden="true" /> {profile.email}
             </a>

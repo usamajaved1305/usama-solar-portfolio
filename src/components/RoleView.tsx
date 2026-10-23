@@ -65,7 +65,7 @@ export function RoleView({ role, toolShots = {} }: { role: Role; toolShots?: Rec
             <motion.div variants={fadeUp} className="mt-5 flex items-center gap-3.5">
               {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
               <img
-                src="/me/usama-avatar.webp"
+                src="/me/usama-avatar-192.webp"
                 alt="Usama Javed"
                 width={56}
                 height={56}

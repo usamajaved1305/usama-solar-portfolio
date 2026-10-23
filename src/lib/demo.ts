@@ -79,8 +79,9 @@ export type Feature = {
   text: string;
   figures?: { value: string; label: string }[];
   chips: string[];
-  image: { src: string; alt: string; w: number; h: number; light?: boolean };
-  inset?: { src: string; alt: string; label: string; w: number; h: number };
+  /** small: a narrower copy for single-density screens and phones, used in srcset. */
+  image: { src: string; alt: string; w: number; h: number; light?: boolean; small?: { src: string; w: number } };
+  inset?: { src: string; alt: string; label: string; w: number; h: number; small?: { src: string; w: number } };
   tool?: string;
   toolLabel?: string;
   project?: ProjectGallery;
@@ -110,8 +111,8 @@ export const features: Feature[] = [
       { value: "15 kW", label: "Fox inverter" },
     ],
     chips: ["Steel frame", "SketchUp model", "Site supervision"],
-    image: { src: "/projects/elevated-canopy/site-finished-right.webp", alt: "The finished elevated frame and modules over the stair room", w: 1280, h: 960 },
-    inset: { src: "/projects/elevated-canopy/model-front-right.webp", alt: "The same view in the SketchUp model", label: "SketchUp model", w: 848, h: 636 },
+    image: { src: "/projects/elevated-canopy/site-finished-right.webp", alt: "The finished elevated frame and modules over the stair room", w: 1280, h: 960, small: { src: "/projects/elevated-canopy/site-finished-right-800.webp", w: 800 } },
+    inset: { src: "/projects/elevated-canopy/model-front-right.webp", alt: "The same view in the SketchUp model", label: "SketchUp model", w: 848, h: 636, small: { src: "/projects/elevated-canopy/model-front-right-480.webp", w: 480 } },
     project: {
       title: "Elevated rooftop canopy over a stair room",
       intro: [
@@ -156,7 +157,7 @@ export const features: Feature[] = [
       { value: "Under 2%", label: "less yield per kWp, for 35 more modules" },
     ],
     chips: ["String sizing", "Array setting out", "Protection design"],
-    image: { src: "/feature/helioscope-layout.webp", alt: "HelioScope layout of 198 modules on the rooftop", w: 1090, h: 772 },
+    image: { src: "/feature/helioscope-layout.webp", alt: "HelioScope layout of 198 modules on the rooftop", w: 1090, h: 772, small: { src: "/feature/helioscope-layout-720.webp", w: 720 } },
     tool: "Helioscope",
     toolLabel: "Open the HelioScope project",
   },
@@ -171,8 +172,8 @@ export const features: Feature[] = [
       { value: "3", label: "A1 sheets" },
     ],
     chips: ["AutoCAD", "Single line diagram", "Battery sizing"],
-    image: { src: "/feature/autocad-key-diagram.webp", alt: "Key diagram of the 79 kWp PV and 63 kWh battery system", w: 1400, h: 975, light: true },
-    inset: { src: "/feature/autocad-dispatch.webp", alt: "Battery dispatch over two typical days", label: "Battery dispatch", w: 900, h: 581 },
+    image: { src: "/feature/autocad-key-diagram.webp", alt: "Key diagram of the 79 kWp PV and 63 kWh battery system", w: 1400, h: 975, light: true, small: { src: "/feature/autocad-key-diagram-800.webp", w: 800 } },
+    inset: { src: "/feature/autocad-dispatch.webp", alt: "Battery dispatch over two typical days", label: "Battery dispatch", w: 900, h: 581, small: { src: "/feature/autocad-dispatch-480.webp", w: 480 } },
     tool: "AutoCAD",
     toolLabel: "Open the drawing set",
   },

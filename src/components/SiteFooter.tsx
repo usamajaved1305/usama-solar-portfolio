@@ -31,6 +31,9 @@ export function SiteFooter() {
           <a href="/Usama-Javed-CV.docx" className="inline-flex min-h-9 items-center hover:underline">
             CV (Word)
           </a>
+          <a href={profile.github} target="_blank" rel="me noopener noreferrer" className="inline-flex min-h-9 items-center hover:underline">
+            GitHub
+          </a>
         </nav>
       </div>
     </footer>
