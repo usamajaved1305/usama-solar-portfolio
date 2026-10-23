@@ -35,7 +35,6 @@ const FIXES: Record<string, string> = {
   mccb: "MCCB",
   mpp: "MPP",
   sld: "SLD",
-  solidworks: "SolidWorks",
   helioscope: "Helioscope",
   opensolar: "OpenSolar",
   dax: "DAX",
