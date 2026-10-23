@@ -5,8 +5,10 @@ import { ArrowRight, Download, Mail, MapPin, Phone } from "lucide-react";
 import { profile, stats } from "@/lib/data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
-// The first sentence of the lede: the second one repeats what the sections below show.
-const intro = profile.lede.split(". ")[0] + ".";
+// The first sentence of the lede is visible in the hero; the rest stays in the DOM for search engines.
+const [introFirst, ...introRestParts] = profile.lede.split(". ");
+const intro = introFirst + ".";
+const introRest = introRestParts.join(". ");
 
 // Two lines, so the end of the headline stays on the dark side of the photo instead of the bright sky.
 const [headlineFirst, ...headlineParts] = profile.headline.split(", ");
@@ -19,7 +21,11 @@ export function HeroBold() {
       {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
       <img
         src="/feature/hero-sunset-frame.webp"
-        alt=""
+        alt="Elevated rooftop solar PV array at sunset"
+        width={1600}
+        height={900}
+        fetchPriority="high"
+        decoding="async"
         className="hero-drift absolute inset-0 -z-20 h-full w-full object-cover"
         style={{ objectPosition: "62% 40%" }}
       />
@@ -43,9 +49,10 @@ export function HeroBold() {
           {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
           <img
             src="/me/usama-avatar.webp"
-            alt="Usama Javed"
+            alt="Usama Javed, Solar PV Project Engineer in Dublin, Ireland"
             width={72}
             height={72}
+            decoding="async"
             className="h-[72px] w-[72px] rounded-full object-cover"
             style={{ boxShadow: "0 0 0 3px rgba(5,9,12,0.9), 0 0 0 5px #f2a93b" }}
           />
@@ -61,7 +68,7 @@ export function HeroBold() {
         <motion.h1 variants={fadeUp} className="mt-7 font-extrabold tracking-tight leading-[0.98]" style={{ fontSize: "clamp(48px, 8vw, 104px)" }}>
           {profile.name}
         </motion.h1>
-        <motion.p
+        <motion.h2
           variants={fadeUp}
           className="mt-4 font-bold leading-tight"
           style={{ fontSize: "clamp(22px, 2.6vw, 34px)", color: "#f2a93b", fontFamily: "var(--font-display)" }}
@@ -73,9 +80,10 @@ export function HeroBold() {
               {headlineRest}
             </>
           )}
-        </motion.p>
+        </motion.h2>
         <motion.p variants={fadeUp} className="mt-5 max-w-[54ch] text-[17px] sm:text-[18px] leading-relaxed text-white/80">
           {intro}
+          {introRest && <span className="sr-only"> {introRest}</span>}
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center gap-3">
@@ -106,6 +114,16 @@ export function HeroBold() {
           <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 min-h-10 hover:text-white">
             <Mail size={15} aria-hidden="true" /> {profile.email}
           </a>
+          {profile.linkedin && (
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="me noopener noreferrer"
+              className="inline-flex items-center gap-2 min-h-10 hover:text-white"
+            >
+              LinkedIn
+            </a>
+          )}
         </motion.div>
 
         <motion.dl

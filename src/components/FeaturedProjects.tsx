@@ -58,7 +58,7 @@ export function FeaturedProjects({ toolShots = {} }: { toolShots?: Record<string
         {features
           .filter((f) => f.project)
           .map((f) => (
-            <Popover key={'p-' + f.key} open={project === f.key} onClose={() => setProject(null)} title={f.project!.title} xwide>
+            <Popover key={"p-" + f.key} open={project === f.key} onClose={() => setProject(null)} title={f.project!.title} xwide>
               {project === f.key && <ProjectView p={f.project!} />}
             </Popover>
           ))}
@@ -94,6 +94,8 @@ function FeatureBlock({ f, index, onOpen, onProject }: { f: Feature; index: numb
           <img
             src={f.image.src}
             alt={f.image.alt}
+            width={f.image.w}
+            height={f.image.h}
             loading="lazy"
             decoding="async"
             className={`aspect-[4/3] w-full ${f.image.light ? "object-contain p-6" : "object-cover"}`}
@@ -105,7 +107,15 @@ function FeatureBlock({ f, index, onOpen, onProject }: { f: Feature; index: numb
             style={{ border: "4px solid var(--bg)", boxShadow: "0 24px 48px -16px rgba(0,0,0,0.7)", background: "var(--bg-card)" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
-            <img src={f.inset.src} alt={f.inset.alt} loading="lazy" decoding="async" className="aspect-[16/10] w-full object-cover" />
+            <img
+              src={f.inset.src}
+              alt={f.inset.alt}
+              width={f.inset.w}
+              height={f.inset.h}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[16/10] w-full object-cover"
+            />
             <figcaption
               className="absolute left-2 top-2 rounded-full px-2.5 py-1 text-[11.5px] font-semibold text-white"
               style={{ background: "rgba(5,9,12,0.75)" }}

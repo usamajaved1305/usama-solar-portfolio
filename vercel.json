@@ -1,4 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.usamajaved.ie"
+        }
+      ],
+      "destination": "https://usamajaved.ie/:path*",
+      "permanent": true
+    }
+  ]
 }

@@ -85,15 +85,18 @@ export function Experience() {
   );
 }
 
-/** The first point stays visible; the rest open on request so the section reads at a glance. */
+/** The first point stays visible; the rest stay in the DOM for search engines and open on request. */
 function Highlights({ items }: { items: string[] }) {
   const [open, setOpen] = useState(false);
-  const shown = open ? items : items.slice(0, 1);
   return (
     <div className="mt-5">
       <ul className="space-y-2.5">
-        {shown.map((h) => (
-          <li key={h} className="text-[14.5px] leading-relaxed pl-4 relative" style={{ color: "var(--text-dim)" }}>
+        {items.map((h, i) => (
+          <li
+            key={h}
+            className={`text-[14.5px] leading-relaxed pl-4 relative ${!open && i > 0 ? "hidden" : ""}`}
+            style={{ color: "var(--text-dim)" }}
+          >
             <span
               className="absolute left-0 top-[9px] h-1 w-1 rounded-full"
               style={{ background: "var(--text-faint)" }}

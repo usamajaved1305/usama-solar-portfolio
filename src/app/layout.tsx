@@ -3,7 +3,7 @@ import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
-import { DESCRIPTION, SHORT_DESCRIPTION, TITLE, openGraphBase } from "@/lib/seo";
+import { DESCRIPTION, KEYWORDS, SHORT_DESCRIPTION, TITLE, TWITTER_IMAGE, openGraphBase } from "@/lib/seo";
 import { Providers } from "@/components/Providers";
 
 const manrope = Manrope({ variable: "--font-display", subsets: ["latin"], display: "swap" });
@@ -17,13 +17,27 @@ export const metadata: Metadata = {
     template: `%s | ${profile.name}`,
   },
   description: DESCRIPTION,
-  authors: [{ name: profile.name }],
+  keywords: KEYWORDS,
+  authors: [{ name: profile.name, url: SITE_URL }],
   creator: profile.name,
+  publisher: profile.name,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: openGraphBase,
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: SHORT_DESCRIPTION,
+    images: [TWITTER_IMAGE],
   },
 };
 
@@ -37,8 +51,8 @@ export const viewport: Viewport = {
 };
 
 // Runs before first paint. Falls back to the OS preference when storage is blocked.
-// First-time visitors get the light theme; the toggle choice is remembered after that.
-const THEME_INIT = `document.documentElement.setAttribute('data-theme','dark');`
+// First-time visitors get the dark theme.
+const THEME_INIT = `document.documentElement.setAttribute('data-theme','dark');`;
 
 // Framer Motion server-renders hidden elements with opacity:0; without JS they would never appear.
 const NOSCRIPT_REVEAL = `[style*="opacity:0"]{opacity:1!important;transform:none!important}`;

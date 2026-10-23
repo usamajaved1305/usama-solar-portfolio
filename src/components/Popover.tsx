@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import { X } from "lucide-react";
 
 type PopoverProps = {
@@ -16,6 +16,7 @@ type PopoverProps = {
 // Native <dialog>: Escape and the backdrop close it, and focus is trapped for keyboard users.
 export function Popover({ open, onClose, title, children, wide, xwide }: PopoverProps) {
   const ref = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
 
   useEffect(() => {
     const el = ref.current;
@@ -23,6 +24,8 @@ export function Popover({ open, onClose, title, children, wide, xwide }: Popover
     if (open && !el.open) el.showModal();
     if (!open && el.open) el.close();
   }, [open]);
+
+  if (!open) return null;
 
   return (
     <dialog
@@ -36,11 +39,13 @@ export function Popover({ open, onClose, title, children, wide, xwide }: Popover
         maxWidth: xwide ? "min(1160px, 96vw)" : wide ? "min(980px, 94vw)" : "min(720px, 94vw)",
         width: "100%",
       }}
-      aria-label={title}
+      aria-labelledby={titleId}
     >
       <div className="card p-4 sm:p-5" style={{ background: "var(--bg-card)" }}>
         <div className="flex items-start justify-between gap-4 mb-3">
-          <h2 className="font-bold text-[16px] leading-snug">{title}</h2>
+          <div id={titleId} className="font-bold text-[16px] leading-snug">
+            {title}
+          </div>
           <button
             type="button"
             onClick={onClose}

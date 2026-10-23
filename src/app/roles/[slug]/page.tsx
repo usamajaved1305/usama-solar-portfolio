@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import { RoleView } from "@/components/RoleView";
 import { SiteFooter } from "@/components/SiteFooter";
 import { TOOL_SHOT_FOLDERS } from "@/components/ToolArtifacts";
+import { profile } from "@/lib/data";
 import { readMedia } from "@/lib/media";
-import { openGraphBase } from "@/lib/seo";
+import { OG_IMAGE, TWITTER_IMAGE, openGraphBase, rolePageJsonLd } from "@/lib/seo";
 import { roles, roleBySlug } from "@/lib/roles";
 
 export const dynamicParams = false;
@@ -16,14 +17,27 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const role = roleBySlug((await params).slug);
   if (!role) return {};
-  const title = `${role.family} roles`;
+  const title = `${role.title} (${role.family})`;
+  const fullTitle = `${title} | ${profile.name}`;
+  const toolsText = role.tools.map((t) => (t === "Helioscope" ? "HelioScope" : t)).join(", ");
+  const description = `${role.pitch} Tools: ${toolsText}. Dublin, Ireland.`;
   return {
     title,
-    description: role.pitch,
+    description,
     alternates: { canonical: `/roles/${role.slug}` },
-    openGraph: { ...openGraphBase, title, description: role.pitch, url: `/roles/${role.slug}`, images: ["/opengraph-image.png"] },
-    // Setting openGraph here replaces the root one, so the share image has to be named again for LinkedIn previews.
-    twitter: { card: "summary_large_image", title, description: role.pitch, images: ["/twitter-image.png"] },
+    openGraph: {
+      ...openGraphBase,
+      title: fullTitle,
+      description,
+      url: `/roles/${role.slug}`,
+      images: [OG_IMAGE],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      images: [TWITTER_IMAGE],
+    },
   };
 }
 
@@ -31,9 +45,11 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
   const role = roleBySlug((await params).slug);
   if (!role) notFound();
   const toolShots = Object.fromEntries(role.proof.map((tool) => [tool, readMedia(TOOL_SHOT_FOLDERS[tool] ?? "")]));
+  const jsonLd = rolePageJsonLd(role);
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <RoleView role={role} toolShots={toolShots} />
       <SiteFooter />
     </>

@@ -18,7 +18,15 @@ export function Contact() {
   return (
     <section id="contact" className="section-pad relative isolate overflow-hidden">
       {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
-      <img src="/site/tilted-array-flat-rooftop.webp" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+      <img
+        src="/site/tilted-array-flat-rooftop.webp"
+        alt="Tilted solar PV array on a flat commercial rooftop"
+        width={1280}
+        height={960}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
       <div
         className="absolute inset-0 -z-10"
         style={{ background: "linear-gradient(to bottom, var(--bg) 0%, rgba(5,9,12,0.86) 30%, rgba(5,9,12,0.9) 100%)" }}
@@ -38,6 +46,8 @@ export function Contact() {
             alt="Usama Javed"
             width={96}
             height={96}
+            loading="lazy"
+            decoding="async"
             className="mx-auto mb-5 h-24 w-24 rounded-full object-cover"
             style={{ boxShadow: "0 0 0 4px var(--bg), 0 0 0 6px var(--btn-bg)" }}
           />
@@ -74,7 +84,7 @@ export function Contact() {
               <a
                 href={profile.linkedin}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="me noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold border transition-colors"
                 style={{ borderColor: "var(--line-strong)", color: "var(--text)" }}
               >

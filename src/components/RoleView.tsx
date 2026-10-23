@@ -8,7 +8,6 @@ import { roles, PROOF_LABELS, type Role } from "@/lib/roles";
 import type { MediaItem } from "@/lib/media";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 import { SunMark } from "./SunMark";
-import { ThemeToggle } from "./ThemeToggle";
 import { ToolProof } from "./ToolProof";
 import { ROLE_ICONS } from "./Roles";
 
@@ -33,7 +32,6 @@ export function RoleView({ role, toolShots = {} }: { role: Role; toolShots?: Rec
             </span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-3">
-            <ThemeToggle />
             <a
               href="/Usama-Javed-CV.pdf"
               download
@@ -98,6 +96,17 @@ export function RoleView({ role, toolShots = {} }: { role: Role; toolShots?: Rec
               >
                 <Phone size={16} aria-hidden="true" /> {profile.phone}
               </a>
+              {profile.linkedin && (
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="me noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold border"
+                  style={{ borderColor: "var(--line-strong)", color: "var(--text)" }}
+                >
+                  LinkedIn
+                </a>
+              )}
             </motion.div>
           </motion.div>
         </section>

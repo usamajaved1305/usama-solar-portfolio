@@ -79,8 +79,8 @@ export type Feature = {
   text: string;
   figures?: { value: string; label: string }[];
   chips: string[];
-  image: { src: string; alt: string; light?: boolean };
-  inset?: { src: string; alt: string; label: string };
+  image: { src: string; alt: string; w: number; h: number; light?: boolean };
+  inset?: { src: string; alt: string; label: string; w: number; h: number };
   tool?: string;
   toolLabel?: string;
   project?: ProjectGallery;
@@ -110,8 +110,8 @@ export const features: Feature[] = [
       { value: "15 kW", label: "Fox inverter" },
     ],
     chips: ["Steel frame", "SketchUp model", "Site supervision"],
-    image: { src: "/projects/elevated-canopy/site-finished-right.webp", alt: "The finished elevated frame and modules over the stair room" },
-    inset: { src: "/projects/elevated-canopy/model-front-right.webp", alt: "The same view in the SketchUp model", label: "SketchUp model" },
+    image: { src: "/projects/elevated-canopy/site-finished-right.webp", alt: "The finished elevated frame and modules over the stair room", w: 1280, h: 960 },
+    inset: { src: "/projects/elevated-canopy/model-front-right.webp", alt: "The same view in the SketchUp model", label: "SketchUp model", w: 848, h: 636 },
     project: {
       title: "Elevated rooftop canopy over a stair room",
       intro: [
@@ -156,7 +156,7 @@ export const features: Feature[] = [
       { value: "Under 2%", label: "yield given up for 35 more modules" },
     ],
     chips: ["String sizing", "Array setting out", "Protection design"],
-    image: { src: "/feature/helioscope-layout.webp", alt: "HelioScope layout of 198 modules on the rooftop" },
+    image: { src: "/feature/helioscope-layout.webp", alt: "HelioScope layout of 198 modules on the rooftop", w: 1090, h: 772 },
     tool: "Helioscope",
     toolLabel: "Open the HelioScope project",
   },
@@ -171,8 +171,8 @@ export const features: Feature[] = [
       { value: "3", label: "A1 sheets" },
     ],
     chips: ["AutoCAD", "Single line diagram", "Battery sizing"],
-    image: { src: "/feature/autocad-key-diagram.webp", alt: "Key diagram of the 80 kW system with battery", light: true },
-    inset: { src: "/feature/autocad-dispatch.webp", alt: "Battery dispatch over two typical days", label: "Battery dispatch" },
+    image: { src: "/feature/autocad-key-diagram.webp", alt: "Key diagram of the 80 kW system with battery", w: 1400, h: 975, light: true },
+    inset: { src: "/feature/autocad-dispatch.webp", alt: "Battery dispatch over two typical days", label: "Battery dispatch", w: 900, h: 581 },
     tool: "AutoCAD",
     toolLabel: "Open the drawing set",
   },
