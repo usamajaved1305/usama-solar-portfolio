@@ -16,7 +16,7 @@
 
 export const stats = [
   { value: "100+", label: "PV installations delivered", sub: "5 kWp domestic systems to a 115 kWp commercial rooftop" },
-  { value: "790 kWp", label: "Delivered in one year", sub: "36 projects, 85 to 90% completed on time" },
+  { value: "790 kWp", label: "Capacity delivered", sub: "36 projects, 85 to 90% completed on time" },
   { value: "Up to 40", label: "Crew members supervised", sub: "across five concurrent sites" },
   { value: "3.5 years", label: "Solar PV experience", sub: "from site survey through commissioning" },
 ];
@@ -176,7 +176,7 @@ export const projects = [
     challenge: "Material availability and labour shortages caused slippage while crews worked five sites at once.",
     action:
       "Allocated daily works across crews of up to 40 people, traced slippage to its causes and re-sequenced works to contain the impact on downstream activities.",
-    result: "Held 85 to 90% on-time completion across 36 projects in the year.",
+    result: "Held 85 to 90% on-time completion across 36 projects.",
     stack: ["Crew allocation", "Slippage tracking", "Programme control"],
   },
 ];

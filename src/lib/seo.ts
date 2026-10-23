@@ -6,7 +6,7 @@ import { CONTENT_UPDATED, SITE_URL } from "./site";
 export const TITLE = `${profile.name} | ${profile.headline}`;
 
 export const DESCRIPTION =
-  "Usama Javed, solar PV project engineer in Dublin. Over 100 installations from 5 to 115 kWp, 790 kWp in one year and crews of up to 40 supervised.";
+  "Usama Javed, solar PV project engineer in Dublin. Over 100 installations from 5 to 115 kWp, 790 kWp across 36 projects and crews of up to 40 supervised.";
 
 export const SHORT_DESCRIPTION =
   "Solar PV project engineer in Dublin. Over 100 installations delivered, with planning in Primavera P6 and MS Project, PV design and site supervision.";
@@ -15,7 +15,7 @@ export const OG_IMAGE = {
   url: "/opengraph-image.png",
   width: 1200,
   height: 630,
-  alt: "Usama Javed, Solar PV Project Engineer, Planning and Site Delivery, Dublin, Ireland. 100+ PV installations, 790 kWp delivered in one year, up to 40 crew supervised.",
+  alt: "Usama Javed, Solar PV Project Engineer, Planning and Site Delivery, Dublin, Ireland. 100+ PV installations, 790 kWp delivered across 36 projects, up to 40 crew supervised.",
   type: "image/png",
 };
 
