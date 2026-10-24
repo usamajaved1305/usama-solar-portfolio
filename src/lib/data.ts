@@ -88,7 +88,7 @@ export const toolCategories = [
 export const experience = [
   {
     role: "Project Manager",
-    company: "Solar Neon Engineering Pvt Ltd",
+    company: "SolarNeon Engineering",
     period: "May 2025 to Mar 2026",
     highlights: [
       "Managed delivery of 36 residential and commercial solar PV projects, covering site assessment, design validation, installation supervision, commissioning and client handover.",
@@ -107,7 +107,7 @@ export const experience = [
   },
   {
     role: "Senior Project Engineer",
-    company: "Islamabad Solar House Pvt Ltd",
+    company: "Islamabad Solar House Pvt. Ltd.",
     period: "Feb 2023 to Apr 2025",
     highlights: [
       "Ran the full project lifecycle on 59 residential and commercial PV installations ranging from 5 kWp to 115 kWp: site assessment, system design, installation coordination, commissioning and aftercare.",
@@ -126,7 +126,7 @@ export const experience = [
   },
   {
     role: "Project Engineer",
-    company: "Safeway Renewable Energy Pvt Ltd",
+    company: "Safeway Renewable Energy (Pvt) Ltd.",
     period: "Sep 2022 to Jan 2023",
     highlights: [
       "Supported execution of seven residential and commercial solar projects, developing scope and duration assumptions from installation drawings, load calculations and technical specifications.",
