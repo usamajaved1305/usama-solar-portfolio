@@ -33,6 +33,36 @@
       "source": "/tools/sql/115-kWp-commercial-rooftop-sql-demo.sql",
       "destination": "/tools/sql/115-kWp-commercial-rooftop-procurement-database.sql",
       "permanent": true
+    },
+    {
+      "source": "/tools/autocad/80-kW-bess-PV-01-mechanical.pdf",
+      "destination": "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-01-mechanical.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/tools/autocad/80-kW-bess-PV-01-mechanical.dwg",
+      "destination": "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-01-mechanical.dwg",
+      "permanent": true
+    },
+    {
+      "source": "/tools/autocad/80-kW-bess-PV-03-battery-control.pdf",
+      "destination": "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-03-battery-control.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/tools/autocad/80-kW-bess-PV-03-battery-control.dwg",
+      "destination": "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-03-battery-control.dwg",
+      "permanent": true
+    },
+    {
+      "source": "/tools/autocad/80-kW-bess-PV-04-single-line-diagram.pdf",
+      "destination": "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-04-single-line-diagram.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/tools/autocad/80-kW-bess-PV-04-single-line-diagram.dwg",
+      "destination": "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-04-single-line-diagram.dwg",
+      "permanent": true
     }
   ],
   "headers": [

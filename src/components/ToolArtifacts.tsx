@@ -33,9 +33,9 @@ const SQL_SCRIPT = "/tools/sql/115-kWp-commercial-rooftop-procurement-database.s
 const SKP_MODEL = "/tools/sketchup/20-kW-rooftop-pv-islamabad.skp";
 /** The three BESS sheets as drawn in AutoCAD: the plotted A1 PDF and the DWG behind it. */
 const BESS_SHEETS: [string, string][] = [
-  ["PV-01 mechanical", "/tools/autocad/80-kW-bess-PV-01-mechanical"],
-  ["PV-03 battery control", "/tools/autocad/80-kW-bess-PV-03-battery-control"],
-  ["PV-04 single line diagram", "/tools/autocad/80-kW-bess-PV-04-single-line-diagram"],
+  ["PV-01 mechanical", "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-01-mechanical"],
+  ["PV-03 battery control", "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-03-battery-control"],
+  ["PV-04 single line diagram", "/tools/autocad/79-kWp-pv-63-kWh-battery-PV-04-single-line-diagram"],
 ];
 
 /** Small bordered table for the figures that read better as text than as a picture. */
@@ -428,15 +428,13 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               </p>
               <p>
                 The system should produce about 178,300 kWh a year, or 1,553 kWh per kWp, with May the best month and
-                February the lowest. The simple estimate comes out 7% high: from May to August the modules run hot and
-                the performance ratio drops to about 0.71, so a flat 0.80 overstates the yield in Islamabad&apos;s
-                climate. Written in Python with pandas and matplotlib; the 20° south-facing tilt and 14% system losses
-                are assumptions. At the 146° azimuth the roof actually takes, PVGIS gives 1,526 kWh per kWp, about
+                February the lowest. The simple estimate comes out 7% high: from May to August the modules run hot, and the performance ratio drops to 0.71 in May and June, so a flat 0.80 overstates the yield in Islamabad&apos;s
+                climate. Written in Python with pandas and matplotlib; the 20° tilt follows the HelioScope design, while facing due south and 14% system losses are the model&apos;s assumptions. At the 146° azimuth the roof actually takes, PVGIS gives 1,526 kWh per kWp, about
                 175,300 kWh a year, so following the building costs 1.7%. HelioScope, on Meteonorm weather, gives a
                 lower 1,383 kWh per kWp for the same layout; the gap is the weather data.
               </p>
               <p>
-                The hourly battery model for the 79 kWp PV and 63 kWh battery job is plain Python too: 8,760 hours of
+                The hourly battery model for the 79 kWp PV and 63 kWh battery design study is plain Python too: 8,760 hours of
                 PV, load, grid import and state of charge, with three control jobs in priority order. It is explained
                 in the AutoCAD project, and{" "}
                 <a
@@ -497,8 +495,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
           intro={
             <>
               <p>
-                The same 115 kWp system as the Excel, Power BI, SQL and Python projects, designed in HelioScope on a
-                an industrial roof in Islamabad&apos;s I-9 area: 198 Jinko 580 W modules on fixed-tilt racking at
+                The same 115 kWp system as the Excel, Power BI, SQL and Python projects, designed in HelioScope on a commercial roof in Islamabad&apos;s I-9 industrial area: 198 Jinko 580 W modules on fixed-tilt racking at
                 20°, wired in 11 strings of 18 into one Huawei SUN2000-100KTL-M2 inverter (DC/AC ratio 1.15).
                 HelioScope checked the strings at its own Islamabad design low of 0.3 °C and got 998 V; the Excel check
                 uses a harsher -5 °C and gets 1,012 V. Both sit inside the inverter&apos;s 1,100 V limit.
@@ -509,8 +506,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
                 year, or 1,383 kWh per kWp at a performance ratio of 81%. That is about 9% below the PVGIS figure for the
                 same orientation, mainly because Meteonorm has 14% less sunshine for Islamabad than PVGIS&apos;s ERA5
                 data. It uses HelioScope&apos;s default loss settings. Shading here is row to row
-                only: the parapets and the trees on the east side are not modelled, so a site survey would come before
-                any yield promise.
+                only: the parapets and the trees on the east side are not modelled.
               </p>
               <RepoLink href={REPO_115_YIELD} />
             </>
@@ -707,7 +703,7 @@ export function buildToolArtifacts(shots: Record<string, MediaItem[]>): Record<s
               <p>
                 <strong>The annual peak does not move.</strong> It falls on a
                 December afternoon when there is no PV left and the state of charge is pinned at the 55% floor that
-                protects the 18:00 outage. Hours spent over the target do fall, by a third. Lowering the maximum as well
+                protects the 18:00 outage. Hours spent over the target do fall, by 35.5%. Lowering the maximum as well
                 needs a second CQ7 stack on port two, or an agreement to accept a shorter backup through the winter.
                 That is a commercial decision, not an electrical one.
               </p>

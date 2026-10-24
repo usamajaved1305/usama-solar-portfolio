@@ -11,7 +11,7 @@
   github: "https://github.com/usamajaved1305",
   lede:
     "Mechatronics engineer with three and a half years delivering solar PV projects from site survey through installation, commissioning and client handover. Experienced leading installation crews on live sites, and equally strong on the planning side: programmes, bills of material, budgets and milestone tracking.",
-  availability: "Open to solar project engineering, planning and site supervision roles",
+  availability: "Open to solar project engineering, planning, site supervision and energy reporting roles",
 };
 
 export const stats = [
@@ -175,7 +175,7 @@ export const projects = [
     tag: "Multi-site delivery",
     challenge: "Material availability and labour shortages caused slippage while crews worked five sites at once.",
     action:
-      "Allocated daily works across crews of up to 40 people, traced slippage to its causes and re-sequenced works to contain the impact on downstream activities.",
+      "Allocated daily works across crews totalling up to 40 people, traced slippage to its causes and re-sequenced works to contain the impact on downstream activities.",
     result: "Held 85 to 90% on-time completion across 36 projects.",
     stack: ["Crew allocation", "Slippage tracking", "Programme control"],
   },

@@ -60,7 +60,7 @@ export const roles: Role[] = [
       "Maintained bills of material and material call-off schedules with procurement, flagging slippage early to protect the installation programme.",
       "Managed interfaces and dependencies between MEP, solar PV and installation teams to protect completion dates.",
     ],
-    proof: ["Primavera P6", "MS Project", "Power BI", "Advanced Excel"],
+    proof: ["Primavera P6", "MS Project", "SketchUp", "Power BI", "Advanced Excel"],
     homeProof: ["Primavera P6", "Power BI"],
   },
   {
@@ -109,7 +109,7 @@ export const roles: Role[] = [
     title: "Solar Site Supervisor",
     seoTitle: "Solar PV Site Supervisor, Dublin",
     metaDescription:
-      "Solar site supervisor in Dublin: led installation crews of up to 40 across five concurrent sites, checked workmanship and carried out commissioning.",
+      "Solar site supervisor in Dublin: led crews totalling up to 40 across five concurrent sites, checked workmanship and carried out commissioning.",
     fit:
       "Running installation crews, sequencing the work and checking workmanship, with commissioning and fault finding at the end.",
     record:
@@ -117,7 +117,7 @@ export const roles: Role[] = [
     tools: ["MS Project", "AutoCAD", "Advanced Excel"],
     targets: ["Installation Supervisor", "Assistant Site Manager"],
     pitch:
-      "As a project manager I led three engineers and installation crews of up to 40 people across five concurrent solar sites, and was the escalation point when mounting, DC string routing and AC connection works clashed.",
+      "As a project manager I led three engineers and installation crews totalling up to 40 people across five concurrent solar sites, and was the escalation point when mounting, DC string routing and AC connection works clashed.",
     asks: [
       "Run installation crews across several sites at once",
       "Health and safety on site, from toolbox talks to working at height",
@@ -174,8 +174,8 @@ export const roles: Role[] = [
     proofLabels: { AutoCAD: "Hourly battery dispatch model, 79 kWp PV and 63 kWh battery" },
     picture: {
       src: "/feature/autocad-dispatch.webp",
-      alt: "Hourly PV generation, site demand, grid import and battery state of charge over two typical days",
-      caption: "Battery dispatch on two typical days, from an hour-by-hour Python model of a year for a 79 kWp PV and 63 kWh battery system.",
+      alt: "Hourly PV generation, site demand, grid import and battery state of charge on a typical April day and the December day that sets the annual peak",
+      caption: "Battery dispatch on a typical April day and the December peak day, from an hour-by-hour Python model of a year for a 79 kWp PV and 63 kWh battery system.",
       w: 900,
       h: 581,
       small: { src: "/feature/autocad-dispatch-480.webp", w: 480 },

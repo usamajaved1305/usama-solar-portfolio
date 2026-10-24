@@ -22,7 +22,7 @@ function CardVisual({ tag }: { tag: string }) {
   }
   const figure = tag === "Programme recovery"
     ? { Icon: CalendarClock, value: "2 months", label: "of inverter supply delay re-planned", dots: 0 }
-    : { Icon: Users, value: "5 sites", label: "running at once, with crews of up to 40", dots: 5 };
+    : { Icon: Users, value: "5 sites", label: "running at once, with crews totalling up to 40", dots: 5 };
   const { Icon } = figure;
   return (
     <div

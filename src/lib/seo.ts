@@ -6,10 +6,10 @@ import { CONTENT_UPDATED, SITE_URL } from "./site";
 export const TITLE = `${profile.name} | ${profile.headline}`;
 
 export const DESCRIPTION =
-  "Usama Javed, solar PV project engineer in Dublin. Over 100 installations from 5 to 115 kWp, 790 kWp across 36 projects and crews of up to 40 supervised.";
+  "Usama Javed, solar PV project engineer in Dublin. Over 100 installations from 5 to 115 kWp, 790 kWp across 36 projects and crews totalling up to 40 supervised.";
 
 export const SHORT_DESCRIPTION =
-  "Solar PV project engineer in Dublin. Over 100 installations delivered, with planning in Primavera P6 and MS Project, PV design and site supervision.";
+  "Solar PV project engineer in Dublin. Over 100 installations delivered, with PV design, planning and site supervision, plus P6 and MS Project files to open.";
 
 export const OG_IMAGE = {
   url: "/opengraph-image.png",
@@ -75,7 +75,7 @@ const personEntity = {
     "Single line diagrams",
     "Bill of materials and procurement control",
   ],
-  alumniOf: education.map((e) => ({
+  alumniOf: education.filter((e) => !/expected|present/i.test(e.period)).map((e) => ({
     "@type": "CollegeOrUniversity",
     name: e.org,
     url: e.orgUrl,

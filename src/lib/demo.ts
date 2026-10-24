@@ -173,7 +173,7 @@ export const features: Feature[] = [
     ],
     chips: ["AutoCAD", "Single line diagram", "Battery sizing"],
     image: { src: "/feature/autocad-key-diagram.webp", alt: "Key diagram of the 79 kWp PV and 63 kWh battery system", w: 1400, h: 975, light: true, small: { src: "/feature/autocad-key-diagram-800.webp", w: 800 } },
-    inset: { src: "/feature/autocad-dispatch.webp", alt: "Battery dispatch over two typical days", label: "Battery dispatch", w: 900, h: 581, small: { src: "/feature/autocad-dispatch-480.webp", w: 480 } },
+    inset: { src: "/feature/autocad-dispatch.webp", alt: "Battery dispatch on a typical April day and the December peak day", label: "Battery dispatch", w: 900, h: 581, small: { src: "/feature/autocad-dispatch-480.webp", w: 480 } },
     tool: "AutoCAD",
     toolLabel: "Open the drawing set",
   },

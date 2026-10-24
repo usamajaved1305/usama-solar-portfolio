@@ -21,7 +21,7 @@ export function FeaturedProjects({ toolShots = {} }: { toolShots?: Record<string
   return (
     <section id="projects" className="section-pad">
       <div className="container-x">
-        <SectionHeading kicker="Projects" title="Selected work" desc="Installations from site, and the design work behind them." />
+        <SectionHeading kicker="Projects" title="Selected work" desc="Installations from site, the design work behind them, and one design study." />
 
         <div className="flex flex-col gap-24 lg:gap-32">
           {features.map((f, i) => (
